@@ -1,9 +1,4 @@
-<!--!!START SILENT -->
-# AirBnB Clone
-<!--!!END -->
-<!--!!ADD -->
-Matt's Flats
-<!--!!END_ADD -->
+# Matt's Flats
 
 ## Database Schema Design
 
