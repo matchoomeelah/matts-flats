@@ -15,7 +15,6 @@ const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
 
 
-
 //
 // LOGIN ROUTE
 //
@@ -48,7 +47,7 @@ router.post('/', async (req, res, next) => {
         username: user.username,
     };
 
-    // Use the userinfo function we made in auth.js to set the token on our response
+    // Use the function we made in auth.js to set the token on our response
     await setTokenCookie(res, safeUser);
 
     return res.json({
