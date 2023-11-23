@@ -58,4 +58,14 @@ router.post('/', async (req, res, next) => {
 });
 
 
+//
+// LOGOUT ROUTE
+//
+router.delete('/', (req, res, next) => {
+    // Delete the token cookie and return message of success
+    res.clearCookie('token');
+    return res.json({ message: 'success' });
+});
+
+
 module.exports = router;
