@@ -67,4 +67,22 @@ router.delete('/', (req, res, next) => {
 });
 
 
+router.get('/', async (req, res, next) => {
+    // Get the current user from the request, already set by the restoreUser middleware
+    const user = req.user;
+
+    // If there is a current user, return their info
+    // If no current user, return an empty user object
+    if (user) {
+      const safeUser = {
+        id: user.id,
+        email: user.email,
+        username: user.username,
+      };
+      return res.json({
+        user: safeUser
+      });
+    } else return res.json({ user: null });
+});
+
 module.exports = router;
