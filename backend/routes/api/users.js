@@ -8,14 +8,42 @@ const bcrypt = require('bcryptjs');
 // Imports for authorizing users
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 
+// Import validation check method and our custome handleValidationErrors message
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
+
 // Import for reference to the User model to find records
 const { User } = require('../../db/models');
 
 
 //
+// Validation for SIGNUP
+//
+const validateSignup = [
+    check('email')
+      .exists({ checkFalsy: true })
+      .isEmail()
+      .withMessage('Please provide a valid email.'),
+    check('username')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 4 })
+      .withMessage('Please provide a username with at least 4 characters.'),
+    check('username')
+      .not()
+      .isEmail()
+      .withMessage('Username cannot be an email.'),
+    check('password')
+      .exists({ checkFalsy: true })
+      .isLength({ min: 6 })
+      .withMessage('Password must be 6 characters or more.'),
+    handleValidationErrors
+  ];
+
+
+//
 // SIGNUP
 //
-router.post('/', async (req, res, next) => {
+router.post('/', validateSignup, async (req, res, next) => {
     // Get the body params and hash a new password
     const { username, email, password} = req.body;
     const hashedPassword = bcrypt.hashSync(password);
