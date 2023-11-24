@@ -14,11 +14,28 @@ const { setTokenCookie, restoreUser } = require('../../utils/auth');
 // Import for reference to the User model to find records
 const { User } = require('../../db/models');
 
+// Import for request validation
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
+
+
+// checks to see whether or not req.body.credential and req.body.password are empty.
+// If one of them is empty, then an error will be returned as the response.
+const validateLogin = [
+    check('credential')
+      .exists({ checkFalsy: true })
+      .notEmpty()
+      .withMessage('Please provide a valid email or username.'),
+    check('password')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a password.'),
+    handleValidationErrors
+  ];
 
 //
 // LOGIN ROUTE
 //
-router.post('/', async (req, res, next) => {
+router.post('/', validateLogin, async (req, res, next) => {
     const { credential, password } = req.body;
 
     // Find a user with the username/email specified in the body
@@ -67,6 +84,10 @@ router.delete('/', (req, res, next) => {
 });
 
 
+
+//
+// GET CURRENT USER SESSION
+//
 router.get('/', async (req, res, next) => {
     // Get the current user from the request, already set by the restoreUser middleware
     const user = req.user;
