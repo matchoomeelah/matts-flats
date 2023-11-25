@@ -45,15 +45,17 @@ const validateSignup = [
 //
 router.post('/', validateSignup, async (req, res, next) => {
     // Get the body params and hash a new password
-    const { username, email, password} = req.body;
+    const { username, firstName, lastName, email, password} = req.body;
     const hashedPassword = bcrypt.hashSync(password);
 
     // Create a new user with the hashedPassword stored
-    const user = await User.create({username, email, hashedPassword});
+    const user = await User.create({username, firstName, lastName, email, hashedPassword});
 
     // Create a user object that doesn't have the password in it
     const safeUser = {
         id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
         email: user.email,
         username: user.username
     };

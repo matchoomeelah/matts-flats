@@ -60,8 +60,10 @@ router.post('/', validateLogin, async (req, res, next) => {
     // The logged in user's info to put in the res, with NO hashedPassword
     const safeUser = {
         id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
         email: user.email,
-        username: user.username,
+        username: user.username
     };
 
     // Use the function we made in auth.js to set the token on our response
@@ -97,8 +99,10 @@ router.get('/', async (req, res, next) => {
     if (user) {
       const safeUser = {
         id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
         email: user.email,
-        username: user.username,
+        username: user.username
       };
       return res.json({
         user: safeUser
