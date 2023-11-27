@@ -51,7 +51,7 @@ module.exports = {
       price: 2000,
     }
    ], { validate: true });
-  }, // SPOT
+  },
 
   async down (queryInterface, Sequelize) {
     await queryInterface.bulkDelete(options, {
