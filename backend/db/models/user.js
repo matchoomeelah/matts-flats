@@ -19,6 +19,14 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
         hooks: true
       });
+
+      // A user can have many Reviews
+      User.hasMany(models.Review, {
+        foreignKey: 'userId',
+        otherKey: 'id',
+        onDelete: 'CASCADE',
+        hooks: true
+      });
     }
   };
 
