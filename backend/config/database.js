@@ -1,4 +1,6 @@
-// backend/config/database.js
+// This is where Sequelize will be looking for all of its configurations,
+// depending on which environment we indicate
+
 const config = require('./index');
 
 module.exports = {

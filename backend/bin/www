@@ -1,5 +1,4 @@
-#!/usr/bin/env node
-// backend/bin/www
+// Start the Express application to listen for server requests after authenticating your database connection.
 
 // Import environment variables
 require('dotenv').config();

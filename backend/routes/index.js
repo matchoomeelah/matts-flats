@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-
+// Connect to our main API router
 const apiRouter = require('./api');
 router.use('/api', apiRouter);
 

@@ -1,3 +1,4 @@
+// All those packages we installed as specified in our backend/package.json
 const express = require('express');
 require('express-async-errors');
 const morgan = require('morgan');
@@ -39,7 +40,11 @@ if (!isProduction) {
     })
   );
 
-  // Set the _csrf token and create req.csrfToken method
+// The csurf middleware will add a _csrf cookie that is HTTP-only (can't be read by JavaScript) to any server response.
+// It also adds a method on all requests (req.csrfToken) that will be set to another cookie (XSRF-TOKEN) later on.
+// These two cookies work together to provide CSRF (Cross-Site Request Forgery) protection for your application.
+// The XSRF-TOKEN cookie value needs to be sent in the header of any request with all HTTP verbs besides GET.
+// This header will be used to validate the _csrf cookie to confirm that the request comes from your site and not an unauthorized site.
   app.use(
     csurf({
       cookie: {
@@ -50,7 +55,8 @@ if (!isProduction) {
     })
   );
 
-  // Connect all the routes
+
+// Connect all the routes
 const routes = require('./routes');
 app.use(routes);
 
@@ -83,7 +89,7 @@ app.use((_req, _res, next) => {
 // Error formatter
 app.use((err, _req, res, _next) => {
     res.status(err.status || 500);
-    console.error(err);
+    // console.error(err);
     res.json({
       title: err.title || 'Server Error',
       message: err.message,

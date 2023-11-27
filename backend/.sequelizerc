@@ -1,4 +1,5 @@
-// backend/.sequelizerc
+// Tell sequelize where to generate and find things
+
 const path = require('path');
 
 module.exports = {

@@ -1,4 +1,4 @@
-// backend/config/index.js
+// Exporting our environment variables for use elsewhere in our code
 module.exports = {
     environment: process.env.NODE_ENV || 'development',
     port: process.env.PORT || 8000,

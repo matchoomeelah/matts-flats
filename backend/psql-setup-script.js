@@ -1,3 +1,5 @@
+// Create any schemas that aren't already created by PG
+
 const { sequelize } = require('./db/models');
 
 sequelize.showAllSchemas({ logging: false }).then(async (data) => {
