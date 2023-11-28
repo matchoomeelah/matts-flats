@@ -21,6 +21,14 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         otherKey: 'id'
       });
+
+      // A Review can have many ReviewImages
+      Review.hasMany(models.ReviewImage, {
+        foreignKey: 'reviewId',
+        otherKey: 'id',
+        onDelete: 'CASCADE',
+        hooks: true
+      })
     }
   }
   Review.init({
