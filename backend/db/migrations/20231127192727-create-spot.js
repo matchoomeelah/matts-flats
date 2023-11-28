@@ -33,29 +33,35 @@ module.exports = {
       },
       city: {
         type: Sequelize.STRING,
+        allowNull: false
       },
       state: {
         type: Sequelize.STRING,
+        allowNull: false
       },
       country: {
         type: Sequelize.STRING,
         allowNull: false
       },
       lat: {
-        type: Sequelize.FLOAT(10,7)
+        type: Sequelize.FLOAT(10, 7),
+        allowNull: false
       },
       lng: {
-        type: Sequelize.FLOAT(10,7)
+        type: Sequelize.FLOAT(10, 7),
+        allowNull: false
       },
       name: {
         type: Sequelize.STRING,
         defaultValue: "MY SPOT"
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       price: {
-        type: Sequelize.FLOAT(8, 2)
+        type: Sequelize.FLOAT(8, 2),
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

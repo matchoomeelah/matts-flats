@@ -8,6 +8,10 @@ const { Spot, SpotImage, Review, User } = require('../../db/models');
 // For the routes that require authentication
 const { requireAuth } = require('../../utils/auth');
 
+// Import validation check method and our custome handleValidationErrors message
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
+
 // Helper Functions
 const { addAvgRating, addPreviewImage, addReviewCount } = require('../../utils/spot-helpers');
 
@@ -118,11 +122,12 @@ router.get('/:spotId', async (req, res, next) => {
             }]
     });
 
+
     // Check if spot exists, throw 404 if not
     if (!spot) {
         const err = new Error();
         err.message = "Spot couldn't be found";
-        res.status = 404;
+        res.status(404);
         return res.json(err);
     }
 
@@ -137,6 +142,89 @@ router.get('/:spotId', async (req, res, next) => {
 });
 
 
+//
+// Validate new spot
+//
+
+const validateNewSpot = [
+    check('address')
+        .exists({ checkFalsy: true })
+        .withMessage('Street address is required'),
+    check('city')
+        .exists({ checkFalsy: true })
+        .withMessage('City is required'),
+    check('state')
+        .exists({ checkFalsy: true })
+        .withMessage('State is required'),
+    check('country')
+        .exists({ checkFalsy: true })
+        .withMessage('Country is required'),
+    check('lat')
+        .isFloat({ min: -90.0, max: 90.0 })
+        .withMessage('Latitude is not valid'),
+    check('lng')
+        .isFloat({ min: -180.0, max: 180.0 })
+        .withMessage('Longitude is not valid'),
+    check('name')
+        .isLength({ max: 50 })
+        .withMessage("Name must be less than 50 characters"),
+    check('description')
+        .exists({ checkFalsy: true })
+        .withMessage("Description is required"),
+    check('price')
+        .exists({ checkFalsy: true })
+        .withMessage("Price per day is required"),
+    handleValidationErrors
+];
+
+//
+// Create a spot
+//
+router.post('/', requireAuth, validateNewSpot, async (req, res, next) => {
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+
+    const user = req.user;
+    const ownerId = user.id;
+
+    const spot = Spot.build({ ownerId, address, city, state, country, lat, lng, name, description, price });
+    await spot.save();
+
+    res.status(201);
+    res.json(spot);
+})
+
+
+//
+// Delete a spot
+//
+router.delete('/:spotId', requireAuth, async (req, res, next) => {
+    const { spotId } = req.params;
+    const spot = await Spot.findByPk(spotId);
+
+    const user = req.user;
+
+    // Check if spot exists, otherwise 404
+    if (!spot) {
+        const err = new Error();
+        err.message = "Spot couldn't be found";
+        res.status(404);
+        return res.json(err);
+    }
+
+    // Check if authorized user
+    if (user.id !== spot.ownerId) {
+        const err = new Error();
+        err.message = "Cannot delete a spot you do not own";
+        res.status(403);
+        return res.json(err);
+    }
+
+    await spot.destroy();
+
+    res.json({
+        message: "Successfully deleted"
+    });
+})
 
 
 
