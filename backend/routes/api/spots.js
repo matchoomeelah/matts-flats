@@ -146,7 +146,7 @@ router.get('/:spotId', async (req, res, next) => {
 // Validate new spot
 //
 
-const validateNewSpot = [
+const validateSpot = [
     check('address')
         .exists({ checkFalsy: true })
         .withMessage('Street address is required'),
@@ -180,7 +180,7 @@ const validateNewSpot = [
 //
 // Create a spot
 //
-router.post('/', requireAuth, validateNewSpot, async (req, res, next) => {
+router.post('/', requireAuth, validateSpot, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
     const user = req.user;
@@ -226,6 +226,40 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
     });
 })
 
+
+
+
+
+//
+// Edit a spot
+//
+router.put('/:spotId', requireAuth, validateSpot, async (req, res, next) => {
+    const { spotId } = req.params;
+    const user = req.user;
+
+    const spot = await Spot.findByPk(spotId);
+
+    // Check if spot exists, otherwise 404
+    if (!spot) {
+        const err = new Error();
+        err.message = "Spot couldn't be found";
+        res.status(404);
+        return res.json(err);
+    }
+
+    // Check if authorized user
+    if (user.id !== spot.ownerId) {
+        const err = new Error();
+        err.message = "Cannot edit a spot you do not own";
+        res.status(403);
+        return res.json(err);
+    }
+    spot.set({...req.body});
+
+    await spot.save();
+
+    res.json(spot);
+});
 
 
 module.exports = router;
