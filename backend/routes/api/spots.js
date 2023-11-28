@@ -228,8 +228,6 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
 
 
 
-
-
 //
 // Edit a spot
 //
