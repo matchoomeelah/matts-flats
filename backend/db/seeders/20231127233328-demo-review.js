@@ -24,8 +24,14 @@ module.exports = {
         spotId: 1,
         userId: 2,
         review: "Great!" ,
+        stars: 4
+      },
+      {
+        spotId: 3,
+        userId: 3,
+        review: "AWESOME" ,
         stars: 5
-      }
+      },
     ], { validate: true })
   },
 

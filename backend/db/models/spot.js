@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Spot extends Model {
     /**
@@ -47,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    address:  {
+    address: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -62,10 +63,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     lat: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT(10,7),
     },
     lng: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT(10,7),
     },
     name: {
       type: DataTypes.STRING,
@@ -74,7 +75,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     price: {
-      type: DataTypes.DECIMAL
+      type: DataTypes.FLOAT(8,2)
     }
   }, {
     sequelize,

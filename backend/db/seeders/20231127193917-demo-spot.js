@@ -16,10 +16,10 @@ module.exports = {
    await Spot.bulkCreate([
     {
       ownerId: 1,
-      address: "6168 Yeadon Wy",
+      address: "6168 Yeadon Way",
       city: "San Jose",
-      state: "CA",
-      country: "USA",
+      state: "California",
+      country: "United States of America",
       lat: 37.237779444982415,
       lng: -121.79651186075105,
       name: "My old house",
@@ -27,7 +27,7 @@ module.exports = {
       price: 200.49,
     },
     {
-      ownerId: 2,
+      ownerId: 1,
       address: "123 Easy Street",
       city: "EasyVille",
       state: "EZ",
