@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       Spot.belongsTo(models.User, {
         foreignKey: 'ownerId',
         otherKey: 'id',
+        as: "Owner"
       });
 
       // A Spot can have many SpotImages

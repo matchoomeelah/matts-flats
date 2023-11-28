@@ -24,20 +24,12 @@ const addPreviewImage = (spot) => {
     return spot
 }
 
-const addAvgAndPreviewToSpots = (spots) => {
-    spots = spots.map(spot => {
-        spot = spot.toJSON();
+const addReviewCount = (spot) => {
+    const count = spot.Reviews.length;
 
-        // Calculate the avgRating for each spot
-        addAvgRating(spot);
+    spot.numReviews = count;
 
-        // Set previewImage
-        addPreviewImage(spot);
-
-        return spot;
-    });
-
-    return spots;
+    return spot;
 }
 
-module.exports = { addAvgAndPreviewToSpots, addAvgRating, addPreviewImage };
+module.exports = { addAvgRating, addPreviewImage, addReviewCount };
