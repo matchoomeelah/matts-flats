@@ -32,6 +32,12 @@ module.exports = {
         review: "AWESOME" ,
         stars: 5
       },
+      {
+        spotId: 2,
+        userId: 3,
+        review: "nah",
+        stars: 1
+      }
     ], { validate: true })
   },
 

@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { User } = require('../db/models');
+const { User, Spot } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -76,7 +76,33 @@ const requireAuth = function (req, _res, next) {
   return next(err);
 }
 
+const requireOwner = async function (req, res, next) {
+  if (!req.user) {
+    return requireAuth(req, res, next);
+  }
+
+
+  // Find spotIds owned by user
+  const spots = await Spot.findAll({
+    attributes: ["id"],
+    where: {
+      ownerId: req.user.id
+    }
+  });
+
+
+  if (spots.some(spot => spot.id == req.params.spotId)) {
+    return next();
+  }
+
+  const err = new Error('Forbidden');
+  err.title = 'Authorization required';
+  err.errors = { message: 'Forbidden' };
+  err.status = 403;
+  return next(err);
+
+}
 
 
 
-module.exports = { setTokenCookie, restoreUser, requireAuth };
+module.exports = { setTokenCookie, restoreUser, requireAuth, requireOwner };
