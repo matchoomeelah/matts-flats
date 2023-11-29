@@ -1,5 +1,5 @@
 const { validationResult, check } = require('express-validator');
-const { Spot, Review } = require('../db/models');
+const { Spot, Review, Booking } = require('../db/models');
 
 // middleware for formatting errors from express-validator middleware
 // (to customize, see express-validator's documentation)
@@ -27,10 +27,10 @@ const handleValidationErrors = (req, res, next) => {
 const spotExists = async (req, res, next) => {
   const { spotId } = req.params;
   if (!await Spot.findByPk(spotId)) {
-      const err = new Error();
-      err.message = "Spot couldn't be found";
-      res.status(404);
-      return res.json(err);
+    const err = new Error();
+    err.message = "Spot couldn't be found";
+    res.status(404);
+    return res.json(err);
   }
 
   next();
@@ -47,9 +47,9 @@ const reviewExists = async (req, res, next) => {
     err.message = "Review couldn't be found";
     res.status(404);
     return res.json(err);
-}
+  }
 
-next();
+  next();
 }
 
 
@@ -63,7 +63,7 @@ const endDateAfterStartDate = (req, res, next) => {
 
   if (endDate.getTime() <= startDate.getTime()) {
     const err = new Error("Bad request");
-    err.errors = {"endDate": "endDate cannot be on or before startDate"}
+    err.errors = { "endDate": "endDate cannot be on or before startDate" }
     err.status = 400;
     err.title = "Bad request";
     return next(err);
@@ -72,37 +72,75 @@ const endDateAfterStartDate = (req, res, next) => {
   next();
 }
 
+
+//
+// Check for conflicting Booking
+//
+const checkBookingConflict = async function (req, res, next) {
+  const { spotId } = req.params;
+  const { startDate, endDate } = req.body;
+  startTime = new Date(startDate).getTime();
+  endTime = new Date(endDate).getTime();
+
+
+  const spot = await Spot.findByPk(spotId, {
+    include: {
+      model: Booking,
+      attributes: ["startDate", "endDate"]
+    }
+  });
+
+  for (let booking of spot.Bookings) {
+    const currStartTime = new Date(booking.startDate);
+    const currEndTime = new Date(booking.endDate);
+    if ((startTime < currStartTime && endTime > currStartTime) ||
+      (startTime >= currStartTime && startTime < currEndTime)) {
+      const err = new Error("Sorry, this spot is already booked for the specified dates");
+      err.errors = {
+        "startDate": "Start date conflicts with an existing booking",
+        "endDate": "End date conflicts with an existing booking"
+      }
+      err.status = 403;
+      err.title = "Forbidden";
+      return next(err);
+    }
+  }
+
+  next();
+}
+
+
 //
 // Validate new Spot
 //
 const validateSpot = [
   check('address')
-      .exists({ checkFalsy: true })
-      .withMessage('Street address is required'),
+    .exists({ checkFalsy: true })
+    .withMessage('Street address is required'),
   check('city')
-      .exists({ checkFalsy: true })
-      .withMessage('City is required'),
+    .exists({ checkFalsy: true })
+    .withMessage('City is required'),
   check('state')
-      .exists({ checkFalsy: true })
-      .withMessage('State is required'),
+    .exists({ checkFalsy: true })
+    .withMessage('State is required'),
   check('country')
-      .exists({ checkFalsy: true })
-      .withMessage('Country is required'),
+    .exists({ checkFalsy: true })
+    .withMessage('Country is required'),
   check('lat')
-      .isFloat({ min: -90.0, max: 90.0 })
-      .withMessage('Latitude is not valid'),
+    .isFloat({ min: -90.0, max: 90.0 })
+    .withMessage('Latitude is not valid'),
   check('lng')
-      .isFloat({ min: -180.0, max: 180.0 })
-      .withMessage('Longitude is not valid'),
+    .isFloat({ min: -180.0, max: 180.0 })
+    .withMessage('Longitude is not valid'),
   check('name')
-      .isLength({ max: 50 })
-      .withMessage("Name must be less than 50 characters"),
+    .isLength({ max: 50 })
+    .withMessage("Name must be less than 50 characters"),
   check('description')
-      .exists({ checkFalsy: true })
-      .withMessage("Description is required"),
+    .exists({ checkFalsy: true })
+    .withMessage("Description is required"),
   check('price')
-      .exists({ checkFalsy: true })
-      .withMessage("Price per day is required"),
+    .exists({ checkFalsy: true })
+    .withMessage("Price per day is required"),
   handleValidationErrors
 ];
 
@@ -113,13 +151,13 @@ const validateSpot = [
 const validateReview = [
   check('review')
     .exists({ checkFalsy: true })
-    .isLength({min: 1})
+    .isLength({ min: 1 })
     .withMessage('Review text is required'),
   check('stars')
     .exists({ checkFalsy: true })
-    .isInt({min: 1, max: 5})
+    .isInt({ min: 1, max: 5 })
     .withMessage("Stars must be an integer from 1 to 5"),
-    handleValidationErrors
+  handleValidationErrors
 ];
 
 
@@ -147,5 +185,6 @@ module.exports = {
   spotExists,
   reviewExists,
   validateBooking,
-  endDateAfterStartDate
+  endDateAfterStartDate,
+  checkBookingConflict
 };

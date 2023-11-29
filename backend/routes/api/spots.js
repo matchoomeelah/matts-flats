@@ -10,7 +10,7 @@ const { requireAuth, requireSpotOwner, requireNotSpotOwner } = require('../../ut
 
 // Import validation check method and our custome handleValidationErrors message
 const { check } = require('express-validator');
-const { validateSpot, validateReview, spotExists, validateBooking } = require('../../utils/validation');
+const { validateSpot, validateReview, spotExists, validateBooking, checkBookingConflict } = require('../../utils/validation');
 
 // Helper Functions
 const { addAvgRating, addPreviewImage, addReviewCount } = require('../../utils/spot-helpers');
@@ -269,7 +269,7 @@ router.post('/:spotId/reviews', requireAuth, spotExists, validateReview, async (
 //
 // Create a Booking from a Spot based on the Spot's id
 //
-router.post('/:spotId/bookings', requireAuth, spotExists, requireNotSpotOwner, validateBooking, async (req, res, next) => {
+router.post('/:spotId/bookings', requireAuth, spotExists, requireNotSpotOwner, validateBooking, checkBookingConflict, async (req, res, next) => {
     // Get necessary attributes
     const { spotId } = req.params;
     const userId = req.user.id;

@@ -26,7 +26,8 @@ router.get('/current', requireAuth, async (req, res, next) => {
                 attributes: ["url"],
                 where: {
                     preview: true
-                }
+                },
+                required: false
             }
         },
         {
@@ -37,14 +38,18 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
     // Specify the preview image
     reviews = reviews.map(review => {
-        const url = review.Spot.SpotImages[0].url;
+        let url = null;
+
+        if (review.Spot.SpotImages.length){
+            url = review.Spot.SpotImages[0].url;
+        }
 
         review = review.toJSON();
         review.Spot.previewImage = url;
         delete review.Spot.SpotImages;
 
         return review;
-    })
+    });
 
     res.json(reviews);
 });
