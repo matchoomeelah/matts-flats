@@ -6,7 +6,7 @@ const router = express.Router();
 const { Spot, SpotImage, Review, User, ReviewImage } = require('../../db/models');
 
 // For the routes that require authentication
-const { requireAuth, requireSpotOwner } = require('../../utils/auth');
+const { requireAuth, requireSpotOwner, requireReviewOwner } = require('../../utils/auth');
 
 // Import validation check method and our custome handleValidationErrors message
 const { check } = require('express-validator');
@@ -178,19 +178,10 @@ router.delete('/:spotId', requireAuth, requireSpotOwner, async (req, res, next) 
 //
 // Edit a spot
 //
-router.put('/:spotId', spotExists, requireAuth, requireSpotOwner, validateSpot, async (req, res, next) => {
+router.put('/:spotId', requireAuth, spotExists, requireSpotOwner, validateSpot, async (req, res, next) => {
     const { spotId } = req.params;
-    const user = req.user;
 
     const spot = await Spot.findByPk(spotId);
-
-    // Check if spot exists, otherwise 404
-    // if (!spot) {
-    //     const err = new Error();
-    //     err.message = "Spot couldn't be found";
-    //     res.status(404);
-    //     return res.json(err);
-    // }
 
     spot.set({...req.body});
 
@@ -203,11 +194,11 @@ router.put('/:spotId', spotExists, requireAuth, requireSpotOwner, validateSpot, 
 //
 // Add an Image to a Spot based on the Spot's id
 //
-router.post('/:spotId/images', spotExists, requireAuth, requireSpotOwner, async (req, res, next) => {
+router.post('/:spotId/images', requireAuth, spotExists, requireSpotOwner, async (req, res, next) => {
     const { spotId } = req.params;
     const { url, preview } = req.body;
 
-    const image = SpotImage.build({ spotId, url, preview });
+    const image = SpotImage.build({ spotId: parseInt(spotId), url, preview });
     await image.save();
 
     res.json({
@@ -247,7 +238,7 @@ router.get('/:spotId/reviews', spotExists, async (req, res, next) => {
 //
 // Create a Review for a Spot based on the Spot's id
 //
-router.post('/:spotId/reviews', spotExists, requireAuth, validateReview, async (req, res, next) => {
+router.post('/:spotId/reviews', requireAuth, spotExists, validateReview, async (req, res, next) => {
     const { review, stars } = req.body;
     const { spotId } = req.params;
     const userId = req.user.id;
@@ -272,13 +263,17 @@ router.post('/:spotId/reviews', spotExists, requireAuth, validateReview, async (
     }
 
 
-    const newReview = Review.build({userId, spotId, review, stars});
+    const newReview = Review.build({
+        userId,
+        spotId: parseInt(spotId),
+        review,
+        stars
+    });
     await newReview.save();
 
     res.status(201);
     res.json(newReview);
 });
-
 
 
 

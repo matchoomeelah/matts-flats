@@ -53,7 +53,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 //
 // Add an Image to a Review based on the Review's id
 //
-router.post('/:reviewId/images', reviewExists, requireAuth, requireReviewOwner, async (req, res, next) => {
+router.post('/:reviewId/images', requireAuth, reviewExists, requireReviewOwner, async (req, res, next) => {
     const { reviewId } = req.params;
     const { url } = req.body;
 
@@ -73,7 +73,7 @@ router.post('/:reviewId/images', reviewExists, requireAuth, requireReviewOwner, 
     }
 
     // Create the image in the DB
-    const image = ReviewImage.build({reviewId, url});
+    const image = ReviewImage.build({reviewId: parseInt(reviewId), url});
     await image.save();
 
     // Return specified attributes
@@ -83,6 +83,23 @@ router.post('/:reviewId/images', reviewExists, requireAuth, requireReviewOwner, 
     });
 });
 
+
+
+//
+// Edit a Review
+//
+router.put('/:reviewId', requireAuth, reviewExists, requireReviewOwner, validateReview, async (req, res, next) => {
+    const { review, stars } = req.body;
+    const { reviewId } = req.params;
+
+    const currentReview = await Review.findByPk(reviewId);
+
+    currentReview.set({ ...req.body });
+
+    await currentReview.save();
+
+    res.json(currentReview);
+});
 
 
 
