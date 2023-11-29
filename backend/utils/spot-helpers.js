@@ -34,18 +34,8 @@ const addReviewCount = (spot) => {
     return spot;
 }
 
-const spotExists = async (req, res, next) => {
-    const { spotId } = req.params;
-    if (!await Spot.findByPk(spotId)) {
-        const err = new Error();
-        err.message = "Spot couldn't be found";
-        res.status(404);
-        return res.json(err);
-    }
-
-    next();
-}
 
 
 
-module.exports = { addAvgRating, addPreviewImage, addReviewCount, spotExists };
+
+module.exports = { addAvgRating, addPreviewImage, addReviewCount };

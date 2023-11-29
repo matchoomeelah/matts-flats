@@ -76,7 +76,8 @@ const requireAuth = function (req, _res, next) {
   return next(err);
 }
 
-const requireOwner = async function (req, res, next) {
+
+const requireSpotOwner = async function (req, res, next) {
   if (!req.user) {
     return requireAuth(req, res, next);
   }
@@ -105,4 +106,4 @@ const requireOwner = async function (req, res, next) {
 
 
 
-module.exports = { setTokenCookie, restoreUser, requireAuth, requireOwner };
+module.exports = { setTokenCookie, restoreUser, requireAuth, requireSpotOwner };

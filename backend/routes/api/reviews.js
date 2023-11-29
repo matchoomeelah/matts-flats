@@ -4,8 +4,9 @@ const router = express.Router();
 
 const { Review, User, ReviewImage, Spot, SpotImage } = require('../../db/models');
 
+// Middleware to help with validations and authentication
+const { validateReview, reviewExists } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth');
-const { addPreviewImage } = require('../../utils/spot-helpers');
 
 //
 // Get all Reviews of the Current User
@@ -46,6 +47,14 @@ router.get('/current', requireAuth, async (req, res, next) => {
     })
 
     res.json(reviews);
+});
+
+
+//
+// Add an Image to a Review based on the Review's id
+//
+router.post('/:reviewId/images', reviewExists, requireAuth, async (req, res, next) => {
+    const { reviewId } = req.params;
 });
 
 

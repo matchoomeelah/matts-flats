@@ -6,14 +6,14 @@ const router = express.Router();
 const { Spot, SpotImage, Review, User, ReviewImage } = require('../../db/models');
 
 // For the routes that require authentication
-const { requireAuth, requireOwner } = require('../../utils/auth');
+const { requireAuth, requireSpotOwner } = require('../../utils/auth');
 
 // Import validation check method and our custome handleValidationErrors message
 const { check } = require('express-validator');
-const { handleValidationErrors, validateSpot, validateReview } = require('../../utils/validation');
+const { handleValidationErrors, validateSpot, validateReview, spotExists } = require('../../utils/validation');
 
 // Helper Functions
-const { addAvgRating, addPreviewImage, addReviewCount, spotExists } = require('../../utils/spot-helpers');
+const { addAvgRating, addPreviewImage, addReviewCount } = require('../../utils/spot-helpers');
 
 
 
@@ -132,42 +132,6 @@ router.get('/:spotId', spotExists, async (req, res, next) => {
     res.json(spot);
 });
 
-
-//
-// Validate new spot
-//
-
-// const validateSpot = [
-//     check('address')
-//         .exists({ checkFalsy: true })
-//         .withMessage('Street address is required'),
-//     check('city')
-//         .exists({ checkFalsy: true })
-//         .withMessage('City is required'),
-//     check('state')
-//         .exists({ checkFalsy: true })
-//         .withMessage('State is required'),
-//     check('country')
-//         .exists({ checkFalsy: true })
-//         .withMessage('Country is required'),
-//     check('lat')
-//         .isFloat({ min: -90.0, max: 90.0 })
-//         .withMessage('Latitude is not valid'),
-//     check('lng')
-//         .isFloat({ min: -180.0, max: 180.0 })
-//         .withMessage('Longitude is not valid'),
-//     check('name')
-//         .isLength({ max: 50 })
-//         .withMessage("Name must be less than 50 characters"),
-//     check('description')
-//         .exists({ checkFalsy: true })
-//         .withMessage("Description is required"),
-//     check('price')
-//         .exists({ checkFalsy: true })
-//         .withMessage("Price per day is required"),
-//     handleValidationErrors
-// ];
-
 //
 // Create a spot
 //
@@ -188,7 +152,7 @@ router.post('/', requireAuth, validateSpot, async (req, res, next) => {
 //
 // Delete a spot
 //
-router.delete('/:spotId', requireAuth, requireOwner, async (req, res, next) => {
+router.delete('/:spotId', requireAuth, requireSpotOwner, async (req, res, next) => {
     const { spotId } = req.params;
     const spot = await Spot.findByPk(spotId);
 
@@ -214,7 +178,7 @@ router.delete('/:spotId', requireAuth, requireOwner, async (req, res, next) => {
 //
 // Edit a spot
 //
-router.put('/:spotId', spotExists, requireAuth, requireOwner, validateSpot, async (req, res, next) => {
+router.put('/:spotId', spotExists, requireAuth, requireSpotOwner, validateSpot, async (req, res, next) => {
     const { spotId } = req.params;
     const user = req.user;
 
@@ -239,7 +203,7 @@ router.put('/:spotId', spotExists, requireAuth, requireOwner, validateSpot, asyn
 //
 // Add an Image to a Spot based on the Spot's id
 //
-router.post('/:spotId/images', spotExists, requireAuth, requireOwner, async (req, res, next) => {
+router.post('/:spotId/images', spotExists, requireAuth, requireSpotOwner, async (req, res, next) => {
     const { spotId } = req.params;
     const { url, preview } = req.body;
 
@@ -255,7 +219,7 @@ router.post('/:spotId/images', spotExists, requireAuth, requireOwner, async (req
 
 
 //
-// Get reviews by Spot's ID
+// Get reviews by Spot's id
 //
 router.get('/:spotId/reviews', spotExists, async (req, res, next) => {
     const { spotId } = req.params;
@@ -280,7 +244,6 @@ router.get('/:spotId/reviews', spotExists, async (req, res, next) => {
 });
 
 
-
 //
 // Create a Review for a Spot based on the Spot's id
 //
@@ -289,10 +252,35 @@ router.post('/:spotId/reviews', spotExists, requireAuth, validateReview, async (
     const { spotId } = req.params;
     const userId = req.user.id;
 
+    // Check if user has made a review for the spot already
+    const spot = await Spot.findByPk(spotId);
+    const spotReviewUsers = await spot.getReviews({
+        attributes: [],
+        include: {
+            model: User,
+            attributes: ['id']
+        }
+    });
+
+    for (let r of spotReviewUsers) {
+        if (r.User.id === userId) {``
+            const err = new Error();
+            err.message = "User already has a review for this spot"
+            res.status(500);
+            return res.json(err);
+        }
+    }
+
+
     const newReview = Review.build({userId, spotId, review, stars});
     await newReview.save();
 
+    res.status(201);
     res.json(newReview);
 });
+
+
+
+
 
 module.exports = router;

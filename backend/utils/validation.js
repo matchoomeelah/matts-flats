@@ -1,5 +1,5 @@
 const { validationResult, check } = require('express-validator');
-
+const { Spot, Review } = require('../db/models');
 
 // middleware for formatting errors from express-validator middleware
 // (to customize, see express-validator's documentation)
@@ -62,15 +62,51 @@ const validateSpot = [
 const validateReview = [
   check('review')
     .exists({ checkFalsy: true })
+    .isLength({min: 1})
     .withMessage('Review text is required'),
   check('stars')
     .exists({ checkFalsy: true })
     .isInt({min: 1, max: 5})
-    .withMessage("Stars must be an integer from 1 to 5")
+    .withMessage("Stars must be an integer from 1 to 5"),
+    handleValidationErrors
 ];
+
+
+//
+// Check that Spot exists
+//
+const spotExists = async (req, res, next) => {
+  const { spotId } = req.params;
+  if (!await Spot.findByPk(spotId)) {
+      const err = new Error();
+      err.message = "Spot couldn't be found";
+      res.status(404);
+      return res.json(err);
+  }
+
+  next();
+}
+
+
+//
+// Check that Review exists
+//
+const reviewExists = async (req, res, next) => {
+  const { reviewId } = req.params;
+  if (!await Review.findByPk(reviewId)) {
+    const err = new Error();
+    err.message = "Review couldn't be found";
+    res.status(404);
+    return res.json(err);
+}
+
+next();
+}
 
 module.exports = {
   handleValidationErrors,
   validateSpot,
-  validateReview
+  validateReview,
+  spotExists,
+  reviewExists
 };
