@@ -89,17 +89,30 @@ router.post('/:reviewId/images', requireAuth, reviewExists, requireReviewOwner, 
 // Edit a Review
 //
 router.put('/:reviewId', requireAuth, reviewExists, requireReviewOwner, validateReview, async (req, res, next) => {
-    const { review, stars } = req.body;
     const { reviewId } = req.params;
 
     const currentReview = await Review.findByPk(reviewId);
-
     currentReview.set({ ...req.body });
-
     await currentReview.save();
 
     res.json(currentReview);
 });
+
+
+//
+// Delete a Review
+//
+router.delete('/:reviewId', requireAuth, reviewExists, requireReviewOwner, async (req, res, next) => {
+    const { reviewId } = req.params;
+
+    const currentReview = await Review.findByPk(reviewId);
+
+    await currentReview.destroy();
+
+    res.json({
+        message: "Successfully deleted"
+    });
+})
 
 
 
