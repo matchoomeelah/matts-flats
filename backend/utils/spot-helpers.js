@@ -36,6 +36,4 @@ const addReviewCount = (spot) => {
 
 
 
-
-
 module.exports = { addAvgRating, addPreviewImage, addReviewCount };

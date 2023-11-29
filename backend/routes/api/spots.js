@@ -3,14 +3,14 @@ const express = require('express');
 const router = express.Router();
 
 // Import model for queries
-const { Spot, SpotImage, Review, User, ReviewImage } = require('../../db/models');
+const { Spot, SpotImage, Review, User, ReviewImage, Booking } = require('../../db/models');
 
 // For the routes that require authentication
-const { requireAuth, requireSpotOwner, requireReviewOwner } = require('../../utils/auth');
+const { requireAuth, requireSpotOwner, requireNotSpotOwner } = require('../../utils/auth');
 
 // Import validation check method and our custome handleValidationErrors message
 const { check } = require('express-validator');
-const { handleValidationErrors, validateSpot, validateReview, spotExists } = require('../../utils/validation');
+const { validateSpot, validateReview, spotExists, validateBooking } = require('../../utils/validation');
 
 // Helper Functions
 const { addAvgRating, addPreviewImage, addReviewCount } = require('../../utils/spot-helpers');
@@ -165,7 +165,6 @@ router.delete('/:spotId', requireAuth, spotExists, requireSpotOwner, async (req,
 })
 
 
-
 //
 // Edit a spot
 //
@@ -267,6 +266,21 @@ router.post('/:spotId/reviews', requireAuth, spotExists, validateReview, async (
 });
 
 
+//
+// Create a Booking from a Spot based on the Spot's id
+//
+router.post('/:spotId/bookings', requireAuth, spotExists, requireNotSpotOwner, validateBooking, async (req, res, next) => {
+    // Get necessary attributes
+    const { spotId } = req.params;
+    const userId = req.user.id;
+    const { startDate, endDate } = req.body;
+
+    // Build and save the new booking
+    const booking = Booking.build({ spotId: parseInt(spotId), userId, startDate, endDate });
+    await booking.save();
+
+    res.json(booking);
+});
 
 
 module.exports = router;

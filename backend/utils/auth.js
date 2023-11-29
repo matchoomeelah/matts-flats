@@ -4,7 +4,10 @@ const { User, Spot, Review } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
 
+
+//
 // Sends a JWT Cookie
+//
 const setTokenCookie = (res, user) => {
   // Create the token.
   const safeUser = {
@@ -34,8 +37,9 @@ const setTokenCookie = (res, user) => {
 };
 
 
-
+//
 // Global middleware to set the current req.user
+//
 const restoreUser = (req, res, next) => {
   // token parsed from cookies
   const { token } = req.cookies;
@@ -65,7 +69,9 @@ const restoreUser = (req, res, next) => {
 };
 
 
+//
 // If there is no current user, return an error
+//
 const requireAuth = function (req, _res, next) {
   if (req.user) return next();
 
@@ -77,12 +83,13 @@ const requireAuth = function (req, _res, next) {
 }
 
 
+//
 // Require the current user to be the spot owner
+//
 const requireSpotOwner = async function (req, res, next) {
   if (!req.user) {
     return requireAuth(req, res, next);
   }
-
 
   // Find spotIds owned by user
   const spots = await Spot.findAll({
@@ -91,7 +98,6 @@ const requireSpotOwner = async function (req, res, next) {
       ownerId: req.user.id
     }
   });
-
 
   if (spots.some(spot => spot.id == req.params.spotId)) {
     return next();
@@ -105,12 +111,41 @@ const requireSpotOwner = async function (req, res, next) {
 }
 
 
-// Require the current user to be the review owner
-const requireReviewOwner = async function (req, res, next) {
+//
+// Require the current user to NOT be the Spot owner
+//
+const requireNotSpotOwner = async function (req, res, next) {
   if (!req.user) {
     return requireAuth(req, res, next);
   }
 
+  // Find spotIds owned by user
+  const spots = await Spot.findAll({
+    attributes: ["id"],
+    where: {
+      ownerId: req.user.id
+    }
+  });
+
+  if (!spots.some(spot => spot.id == req.params.spotId)) {
+    return next();
+  }
+
+  const err = new Error('Forbidden');
+  err.title = 'Authorization required';
+  err.errors = { message: 'Spot cannot be rented by owner' };
+  err.status = 403;
+  return next(err);
+}
+
+
+//
+// Require the current user to be the review owner
+//
+const requireReviewOwner = async function (req, res, next) {
+  if (!req.user) {
+    return requireAuth(req, res, next);
+  }
 
   // Find reviewIds owned by user
   const reviews = await Review.findAll({
@@ -119,7 +154,6 @@ const requireReviewOwner = async function (req, res, next) {
       userId: req.user.id
     }
   });
-
 
   if (reviews.some(review => review.id == req.params.reviewId)) {
     return next();
@@ -134,4 +168,4 @@ const requireReviewOwner = async function (req, res, next) {
 
 
 
-module.exports = { setTokenCookie, restoreUser, requireAuth, requireSpotOwner, requireReviewOwner };
+module.exports = { setTokenCookie, restoreUser, requireAuth, requireSpotOwner, requireReviewOwner, requireNotSpotOwner };

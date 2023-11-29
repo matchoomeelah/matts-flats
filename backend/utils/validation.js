@@ -22,7 +22,58 @@ const handleValidationErrors = (req, res, next) => {
 }
 
 //
-// Validate new spot
+// Check that Spot exists
+//
+const spotExists = async (req, res, next) => {
+  const { spotId } = req.params;
+  if (!await Spot.findByPk(spotId)) {
+      const err = new Error();
+      err.message = "Spot couldn't be found";
+      res.status(404);
+      return res.json(err);
+  }
+
+  next();
+}
+
+
+//
+// Check that Review exists
+//
+const reviewExists = async (req, res, next) => {
+  const { reviewId } = req.params;
+  if (!await Review.findByPk(reviewId)) {
+    const err = new Error();
+    err.message = "Review couldn't be found";
+    res.status(404);
+    return res.json(err);
+}
+
+next();
+}
+
+
+//
+//  Check Booking endDate strictly after startDate
+//
+const endDateAfterStartDate = (req, res, next) => {
+  let { startDate, endDate } = req.body;
+  startDate = new Date(startDate);
+  endDate = new Date(endDate);
+
+  if (endDate.getTime() <= startDate.getTime()) {
+    const err = new Error("Bad request");
+    err.errors = {"endDate": "endDate cannot be on or before startDate"}
+    err.status = 400;
+    err.title = "Bad request";
+    return next(err);
+  }
+
+  next();
+}
+
+//
+// Validate new Spot
 //
 const validateSpot = [
   check('address')
@@ -57,7 +108,7 @@ const validateSpot = [
 
 
 //
-// Validate new review
+// Validate new Review
 //
 const validateReview = [
   check('review')
@@ -73,40 +124,28 @@ const validateReview = [
 
 
 //
-// Check that Spot exists
+// Validate new Booking
 //
-const spotExists = async (req, res, next) => {
-  const { spotId } = req.params;
-  if (!await Spot.findByPk(spotId)) {
-      const err = new Error();
-      err.message = "Spot couldn't be found";
-      res.status(404);
-      return res.json(err);
-  }
+const validateBooking = [
+  check('startDate')
+    .exists({ checkFalsy: true })
+    .withMessage("Start Date is required"),
+  check('endDate')
+    .exists({ checkFalsy: true })
+    .withMessage("End Date is required"),
+  handleValidationErrors,
+  endDateAfterStartDate
+]
 
-  next();
-}
 
 
-//
-// Check that Review exists
-//
-const reviewExists = async (req, res, next) => {
-  const { reviewId } = req.params;
-  if (!await Review.findByPk(reviewId)) {
-    const err = new Error();
-    err.message = "Review couldn't be found";
-    res.status(404);
-    return res.json(err);
-}
-
-next();
-}
 
 module.exports = {
   handleValidationErrors,
   validateSpot,
   validateReview,
   spotExists,
-  reviewExists
+  reviewExists,
+  validateBooking,
+  endDateAfterStartDate
 };
