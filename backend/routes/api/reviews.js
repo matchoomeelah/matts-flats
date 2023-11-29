@@ -6,7 +6,7 @@ const { Review, User, ReviewImage, Spot, SpotImage } = require('../../db/models'
 
 // Middleware to help with validations and authentication
 const { validateReview, reviewExists } = require('../../utils/validation');
-const { requireAuth } = require('../../utils/auth');
+const { requireAuth, requireReviewOwner } = require('../../utils/auth');
 
 //
 // Get all Reviews of the Current User
@@ -53,8 +53,34 @@ router.get('/current', requireAuth, async (req, res, next) => {
 //
 // Add an Image to a Review based on the Review's id
 //
-router.post('/:reviewId/images', reviewExists, requireAuth, async (req, res, next) => {
+router.post('/:reviewId/images', reviewExists, requireAuth, requireReviewOwner, async (req, res, next) => {
     const { reviewId } = req.params;
+    const { url } = req.body;
+
+    // Find current review
+    const review = await Review.findByPk(reviewId, {
+        include: {
+            model: ReviewImage
+        }
+    });
+
+    // Return error if max of 10 images reached already
+    if (review.ReviewImages.length >= 10) {
+        const err = new Error();
+        err.message = "Maximum number of images for this resource was reached"
+        res.status(403);
+        return res.json(err);
+    }
+
+    // Create the image in the DB
+    const image = ReviewImage.build({reviewId, url});
+    await image.save();
+
+    // Return specified attributes
+    res.json({
+        id: image.id,
+        url: image.url
+    });
 });
 
 

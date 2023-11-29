@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { User, Spot } = require('../db/models');
+const { User, Spot, Review } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -77,6 +77,7 @@ const requireAuth = function (req, _res, next) {
 }
 
 
+// Require the current user to be the spot owner
 const requireSpotOwner = async function (req, res, next) {
   if (!req.user) {
     return requireAuth(req, res, next);
@@ -101,9 +102,36 @@ const requireSpotOwner = async function (req, res, next) {
   err.errors = { message: 'Forbidden' };
   err.status = 403;
   return next(err);
+}
 
+
+// Require the current user to be the review owner
+const requireReviewOwner = async function (req, res, next) {
+  if (!req.user) {
+    return requireAuth(req, res, next);
+  }
+
+
+  // Find reviewIds owned by user
+  const reviews = await Review.findAll({
+    attributes: ["id"],
+    where: {
+      userId: req.user.id
+    }
+  });
+
+
+  if (reviews.some(review => review.id == req.params.reviewId)) {
+    return next();
+  }
+
+  const err = new Error('Forbidden');
+  err.title = 'Authorization required';
+  err.errors = { message: 'Forbidden' };
+  err.status = 403;
+  return next(err);
 }
 
 
 
-module.exports = { setTokenCookie, restoreUser, requireAuth, requireSpotOwner };
+module.exports = { setTokenCookie, restoreUser, requireAuth, requireSpotOwner, requireReviewOwner };
