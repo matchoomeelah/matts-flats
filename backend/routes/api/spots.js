@@ -249,7 +249,7 @@ router.post('/:spotId/reviews', requireAuth, spotExists, validateReview, async (
     for (let r of spotReviewUsers) {
         if (r.User.id === userId) {``
             const err = new Error();
-            err.message = "User already has a review for this spot"
+            err.message = "User already has a review for this spot";
             res.status(500);
             return res.json(err);
         }
