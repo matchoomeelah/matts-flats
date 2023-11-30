@@ -72,14 +72,15 @@ const restoreUser = (req, res, next) => {
 //
 // If there is no current user, return an error
 //
-const requireAuth = function (req, _res, next) {
+const requireAuth = function (req, res, next) {
   if (req.user) return next();
 
-  const err = new Error('Authentication required');
-  err.title = 'Authentication required';
-  err.errors = { message: 'Authentication required' };
-  err.status = 401;
-  return next(err);
+  const err = new Error();
+  // err.title = 'Authentication required';
+  // err.errors = { message: 'Authentication required' };
+  err.message = 'Authentication required';
+  res.status(401);
+  return res.json(err);
 }
 
 

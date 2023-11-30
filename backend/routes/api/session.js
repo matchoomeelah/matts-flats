@@ -50,7 +50,7 @@ router.post('/', validateLogin, async (req, res, next) => {
 
     // If there is no user, or there is an incorrect password, create an error and pass it to the next error handling middleware
     if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
-        const err = new Error('Login failed');
+        const err = new Error('Invalid credentials');
         err.status = 401;
         err.title = 'Login failed';
         err.errors = { message: 'Invalid credentials'};

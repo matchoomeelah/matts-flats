@@ -12,10 +12,9 @@ const handleValidationErrors = (req, res, next) => {
       .array()
       .forEach(error => errors[error.path] = error.msg);
 
-    const err = Error("Bad request.");
+    const err = Error("Bad request");
     err.errors = errors;
     err.status = 400;
-    err.title = "Bad request.";
     next(err);
   }
   next();
@@ -236,6 +235,21 @@ const validateBooking = [
   checkBookingConflict
 ]
 
+//
+// Validate new Image
+//
+const validateImage = [
+  check('url')
+    .exists({ checkFalsy: true })
+    .isURL()
+    .withMessage("Valid URL is required"),
+  check('preview')
+    .exists()
+    .isBoolean()
+    .withMessage("Preview boolean value is required"),
+  handleValidationErrors
+];
+
 
 
 
@@ -249,5 +263,6 @@ module.exports = {
   validateBooking,
   endDateAfterStartDate,
   checkBookingConflict,
-  endDatePast
+  endDatePast,
+  validateImage
 };

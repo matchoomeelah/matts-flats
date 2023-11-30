@@ -91,10 +91,11 @@ app.use((err, _req, res, _next) => {
     res.status(err.status || 500);
 
     // Add properties to the formatted error response
-    const responseObj = {
-      message: err.message,
-      errors: err.errors,
-    }
+    const responseObj = {}
+
+    if (err.title) responseObj.title = err.title;
+    if (err.message) responseObj.message = err.message;
+    if (err.errors) responseObj.errors = err.errors
 
     // Add stack if not production
     if (!isProduction) {

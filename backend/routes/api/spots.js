@@ -9,7 +9,7 @@ const { Spot, SpotImage, Review, User, ReviewImage, Booking } = require('../../d
 const { requireAuth, requireSpotOwner, requireNotSpotOwner } = require('../../utils/auth');
 
 // Import validation middleware
-const { validateSpot, validateReview, spotExists, validateBooking, checkBookingConflict } = require('../../utils/validation');
+const { validateSpot, validateReview, spotExists, validateBooking, validateImage, checkBookingConflict } = require('../../utils/validation');
 
 // Helper Functions
 const { addAvgRating, addPreviewImage, addReviewCount, queryErrorParser } = require('../../utils/spot-helpers');
@@ -268,7 +268,7 @@ router.put('/:spotId', requireAuth, spotExists, requireSpotOwner, validateSpot, 
 //
 // Add an Image to a Spot based on the Spot's id
 //
-router.post('/:spotId/images', requireAuth, spotExists, requireSpotOwner, async (req, res, next) => {
+router.post('/:spotId/images', requireAuth, spotExists, validateImage, requireSpotOwner, async (req, res, next) => {
     const { spotId } = req.params;
     const { url, preview } = req.body;
 
