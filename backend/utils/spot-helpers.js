@@ -3,7 +3,7 @@ const { Spot } = require('../db/models');
 // Helper funcs
 const addAvgRating = (spot) => {
     // Calculate the avgRating for each spot
-    let avg = null;
+    let avg = "No reviews yet";
 
     if (spot.Reviews.length) {
         let sum = 0;
