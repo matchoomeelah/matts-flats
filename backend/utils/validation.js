@@ -95,14 +95,12 @@ const checkBookingConflict = async function (req, res, next) {
   const { startDate, endDate } = req.body;
   startTime = new Date(startDate).getTime();
   endTime = new Date(endDate).getTime();
-  let sameBooking = false;
 
 
   // For when only the bookingId specified
   if (!spotId) {
     const b = await Booking.findByPk(bookingId);
     spotId = b.spotId;
-    sameBooking = (bookingId == b.id)
   }
 
   const spot = await Spot.findByPk(spotId, {
@@ -117,6 +115,10 @@ const checkBookingConflict = async function (req, res, next) {
     const currStartTime = new Date(booking.startDate);
     const currEndTime = new Date(booking.endDate);
     const errors = {};
+    let sameBooking = false;
+    if (bookingId && bookingId == booking.id) {
+      sameBooking = true;
+    }
 
     // 3 cases
     // 1) startTime is between currStartTime and currEndTime inclusive
