@@ -95,11 +95,14 @@ const checkBookingConflict = async function (req, res, next) {
   const { startDate, endDate } = req.body;
   startTime = new Date(startDate).getTime();
   endTime = new Date(endDate).getTime();
+  let sameBooking = false;
+
 
   // For when only the bookingId specified
   if (!spotId) {
     const b = await Booking.findByPk(bookingId);
     spotId = b.spotId;
+    sameBooking = (bookingId == b.id)
   }
 
   const spot = await Spot.findByPk(spotId, {
@@ -132,23 +135,13 @@ const checkBookingConflict = async function (req, res, next) {
       errors.message = "Existing booking within date range specified";
     }
 
-    if (Object.keys(errors).length) {
+    // Don't conflict with self
+    if (!sameBooking && Object.keys(errors).length) {
       const err = new Error("Sorry, this spot is already booked for the specified dates");
       err.errors = errors;
       err.status = 403;
       return next(err);
     }
-    // if ((startTime < currStartTime && endTime > currStartTime) ||
-    //   (startTime >= currStartTime && startTime <= currEndTime)) {
-    //   const err = new Error("Sorry, this spot is already booked for the specified dates");
-    //   err.errors = {
-    //     "startDate": "Start date conflicts with an existing booking",
-    //     "endDate": "End date conflicts with an existing booking"
-    //   }
-    //   err.status = 403;
-    //   // err.title = "Forbidden";
-    //   return next(err);
-    // }
   }
 
   next();
