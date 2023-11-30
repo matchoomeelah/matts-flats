@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { User, Spot, Review } = require('../db/models');
+const { User, Spot, Review, Booking } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -167,5 +167,25 @@ const requireReviewOwner = async function (req, res, next) {
 }
 
 
+//
+// Require the current user to be the Booking owner
+//
+const requireBookingOwner = async function (req, res, next) {
+  const { bookingId } = req.params;
+  const user = req.user;
 
-module.exports = { setTokenCookie, restoreUser, requireAuth, requireSpotOwner, requireReviewOwner, requireNotSpotOwner };
+  const booking = await Booking.findByPk(bookingId);
+
+  if (booking.userId === user.id) {
+    return next();
+  }
+
+  const err = new Error('Forbidden');
+  err.title = 'Authorization required';
+  err.errors = { message: 'Forbidden' };
+  err.status = 403;
+  return next(err);
+}
+
+
+module.exports = { setTokenCookie, restoreUser, requireAuth, requireSpotOwner, requireReviewOwner, requireNotSpotOwner, requireBookingOwner };

@@ -6,7 +6,8 @@ const router = express.Router();
 const { Booking, Spot, SpotImage } = require('../../db/models');
 
 // Authentiction/Authorization middleware
-const { requireAuth } = require('../../utils/auth');
+const { requireAuth, requireBookingOwner } = require('../../utils/auth');
+const { validateBooking, checkBookingConflict, endDatePast, bookingExists } = require('../../utils/validation');
 
 
 //
@@ -55,7 +56,20 @@ router.get('/current', requireAuth, async (req, res, next) => {
 });
 
 
+//
+// Edit a Booking
+//
+router.put('/:bookingId', requireAuth, bookingExists, requireBookingOwner, validateBooking, endDatePast, async (req, res, next) => {
+    const { bookingId } = req.params;
 
+    const booking = await Booking.findByPk(bookingId);
+
+    booking.set({ ...req.body });
+
+    await booking.save();
+
+    res.json(booking);
+});
 
 
 

@@ -52,6 +52,21 @@ const reviewExists = async (req, res, next) => {
   next();
 }
 
+//
+// Check that Booking exists
+//
+const bookingExists = async (req, res, next) => {
+  const { bookingId } = req.params;
+  if (!await Booking.findByPk(bookingId)) {
+    const err = new Error();
+    err.message = "Booking couldn't be found";
+    res.status(404);
+    return res.json(err);
+  }
+
+  next();
+}
+
 
 //
 //  Check Booking endDate strictly after startDate
@@ -77,11 +92,16 @@ const endDateAfterStartDate = (req, res, next) => {
 // Check for conflicting Booking
 //
 const checkBookingConflict = async function (req, res, next) {
-  const { spotId } = req.params;
+  let { spotId, bookingId } = req.params;
   const { startDate, endDate } = req.body;
   startTime = new Date(startDate).getTime();
   endTime = new Date(endDate).getTime();
 
+  // For when only the bookingId specified
+  if (!spotId) {
+    const b = await Booking.findByPk(bookingId);
+    spotId = b.spotId;
+  }
 
   const spot = await Spot.findByPk(spotId, {
     include: {
@@ -90,6 +110,7 @@ const checkBookingConflict = async function (req, res, next) {
     }
   });
 
+  // Check for conflicts
   for (let booking of spot.Bookings) {
     const currStartTime = new Date(booking.startDate);
     const currEndTime = new Date(booking.endDate);
@@ -109,6 +130,45 @@ const checkBookingConflict = async function (req, res, next) {
   next();
 }
 
+//
+// Check if Booking startDate is in the past // Not specified that we need it, probablycreates old one for testing purposes in test suite
+//
+// const startDatePast = async function (req, res, next) {
+//   const { startDate } = req.body;
+
+//   const startDateTime = new Date(startDate).getTime();
+//   const nowTime = new Date().getTime();
+
+//   if (nowTime > startDateTime) {
+//     const err = new Error("Cannot make bookings for past dates");
+//     err.status = 403;
+//     err.title = "Forbidden";
+//     return next(err);
+//   }
+
+//   next();
+// }
+
+//
+// Check if specified Booking endDate is in the past
+//
+const endDatePast = async function (req, res, next) {
+  const { bookingId } = req.params
+
+  const booking = await Booking.findByPk(bookingId);
+
+  const endDateTime = new Date(booking.endDate).getTime();
+  const nowTime = new Date().getTime();
+
+  if (nowTime > endDateTime) {
+    const err = new Error("Past bookings can't be modified");
+    err.status = 403;
+    err.title = "Forbidden";
+    return next(err);
+  }
+
+  next();
+}
 
 //
 // Validate new Spot
@@ -172,7 +232,8 @@ const validateBooking = [
     .exists({ checkFalsy: true })
     .withMessage("End Date is required"),
   handleValidationErrors,
-  endDateAfterStartDate
+  endDateAfterStartDate,
+  checkBookingConflict
 ]
 
 
@@ -184,7 +245,9 @@ module.exports = {
   validateReview,
   spotExists,
   reviewExists,
+  bookingExists,
   validateBooking,
   endDateAfterStartDate,
-  checkBookingConflict
+  checkBookingConflict,
+  endDatePast
 };

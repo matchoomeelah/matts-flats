@@ -15,6 +15,9 @@ const { validateSpot, validateReview, spotExists, validateBooking, checkBookingC
 // Helper Functions
 const { addAvgRating, addPreviewImage, addReviewCount } = require('../../utils/spot-helpers');
 
+// For comparisons
+const { Op } = require('sequelize');
+
 
 
 //
@@ -280,6 +283,44 @@ router.post('/:spotId/bookings', requireAuth, spotExists, requireNotSpotOwner, v
     await booking.save();
 
     res.json(booking);
+});
+
+
+//
+// Get all Bookings for a Spot based on the Spot's id
+//
+router.get('/:spotId/bookings', requireAuth, spotExists, async (req, res, next) => {
+    const { spotId } = req.params;
+    const user = req.user;
+
+    let bookings;
+
+    const spot = await Spot.findByPk(spotId);
+
+    // Response if the current user is NOT the owner...
+    if (spot.ownerId !== user.id) {
+        bookings = await Booking.findAll({
+            attributes: ['spotId', 'startDate', 'endDate'],
+            where: {
+                [Op.and]: [{ spotId }, {userId: user.id}]
+            }
+        });
+    }
+    // Response if the current user is the owner
+    else {
+        bookings = await Booking.findAll({
+            where: {
+                spotId
+            },
+            include: {
+                model: User,
+                attributes: ['id', 'firstName', 'lastName']
+            }
+        });
+    }
+
+    res.json({ Bookings: bookings });
+
 });
 
 
