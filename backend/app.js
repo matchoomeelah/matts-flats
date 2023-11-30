@@ -90,12 +90,18 @@ app.use((_req, _res, next) => {
 app.use((err, _req, res, _next) => {
     res.status(err.status || 500);
 
-    res.json({
-      title: err.title || 'Server Error',
+    // Add properties to the formatted error response
+    const responseObj = {
       message: err.message,
       errors: err.errors,
-      stack: isProduction ? null : err.stack
-    });
+    }
+
+    // Add stack if not production
+    if (!isProduction) {
+      responseObj.stack = err.stack;
+    }
+
+    res.json(responseObj);
   });
 
 
