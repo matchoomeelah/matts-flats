@@ -14,16 +14,8 @@ const { Op } = require('sequelize');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
+  // Seeding intial data
   async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
     SpotImage.bulkCreate([
       {
         spotId: 1,
@@ -42,14 +34,8 @@ module.exports = {
       }
     ] ,{validate: true})
   },
-
+  // Un-seeding the initial data
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
     queryInterface.bulkDelete(options, {
       spotId: {
         [Op.in]: [1, 2, 3]

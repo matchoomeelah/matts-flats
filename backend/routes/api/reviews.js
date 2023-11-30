@@ -15,7 +15,8 @@ router.get('/current', requireAuth, async (req, res, next) => {
     const user = req.user;
 
     let reviews = await user.getReviews({
-        include: [{
+        include: [
+        {
             model: User,
             attributes: ['id', 'firstName', 'lastName']
         },

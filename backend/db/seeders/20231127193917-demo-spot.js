@@ -56,7 +56,7 @@ module.exports = {
   async down (queryInterface, Sequelize) {
     await queryInterface.bulkDelete(options, {
         address: {
-          [Op.in]: ["6168 Yeadon Wy","123 Easy Street", "521 E 14th Street"]
+          [Op.in]: ["6168 Yeadon Way","123 Easy Street", "521 E 14th Street"]
         }
     });
   }

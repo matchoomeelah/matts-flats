@@ -8,12 +8,11 @@ const { Spot, SpotImage, Review, User, ReviewImage, Booking } = require('../../d
 // For the routes that require authentication
 const { requireAuth, requireSpotOwner, requireNotSpotOwner } = require('../../utils/auth');
 
-// Import validation check method and our custome handleValidationErrors message
-const { check } = require('express-validator');
+// Import validation middleware
 const { validateSpot, validateReview, spotExists, validateBooking, checkBookingConflict } = require('../../utils/validation');
 
 // Helper Functions
-const { addAvgRating, addPreviewImage, addReviewCount } = require('../../utils/spot-helpers');
+const { addAvgRating, addPreviewImage, addReviewCount, queryErrorParser } = require('../../utils/spot-helpers');
 
 // For comparisons
 const { Op } = require('sequelize');
@@ -24,6 +23,84 @@ const { Op } = require('sequelize');
 // Get all Spots
 //
 router.get('/', async (req, res, next) => {
+    // Check for query validation errors
+    const errors = queryErrorParser(req.query);
+
+    if (Object.keys(errors).length) {
+        const err = new Error();
+        err.message = "Bad Request",
+        err.errors = errors;
+        res.status(400);
+        return res.json(err);
+    }
+
+    // Pagination and Search Params
+    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+
+    const pagination = {};
+    const query = {};
+
+    // Set default values
+    if (!page || page > 10) page = 1;
+    if (!size) size = 20;
+
+    pagination.limit = size;
+    pagination.offset = size * (page - 1);
+
+    // Min and Max Lat
+    if (minLat && maxLat) {
+        query.lat = {
+            [Op.between]: [parseFloat(minLat), parseFloat(maxLat)]
+        }
+    }
+    else if (minLat) {
+        query.lat = {
+            [Op.gte]: parseFloat(minLat)
+        }
+    }
+    else if (maxLat) {
+        query.lat = {
+            [Op.lte]: parseFloat(maxLat)
+        }
+    }
+
+    // Min and Max Lng
+    if (minLng && maxLng) {
+        query.lng = {
+            [Op.between]: [parseFloat(minLng), parseFloat(maxLng)]
+        }
+    }
+    else if (minLng) {
+        query.lng = {
+            [Op.gte]: parseFloat(minLng)
+        }
+    }
+    else if (maxLng) {
+        query.lng = {
+            [Op.lte]: parseFloat(maxLng)
+        }
+    }
+
+    // Min and Max Price
+    if (minPrice && maxPrice) {
+        query.price = {
+            [Op.between]: [parseFloat(minPrice), parseFloat(maxPrice)]
+        }
+    }
+    else if (minPrice) {
+        query.price = {
+            [Op.gte]: parseFloat(minPrice)
+        }
+    }
+    else if (maxPrice) {
+        query.price = {
+            [Op.lte]: parseFloat(maxPrice)
+        }
+    }
+
+
+
+
     // Find all spots and their associated review stars/preview image
     let spots = await Spot.findAll({
         include: [{
@@ -38,7 +115,11 @@ router.get('/', async (req, res, next) => {
             },
             required: false,
             limit: 1
-        }]
+        }],
+        where: {
+            ...query
+        },
+        ...pagination
     });
 
     // Add avgRating and previewImg (terribly)
@@ -54,7 +135,7 @@ router.get('/', async (req, res, next) => {
     });
 
 
-    res.json(spots);
+    res.json({ Spots: spots, page: parseInt(page), size: parseInt(size)});
 });
 
 
@@ -176,7 +257,7 @@ router.put('/:spotId', requireAuth, spotExists, requireSpotOwner, validateSpot, 
 
     const spot = await Spot.findByPk(spotId);
 
-    spot.set({...req.body});
+    spot.set({ ...req.body });
 
     await spot.save();
 
@@ -213,14 +294,14 @@ router.get('/:spotId/reviews', spotExists, async (req, res, next) => {
         include: {
             model: Review,
             include: [
-            {
-                model: User,
-                attributes: ['id', 'firstName', 'lastName']
-            },
-            {
-                model: ReviewImage,
-                attributes: ['id', 'url']
-            }]
+                {
+                    model: User,
+                    attributes: ['id', 'firstName', 'lastName']
+                },
+                {
+                    model: ReviewImage,
+                    attributes: ['id', 'url']
+                }]
         }
     });
 
@@ -247,7 +328,7 @@ router.post('/:spotId/reviews', requireAuth, spotExists, validateReview, async (
     });
 
     for (let r of spotReviewUsers) {
-        if (r.User.id === userId) {``
+        if (r.User.id === userId) {
             const err = new Error();
             err.message = "User already has a review for this spot";
             res.status(500);
@@ -302,7 +383,7 @@ router.get('/:spotId/bookings', requireAuth, spotExists, async (req, res, next) 
         bookings = await Booking.findAll({
             attributes: ['spotId', 'startDate', 'endDate'],
             where: {
-                [Op.and]: [{ spotId }, {userId: user.id}]
+                [Op.and]: [{ spotId }, { userId: user.id }]
             }
         });
     }
