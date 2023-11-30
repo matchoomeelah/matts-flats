@@ -106,7 +106,7 @@ const checkBookingConflict = async function (req, res, next) {
   const spot = await Spot.findByPk(spotId, {
     include: {
       model: Booking,
-      attributes: ["startDate", "endDate"]
+      attributes: ["id", "startDate", "endDate"]
     }
   });
 
@@ -115,9 +115,10 @@ const checkBookingConflict = async function (req, res, next) {
     const currStartTime = new Date(booking.startDate);
     const currEndTime = new Date(booking.endDate);
     const errors = {};
-    let sameBooking = false;
-    if (bookingId && bookingId == booking.id) {
-      sameBooking = true;
+
+    // Bypass conflict if for same booking
+    if (parseInt(bookingId) === booking.id) {
+      continue;
     }
 
     // 3 cases
@@ -137,9 +138,11 @@ const checkBookingConflict = async function (req, res, next) {
       errors.message = "Existing booking within date range specified";
     }
 
-    // Don't conflict with self
-    if (!sameBooking && Object.keys(errors).length) {
+    // Return error if there are conflicts
+    if (Object.keys(errors).length) {
       const err = new Error("Sorry, this spot is already booked for the specified dates");
+      errors.bookingId = bookingId;
+      errors.currBookingId = booking.id;
       err.errors = errors;
       err.status = 403;
       return next(err);
