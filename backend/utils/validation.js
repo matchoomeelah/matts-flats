@@ -79,7 +79,7 @@ const endDateAfterStartDate = (req, res, next) => {
     const err = new Error("Bad request");
     err.errors = { "endDate": "endDate cannot be on or before startDate" }
     err.status = 400;
-    err.title = "Bad request";
+    // err.title = "Bad request";
     return next(err);
   }
 
@@ -113,17 +113,42 @@ const checkBookingConflict = async function (req, res, next) {
   for (let booking of spot.Bookings) {
     const currStartTime = new Date(booking.startDate);
     const currEndTime = new Date(booking.endDate);
-    if ((startTime < currStartTime && endTime > currStartTime) ||
-      (startTime >= currStartTime && startTime < currEndTime)) {
+    const errors = {};
+
+    // 3 cases
+    // 1) startTime is between currStartTime and currEndTime inclusive
+    // 2) endTime is between currStartTime and currEndTime inclusive
+    // 3) startTime is less than currStartTime and endTime is after currEndTime
+
+    if (startTime >= currStartTime && startTime <= currEndTime) {
+      errors.startDate = "Start date conflicts with an existing booking";
+    }
+
+    if (endTime >= currStartTime && endTime <= currEndTime) {
+      errors.endDate = "End date conflicts with an existing booking";
+    }
+
+    if (startTime < currStartTime && endTime > currEndTime) {
+      errors.message = "Existing booking within date range specified";
+    }
+
+    if (Object.keys(errors).length) {
       const err = new Error("Sorry, this spot is already booked for the specified dates");
-      err.errors = {
-        "startDate": "Start date conflicts with an existing booking",
-        "endDate": "End date conflicts with an existing booking"
-      }
+      err.errors = errors;
       err.status = 403;
-      err.title = "Forbidden";
       return next(err);
     }
+    // if ((startTime < currStartTime && endTime > currStartTime) ||
+    //   (startTime >= currStartTime && startTime <= currEndTime)) {
+    //   const err = new Error("Sorry, this spot is already booked for the specified dates");
+    //   err.errors = {
+    //     "startDate": "Start date conflicts with an existing booking",
+    //     "endDate": "End date conflicts with an existing booking"
+    //   }
+    //   err.status = 403;
+    //   // err.title = "Forbidden";
+    //   return next(err);
+    // }
   }
 
   next();
@@ -200,6 +225,9 @@ const validateSpot = [
   check('price')
     .exists({ checkFalsy: true })
     .withMessage("Price per day is required"),
+  check('price')
+    .isFloat({min: 0})
+    .withMessage("Price cannot be less than 0"),
   handleValidationErrors
 ];
 

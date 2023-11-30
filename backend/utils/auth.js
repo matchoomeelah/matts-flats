@@ -106,7 +106,7 @@ const requireSpotOwner = async function (req, res, next) {
 
   const err = new Error('Forbidden');
   err.title = 'Authorization required';
-  err.errors = { message: 'Forbidden' };
+  // err.errors = { message: 'Forbidden' };
   err.status = 403;
   return next(err);
 }
@@ -162,7 +162,7 @@ const requireReviewOwner = async function (req, res, next) {
 
   const err = new Error('Forbidden');
   err.title = 'Authorization required';
-  err.errors = { message: 'Forbidden' };
+  // err.errors = { message: 'Forbidden' };
   err.status = 403;
   return next(err);
 }
@@ -183,7 +183,7 @@ const requireBookingOwner = async function (req, res, next) {
 
   const err = new Error('Forbidden');
   err.title = 'Authorization required';
-  err.errors = { message: 'Forbidden' };
+  // err.errors = { message: 'Forbidden' };
   err.status = 403;
   return next(err);
 }

@@ -37,8 +37,11 @@ router.delete('/:imageId', requireAuth, async (req, res, next) => {
         return res.json(err);
     }
 
+    // Find the review
+    const review = await Review.findByPk(image.reviewId);
+
     // Review must belong to current user
-    if (image.reviewId !== user.id) {
+    if (review.userId !== user.id) {
         const err = new Error();
         err.message = "Forbidden";
         res.status(403);
