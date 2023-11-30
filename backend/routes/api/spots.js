@@ -21,7 +21,7 @@ const { Op } = require('sequelize');
 
 
 //
-// GET ALL SPOTS
+// Get all Spots
 //
 router.get('/', async (req, res, next) => {
     // Find all spots and their associated review stars/preview image

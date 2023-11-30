@@ -38,7 +38,7 @@ module.exports = {
       {
         spotId: 3,
         url: "ourpic.png",
-        preview: false
+        preview: true
       }
     ] ,{validate: true})
   },
