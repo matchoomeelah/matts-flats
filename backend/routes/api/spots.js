@@ -12,7 +12,7 @@ const { requireAuth, requireSpotOwner, requireNotSpotOwner } = require('../../ut
 const { validateSpot, validateReview, spotExists, validateBooking, validateImage, checkBookingConflict } = require('../../utils/validation');
 
 // Helper Functions
-const { addAvgRating, addPreviewImage, addReviewCount, queryErrorParser } = require('../../utils/spot-helpers');
+const { addAvgRating, addPreviewImage, addReviewCount, queryErrorParser, queryObjCreator } = require('../../utils/spot-helpers');
 
 // For comparisons
 const { Op } = require('sequelize');
@@ -22,23 +22,13 @@ const { Op } = require('sequelize');
 //
 // Get all Spots
 //
-router.get('/', async (req, res, next) => {
-    // Check for query validation errors
-    const errors = queryErrorParser(req.query);
-
-    if (Object.keys(errors).length) {
-        const err = new Error();
-        err.message = "Bad Request",
-        err.errors = errors;
-        res.status(400);
-        return res.json(err);
-    }
+router.get('/', queryErrorParser, async (req, res, next) => {
 
     // Pagination and Search Params
-    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+    let { page, size } = req.query;
 
+    const query = queryObjCreator(req.query);
     const pagination = {};
-    const query = {};
 
     // Set default values
     if (!page || page > 10) page = 1;
@@ -46,59 +36,6 @@ router.get('/', async (req, res, next) => {
 
     pagination.limit = size;
     pagination.offset = size * (page - 1);
-
-    // Min and Max Lat
-    if (minLat && maxLat) {
-        query.lat = {
-            [Op.between]: [parseFloat(minLat), parseFloat(maxLat)]
-        }
-    }
-    else if (minLat) {
-        query.lat = {
-            [Op.gte]: parseFloat(minLat)
-        }
-    }
-    else if (maxLat) {
-        query.lat = {
-            [Op.lte]: parseFloat(maxLat)
-        }
-    }
-
-    // Min and Max Lng
-    if (minLng && maxLng) {
-        query.lng = {
-            [Op.between]: [parseFloat(minLng), parseFloat(maxLng)]
-        }
-    }
-    else if (minLng) {
-        query.lng = {
-            [Op.gte]: parseFloat(minLng)
-        }
-    }
-    else if (maxLng) {
-        query.lng = {
-            [Op.lte]: parseFloat(maxLng)
-        }
-    }
-
-    // Min and Max Price
-    if (minPrice && maxPrice) {
-        query.price = {
-            [Op.between]: [parseFloat(minPrice), parseFloat(maxPrice)]
-        }
-    }
-    else if (minPrice) {
-        query.price = {
-            [Op.gte]: parseFloat(minPrice)
-        }
-    }
-    else if (maxPrice) {
-        query.price = {
-            [Op.lte]: parseFloat(maxPrice)
-        }
-    }
-
-
 
 
     // Find all spots and their associated review stars/preview image
@@ -116,9 +53,7 @@ router.get('/', async (req, res, next) => {
             required: false,
             limit: 1
         }],
-        where: {
-            ...query
-        },
+        where: query,
         ...pagination
     });
 

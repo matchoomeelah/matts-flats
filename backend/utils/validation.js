@@ -173,7 +173,7 @@ const checkBookingConflict = async function (req, res, next) {
 //
 // Check if specified Booking endDate is in the past
 //
-const endDatePast = async function (req, res, next) {
+const endDateNotPast = async function (req, res, next) {
   const { bookingId } = req.params
 
   const booking = await Booking.findByPk(bookingId);
@@ -288,6 +288,6 @@ module.exports = {
   validateBooking,
   endDateAfterStartDate,
   checkBookingConflict,
-  endDatePast,
+  endDateNotPast,
   validateImage
 };

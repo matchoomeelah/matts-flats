@@ -1,4 +1,9 @@
+// Model for querying
 const { Spot } = require('../db/models');
+
+// For comparisons
+const { Op } = require('sequelize');
+
 
 // Helper funcs
 const addAvgRating = (spot) => {
@@ -34,12 +39,12 @@ const addReviewCount = (spot) => {
     return spot;
 }
 
-const queryErrorParser = (query) => {
-    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = query;
+const queryErrorParser = (req, res, next) => {
+    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
     const errors = {};
 
     page = parseInt(page);
-    size = parseInt(size)
+    size = parseInt(size);
 
     // PAGE
     if (page === 0 || (!isNaN(page) && page < 1)) {
@@ -53,22 +58,22 @@ const queryErrorParser = (query) => {
 
     // LATS AND LNGS
     if (minLat) {
-        if (isNaN(minLat) || minLat < -90.0 || minLat > 90) {// || minLat.split('.')[1].length > 1) {
+        if (isNaN(minLat) || minLat < -90.0 || minLat > 90) {
             errors.minLat = "Minimum latitude is invalid"
         }
     }
     if (maxLat) {
-        if (isNaN(maxLat) || maxLat < -90.0 || maxLat > 90) {// || maxLat.split('.')[1].length > 1) {
+        if (isNaN(maxLat) || maxLat < -90.0 || maxLat > 90) {
             errors.maxLat = "Maximum latitude is invalid"
         }
     }
     if (minLng) {
-        if (isNaN(minLng) || minLng < -180.0 || minLng > 180) {// || minLng.split('.')[1].length > 1) {
+        if (isNaN(minLng) || minLng < -180.0 || minLng > 180) {
             errors.minLng = "Minimum longitude is invalid"
         }
     }
     if (maxLng) {
-        if (isNaN(maxLng) || maxLng < -180.0 || maxLng > 180) {// || maxLng.split('.')[1].length > 1) {
+        if (isNaN(maxLng) || maxLng < -180.0 || maxLng > 180) {
             errors.maxLng = "Maximum longitude is invalid"
         }
     }
@@ -87,8 +92,75 @@ const queryErrorParser = (query) => {
         }
     }
 
-    return errors;
+    if (Object.keys(errors).length) {
+        const err = new Error();
+        err.message = "Bad Request",
+        err.errors = errors;
+        res.status(400);
+        return res.json(err);
+    }
+
+    return next();
+}
+
+const queryObjCreator = (reqQuery) => {
+    const { minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = reqQuery;
+
+    const queryObj = {}
+
+    // Min and Max Lat
+    if (minLat && maxLat) {
+        queryObj.lat = {
+            [Op.between]: [parseFloat(minLat), parseFloat(maxLat)]
+        }
+    }
+    else if (minLat) {
+        queryObj.lat = {
+            [Op.gte]: parseFloat(minLat)
+        }
+    }
+    else if (maxLat) {
+        queryObj.lat = {
+            [Op.lte]: parseFloat(maxLat)
+        }
+    }
+
+    // Min and Max Lng
+    if (minLng && maxLng) {
+        queryObj.lng = {
+            [Op.between]: [parseFloat(minLng), parseFloat(maxLng)]
+        }
+    }
+    else if (minLng) {
+        queryObj.lng = {
+            [Op.gte]: parseFloat(minLng)
+        }
+    }
+    else if (maxLng) {
+        queryObj.lng = {
+            [Op.lte]: parseFloat(maxLng)
+        }
+    }
+
+    // Min and Max Price
+    if (minPrice && maxPrice) {
+        queryObj.price = {
+            [Op.between]: [parseFloat(minPrice), parseFloat(maxPrice)]
+        }
+    }
+    else if (minPrice) {
+        queryObj.price = {
+            [Op.gte]: parseFloat(minPrice)
+        }
+    }
+    else if (maxPrice) {
+        queryObj.price = {
+            [Op.lte]: parseFloat(maxPrice)
+        }
+    }
+
+    return queryObj;
 }
 
 
-module.exports = { addAvgRating, addPreviewImage, addReviewCount, queryErrorParser };
+module.exports = { addAvgRating, addPreviewImage, addReviewCount, queryErrorParser, queryObjCreator };
