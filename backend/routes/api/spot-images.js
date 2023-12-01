@@ -10,14 +10,14 @@ const { requireAuth } = require('../../utils/auth');
 //
 // Get all spot images (for convenience in testing)
 //
-router.get('/', async (req, res, next) => {
-    const images = await SpotImage.findAll({
-        include: {
-            model: Spot
-        }
-    });
-    res.json(images);
-});
+// router.get('/', async (req, res, next) => {
+//     const images = await SpotImage.findAll({
+//         include: {
+//             model: Spot
+//         }
+//     });
+//     res.json(images);
+// });
 
 //
 //  Delete a Spot Image

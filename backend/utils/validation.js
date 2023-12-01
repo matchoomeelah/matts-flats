@@ -1,8 +1,9 @@
 const { validationResult, check } = require('express-validator');
 const { Spot, Review, Booking } = require('../db/models');
 
-// middleware for formatting errors from express-validator middleware
-// (to customize, see express-validator's documentation)
+//
+// Middleware for formatting errors from express-validator middleware
+//
 const handleValidationErrors = (req, res, next) => {
   const validationErrors = validationResult(req);
 
@@ -121,19 +122,17 @@ const checkBookingConflict = async function (req, res, next) {
       continue;
     }
 
-    // 3 cases
-    // 1) startTime is between currStartTime and currEndTime inclusive
-    // 2) endTime is between currStartTime and currEndTime inclusive
-    // 3) startTime is less than currStartTime and endTime is after currEndTime
-
+    // startDate is within current booking dates
     if (startTime >= currStartTime && startTime <= currEndTime) {
       errors.startDate = "Start date conflicts with an existing booking";
     }
 
+    // endTime is within current booking dates
     if (endTime >= currStartTime && endTime <= currEndTime) {
       errors.endDate = "End date conflicts with an existing booking";
     }
 
+    // startDate and endDate contain current booking dates
     if (startTime < currStartTime && endTime > currEndTime) {
       errors.message = "Existing booking within date range specified";
     }
@@ -150,25 +149,6 @@ const checkBookingConflict = async function (req, res, next) {
 
   next();
 }
-
-//
-// Check if Booking startDate is in the past // Not specified that we need it, probablycreates old one for testing purposes in test suite
-//
-// const startDatePast = async function (req, res, next) {
-//   const { startDate } = req.body;
-
-//   const startDateTime = new Date(startDate).getTime();
-//   const nowTime = new Date().getTime();
-
-//   if (nowTime > startDateTime) {
-//     const err = new Error("Cannot make bookings for past dates");
-//     err.status = 403;
-//     err.title = "Forbidden";
-//     return next(err);
-//   }
-
-//   next();
-// }
 
 //
 // Check if specified Booking endDate is in the past
@@ -223,11 +203,10 @@ const validateSpot = [
     .exists({ checkFalsy: true })
     .withMessage("Price per day is required"),
   check('price')
-    .isFloat({min: 0})
+    .isFloat({ min: 0 })
     .withMessage("Price cannot be less than 0"),
   handleValidationErrors
 ];
-
 
 //
 // Validate new Review
@@ -243,7 +222,6 @@ const validateReview = [
     .withMessage("Stars must be an integer from 1 to 5"),
   handleValidationErrors
 ];
-
 
 //
 // Validate new Booking
@@ -275,7 +253,93 @@ const validateImage = [
   handleValidationErrors
 ];
 
+//
+// Validate the search params in req.query
+//
+const queryParamValidator = (req, res, next) => {
+  let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+  const errors = {};
 
+  page = parseInt(page);
+  size = parseInt(size);
+
+  // PAGE
+  if (page === 0 || (!isNaN(page) && page < 1)) {
+    errors.page = "Page must be greater than or equal to 1";
+  }
+
+  // SIZE
+  if (size === 0 || (!isNaN(size) && size < 1)) {
+    errors.size = "Size must be greater than or equal to 1";
+  }
+
+  // LATS AND LNGS
+  if (minLat) {
+    if (isNaN(minLat) || minLat < -90.0 || minLat > 90) {
+      errors.minLat = "Minimum latitude is invalid"
+    }
+  }
+  if (maxLat) {
+    if (isNaN(maxLat) || maxLat < -90.0 || maxLat > 90) {
+      errors.maxLat = "Maximum latitude is invalid"
+    }
+  }
+  if (minLng) {
+    if (isNaN(minLng) || minLng < -180.0 || minLng > 180) {
+      errors.minLng = "Minimum longitude is invalid"
+    }
+  }
+  if (maxLng) {
+    if (isNaN(maxLng) || maxLng < -180.0 || maxLng > 180) {
+      errors.maxLng = "Maximum longitude is invalid"
+    }
+  }
+
+  // MINPRICE
+  if (minPrice) {
+    if (isNaN(minPrice) || minPrice < 0) {
+      errors.minPrice = "Minimum price must be greater than or equal to 0";
+    }
+  }
+
+  // MAXPRICE
+  if (maxPrice) {
+    if (isNaN(maxPrice) || maxPrice < 0) {
+      errors.maxPrice = "Maximum price must be greater than or equal to 0";
+    }
+  }
+
+  if (Object.keys(errors).length) {
+    const err = new Error();
+    err.message = "Bad Request",
+      err.errors = errors;
+    res.status(400);
+    return res.json(err);
+  }
+
+  return next();
+}
+
+//
+// Check if user has made a review for the spot already
+//
+const notPrevReviewer = async (req, res, next) => {
+  const user = req.user;
+  const { spotId } = req.params;
+
+  const reviews = await user.getReviews();
+
+  for (let r of reviews) {
+    if (r.spotId == spotId) {
+      const err = new Error();
+      err.message = "User already has a review for this spot";
+      res.status(500);
+      return res.json(err);
+    }
+  }
+
+  next();
+}
 
 
 module.exports = {
@@ -289,5 +353,7 @@ module.exports = {
   endDateAfterStartDate,
   checkBookingConflict,
   endDateNotPast,
-  validateImage
+  validateImage,
+  queryParamValidator,
+  notPrevReviewer
 };

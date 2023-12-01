@@ -40,7 +40,7 @@ module.exports = {
   async down (queryInterface, Sequelize) {
     queryInterface.bulkDelete(options, {
       spotId: {
-        [Op.in]: [1, 2]
+        [Op.in]: [1, 2, 3]
       }
     });
   }

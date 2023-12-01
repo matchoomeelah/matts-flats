@@ -29,7 +29,6 @@ router.get('/current', requireAuth, async (req, res, next) => {
                     preview: true
                 },
                 required: false
-
             }
         },
         where: {

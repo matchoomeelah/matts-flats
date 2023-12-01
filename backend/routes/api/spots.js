@@ -9,20 +9,19 @@ const { Spot, SpotImage, Review, User, ReviewImage, Booking } = require('../../d
 const { requireAuth, requireSpotOwner, requireNotSpotOwner } = require('../../utils/auth');
 
 // Import validation middleware
-const { validateSpot, validateReview, spotExists, validateBooking, validateImage, checkBookingConflict } = require('../../utils/validation');
+const { validateSpot, validateReview, spotExists, validateBooking, validateImage, checkBookingConflict, queryParamValidator, notPrevReviewer } = require('../../utils/validation');
 
 // Helper Functions
-const { addAvgRating, addPreviewImage, addReviewCount, queryErrorParser, queryObjCreator } = require('../../utils/spot-helpers');
+const { addAvgRating, addPreviewImage, addReviewCount, queryObjCreator } = require('../../utils/spot-helpers');
 
 // For comparisons
 const { Op } = require('sequelize');
 
 
-
 //
 // Get all Spots
 //
-router.get('/', queryErrorParser, async (req, res, next) => {
+router.get('/', queryParamValidator, async (req, res, next) => {
 
     // Pagination and Search Params
     let { page, size } = req.query;
@@ -32,8 +31,9 @@ router.get('/', queryErrorParser, async (req, res, next) => {
 
     // Set default values
     if (!page || page > 10) page = 1;
-    if (!size) size = 20;
+    if (!size || size > 20) size = 20;
 
+    // Set pagination properties
     pagination.limit = size;
     pagination.offset = size * (page - 1);
 
@@ -51,7 +51,7 @@ router.get('/', queryErrorParser, async (req, res, next) => {
                 preview: true
             },
             required: false,
-            limit: 1
+            // limit: 1
         }],
         where: query,
         ...pagination
@@ -60,8 +60,8 @@ router.get('/', queryErrorParser, async (req, res, next) => {
     // Add avgRating and previewImg (terribly)
     spots = spots.map(spot => {
         spot = spot.toJSON();
-        spot = addAvgRating(spot);
-        spot = addPreviewImage(spot);
+        addAvgRating(spot);
+        addPreviewImage(spot);
 
         delete spot.Reviews;
         delete spot.SpotImages;
@@ -104,8 +104,8 @@ router.get('/current', requireAuth, async (req, res, next) => {
     // Add avgRating and previewImg (terribly)
     spots = spots.map(spot => {
         spot = spot.toJSON();
-        spot = addAvgRating(spot);
-        spot = addPreviewImage(spot);
+        addAvgRating(spot);
+        addPreviewImage(spot);
 
         delete spot.Reviews;
         delete spot.SpotImages;
@@ -143,8 +143,8 @@ router.get('/:spotId', spotExists, async (req, res, next) => {
 
     // Add review count and average rating
     spot = spot.toJSON();
-    spot = addReviewCount(spot);
-    spot = addAvgRating(spot);
+    addReviewCount(spot);
+    addAvgRating(spot);
 
     delete spot.Reviews;
 
@@ -189,11 +189,9 @@ router.delete('/:spotId', requireAuth, spotExists, requireSpotOwner, async (req,
 //
 router.put('/:spotId', requireAuth, spotExists, requireSpotOwner, validateSpot, async (req, res, next) => {
     const { spotId } = req.params;
-
     const spot = await Spot.findByPk(spotId);
 
     spot.set({ ...req.body });
-
     await spot.save();
 
     res.json(spot);
@@ -203,7 +201,7 @@ router.put('/:spotId', requireAuth, spotExists, requireSpotOwner, validateSpot, 
 //
 // Add an Image to a Spot based on the Spot's id
 //
-router.post('/:spotId/images', requireAuth, spotExists, validateImage, requireSpotOwner, async (req, res, next) => {
+router.post('/:spotId/images', requireAuth, spotExists, requireSpotOwner, validateImage, async (req, res, next) => {
     const { spotId } = req.params;
     const { url, preview } = req.body;
 
@@ -236,7 +234,8 @@ router.get('/:spotId/reviews', spotExists, async (req, res, next) => {
                 {
                     model: ReviewImage,
                     attributes: ['id', 'url']
-                }]
+                }
+            ]
         }
     });
 
@@ -247,30 +246,10 @@ router.get('/:spotId/reviews', spotExists, async (req, res, next) => {
 //
 // Create a Review for a Spot based on the Spot's id
 //
-router.post('/:spotId/reviews', requireAuth, spotExists, validateReview, async (req, res, next) => {
+router.post('/:spotId/reviews', requireAuth, spotExists, notPrevReviewer, validateReview, async (req, res, next) => {
     const { review, stars } = req.body;
     const { spotId } = req.params;
     const userId = req.user.id;
-
-    // Check if user has made a review for the spot already
-    const spot = await Spot.findByPk(spotId);
-    const spotReviewUsers = await spot.getReviews({
-        attributes: [],
-        include: {
-            model: User,
-            attributes: ['id']
-        }
-    });
-
-    for (let r of spotReviewUsers) {
-        if (r.User.id === userId) {
-            const err = new Error();
-            err.message = "User already has a review for this spot";
-            res.status(500);
-            return res.json(err);
-        }
-    }
-
 
     const newReview = Review.build({
         userId,
@@ -278,6 +257,7 @@ router.post('/:spotId/reviews', requireAuth, spotExists, validateReview, async (
         review,
         stars
     });
+
     await newReview.save();
 
     res.status(201);
