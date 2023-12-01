@@ -140,7 +140,6 @@ const checkBookingConflict = async function (req, res, next) {
     // Return error if there are conflicts
     if (Object.keys(errors).length) {
       const err = new Error("Sorry, this spot is already booked for the specified dates");
-      errors.bookingId = bookingId;
       err.errors = errors;
       err.status = 403;
       return next(err);
