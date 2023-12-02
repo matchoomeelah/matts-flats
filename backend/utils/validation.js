@@ -310,8 +310,8 @@ const queryParamValidator = (req, res, next) => {
 
   if (Object.keys(errors).length) {
     const err = new Error();
-    err.message = "Bad Request",
-      err.errors = errors;
+    err.message = "Bad Request";
+    err.errors = errors;
     res.status(400);
     return res.json(err);
   }
