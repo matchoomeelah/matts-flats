@@ -2,6 +2,9 @@
 const {
   Model
 } = require('sequelize');
+
+const moment = require('moment');
+
 module.exports = (sequelize, DataTypes) => {
   class Booking extends Model {
 
@@ -41,6 +44,18 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isDate: true
       }
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      // get() {
+      //   return moment(this.dataValues.createdAt).format('YYYY-MM-DD HH:mm:ss');
+      // }
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      // get() {
+      //   return moment(this.dataValues.updatedAt).format('YYYY-MM-DD HH:mm:ss');
+      // }
     }
   }, {
     sequelize,

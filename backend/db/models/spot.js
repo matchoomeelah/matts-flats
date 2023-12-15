@@ -3,13 +3,10 @@ const {
   Model
 } = require('sequelize');
 
+const moment = require('moment');
+
 module.exports = (sequelize, DataTypes) => {
   class Spot extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // A Spot belongs to one User (the owner)
       Spot.belongsTo(models.User, {
@@ -94,10 +91,22 @@ module.exports = (sequelize, DataTypes) => {
     price: {
       type: DataTypes.FLOAT(8,2),
       allowNull: false
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      // get() {
+      //   return moment(this.dataValues.createdAt).format('YYYY-MM-DD HH:mm:ss');
+      // }
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      // get() {
+      //   return moment(this.dataValues.updatedAt).format('YYYY-MM-DD HH:mm:ss');
+      // }
     }
   }, {
     sequelize,
-    modelName: 'Spot',
+    modelName: 'Spot'
   });
   return Spot;
 };

@@ -60,11 +60,9 @@ router.get('/current', requireAuth, async (req, res, next) => {
 //
 router.put('/:bookingId', requireAuth, bookingExists, requireBookingOwner, validateBooking, endDateNotPast, async (req, res, next) => {
     const { bookingId } = req.params;
-
     const booking = await Booking.findByPk(bookingId);
 
     booking.set({ ...req.body });
-
     await booking.save();
 
     res.json(booking);

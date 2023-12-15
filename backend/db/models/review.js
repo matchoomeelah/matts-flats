@@ -2,6 +2,9 @@
 const {
   Model
 } = require('sequelize');
+
+const moment = require('moment');
+
 module.exports = (sequelize, DataTypes) => {
   class Review extends Model {
     /**
@@ -51,6 +54,18 @@ module.exports = (sequelize, DataTypes) => {
         min: 1,
         max: 5
       }
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      // get() {
+      //   return moment(this.dataValues.createdAt).format('YYYY-MM-DD HH:mm:ss');
+      // }
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      // get() {
+      //   return moment(this.dataValues.updatedAt).format('YYYY-MM-DD HH:mm:ss');
+      // }
     }
   }, {
     sequelize,

@@ -2,13 +2,12 @@
 const {
   Model
 } = require('sequelize');
+
+const moment = require('moment');
+
 module.exports = (sequelize, DataTypes) => {
   class SpotImage extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+
     static associate(models) {
       SpotImage.belongsTo(models.Spot, {
         foreignKey: 'spotId',
@@ -30,6 +29,18 @@ module.exports = (sequelize, DataTypes) => {
     },
     preview: {
       type: DataTypes.BOOLEAN
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      // get() {
+      //   return moment(this.dataValues.createdAt).format('YYYY-MM-DD HH:mm:ss');
+      // }
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      // get() {
+      //   return moment(this.dataValues.updatedAt).format('YYYY-MM-DD HH:mm:ss');
+      // }
     }
   }, {
     sequelize,

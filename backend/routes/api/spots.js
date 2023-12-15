@@ -51,7 +51,6 @@ router.get('/', queryParamValidator, async (req, res, next) => {
                 preview: true
             },
             required: false,
-            // limit: 1
         }],
         where: query,
         ...pagination

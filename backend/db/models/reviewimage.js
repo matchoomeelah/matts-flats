@@ -2,13 +2,11 @@
 const {
   Model
 } = require('sequelize');
+
+const moment = require('moment');
+
 module.exports = (sequelize, DataTypes) => {
   class ReviewImage extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // A ReviewImage belongs to a single Review
       ReviewImage.belongsTo(models.Review, {
@@ -28,6 +26,18 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isUrl: true
       }
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      // get() {
+      //   return moment(this.dataValues.createdAt).format('YYYY-MM-DD HH:mm:ss');
+      // }
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      // get() {
+      //   return moment(this.dataValues.updatedAt).format('YYYY-MM-DD HH:mm:ss');
+      // }
     }
   }, {
     sequelize,
