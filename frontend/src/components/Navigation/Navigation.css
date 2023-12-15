@@ -1,3 +1,20 @@
+ /* General  */
+
+button {
+    cursor: pointer;
+}
+
+
+/* #drop-down-menu {
+    position: absolute;
+} */
+
+
+.login-menu-item:hover, .signup-menu-item:hover {
+    cursor: pointer;
+    font-weight: bold;
+}
+
 .nav-links {
     display: flex;
     justify-content: space-between;
@@ -5,6 +22,7 @@
     margin: 0 auto;
     list-style-type: none;
 }
+
 
 .hidden {
     display: none;
