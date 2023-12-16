@@ -20,6 +20,10 @@ function LoginFormModal() {
         const data = await res.json();
         if (data && data.errors) {
           setErrors(data.errors);
+          console.log("ERRORS: ", data.errors);
+        }
+        else {
+          setErrors({credential: "username or password is incorrect"});
         }
       });
   };
