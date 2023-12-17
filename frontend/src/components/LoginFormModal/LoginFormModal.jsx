@@ -23,7 +23,7 @@ function LoginFormModal() {
           console.log("ERRORS: ", data.errors);
         }
         else {
-          setErrors({credential: "username or password is incorrect"});
+          setErrors({ credential: "username or password is incorrect" });
         }
       });
   };
@@ -50,9 +50,11 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.credential && (
-          <p>{errors.credential}</p>
-        )}
+        <div>
+          {errors.credential && (
+            <p>{errors.credential}</p>
+          )}
+        </div>
         <button type="submit">Log In</button>
       </form>
     </div>

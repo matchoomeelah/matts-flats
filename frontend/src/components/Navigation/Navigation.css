@@ -5,11 +5,6 @@ button {
 }
 
 
-/* #drop-down-menu {
-    position: absolute;
-} */
-
-
 .login-menu-item:hover, .signup-menu-item:hover {
     cursor: pointer;
     font-weight: bold;
