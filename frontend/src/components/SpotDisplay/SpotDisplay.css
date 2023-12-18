@@ -1,0 +1,22 @@
+/* Spot Container */
+#spot-display-container {
+    display: flex;
+    flex-wrap: wrap
+}
+
+
+/* Spot Tile */
+
+.spot-tile {
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.spot-image {
+    height: 50%;
+    width: 95%;
+    border: 1px solid gray;
+    margin: 5px;
+}

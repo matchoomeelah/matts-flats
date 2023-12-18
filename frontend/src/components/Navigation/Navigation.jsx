@@ -1,4 +1,3 @@
-// import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import logo from "./matts-flats-logo-lowercase.png";

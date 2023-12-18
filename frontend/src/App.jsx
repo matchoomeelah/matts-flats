@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { thunkRestoreUser } from './store/session';
 import Navigation from './components/Navigation/Navigation';
+import SpotDisplay from './components/SpotDisplay/SpotDisplay';
+import { thunkLoadSpots } from './store/spots';
 
 const router = createBrowserRouter([
   {
@@ -10,7 +12,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <h1>Welcome!</h1>
+        element: <SpotDisplay />
       }
     ]
   }
@@ -25,6 +27,8 @@ function Layout() {
     dispatch(thunkRestoreUser()).then(() => {
       setIsLoaded(true)
     });
+
+    dispatch(thunkLoadSpots());
   }, [dispatch]);
 
   return (
