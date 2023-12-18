@@ -15,16 +15,25 @@ button {
     border-bottom: 0.5px solid lightgray;
 }
 
+/* LOGO */
+
 #logo {
     height: 40px;
 }
 
-#profile-dropdown {
+
+/* PROFILE & DROPDOWN */
+
+#profile-button {
+    display: flex;
+    align-items: center;
     margin-right: 30px;
+    background-color: transparent;
     border: 1px solid lightgray;
     border-radius: 40px;
     padding: 15px;
 }
+
 
 #menu-bars {
     margin-right: 10px;

@@ -16,10 +16,7 @@ function Navigation({ isLoaded }) {
         </a>
       </div>
       {isLoaded && (
-        <div id='profile-dropdown'>
-          <i id='menu-bars' className="fas fa-bars"></i>
-          <ProfileButton id='profile-button' user={sessionUser} />
-        </div>
+        <ProfileButton id='profile-button' user={sessionUser} />
       )}
     </div>
   );
