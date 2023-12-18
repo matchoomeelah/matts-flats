@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import logo from "./matts-flats-logo-lowercase.png";
@@ -15,7 +15,7 @@ function Navigation({ isLoaded }) {
       </div>
       {isLoaded && (
         <div id='profile-dropdown'>
-          <i id='menu-bars' class="fas fa-bars"></i>
+          <i id='menu-bars' className="fas fa-bars"></i>
           <ProfileButton id='profile-button' user={sessionUser} />
         </div>
       )}
