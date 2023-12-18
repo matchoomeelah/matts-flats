@@ -5,17 +5,19 @@ function SpotTile({ spot }) {
     return (
         <div className="spot-tile">
             <div className='spot-image'>
-                {spot.previewImage}
+                <img className='image' src={`../../images/${spot.previewImage}`} />
             </div>
-            <div className="spot-city-state">
-                {`${spot.city}, ${spot.state}`}
-            </div>
-            <div className="spot-star-rating">
-                <i className="fas fa-star"></i>
-                {spot.avgRating}
-            </div>
-            <div className="spot-price">
-                {spot.price}
+            <div className='spot-info'>
+                <div className="spot-city-state">
+                    {`${spot.city}, ${spot.state}`}
+                </div>
+                <div className="spot-star-rating">
+                    <i className="fas fa-star"></i>
+                    {` ${spot.avgRating}`}
+                </div>
+                <div className="spot-price">
+                    ${spot.price}
+                </div>
             </div>
         </div>
     )

@@ -19,17 +19,17 @@ module.exports = {
     SpotImage.bulkCreate([
       {
         spotId: 1,
-        url: "mypic.png",
+        url: "yeadon.jpg",
         preview: true
       },
       {
         spotId: 2,
-        url: "yourpic.png",
+        url: "easyville.jpg",
         preview: true
       },
       {
         spotId: 3,
-        url: "ourpic.png",
+        url: "stuytown.jpg",
         preview: true
       }
     ] ,{validate: true})

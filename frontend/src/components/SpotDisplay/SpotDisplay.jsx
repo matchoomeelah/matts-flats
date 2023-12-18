@@ -12,7 +12,6 @@ function SpotDisplay() {
             {allSpots.map(spot => {
                 return <SpotTile key={spot.id} spot={spot}/>
             })}
-
         </div>
     )
 }
