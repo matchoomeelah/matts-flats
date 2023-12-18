@@ -11,3 +11,8 @@ form {
     align-items: center;
     justify-content: space-between;
 }
+
+
+.error-message {
+    color: #FF5A5F;
+}

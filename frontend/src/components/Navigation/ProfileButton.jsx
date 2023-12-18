@@ -46,35 +46,35 @@ function ProfileButton({ user }) {
         <i id='menu-bars' className="fas fa-bars"></i>
         <i id='profile-icon' className="fas fa-user-circle fa-lg" />
       </button>
-      <ul id='dropdown-menu' className={ulClassName} ref={ulRef}>
+      <div id='dropdown-menu' className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
-            <li>{user.email}</li>
-            <li>
+            <div>Hello, {user.username}!</div>
+            <div>{user.firstName} {user.lastName}</div>
+            <div>{user.email}</div>
+            <div>
               <button onClick={logout}>Log Out</button>
-            </li>
+            </div>
           </>
         ) : (
           <>
-            <li className='login-menu-item'>
-              <OpenModalMenuItem
-                itemText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-            </li>
-            <li className='signup-menu-item'>
+            <div className='signup-menu-item'>
               <OpenModalMenuItem
                 itemText="Sign Up"
                 onItemClick={closeMenu}
                 modalComponent={<SignupFormModal />}
               />
-            </li>
+            </div>
+            <div className='login-menu-item'>
+              <OpenModalMenuItem
+                itemText="Log In"
+                onItemClick={closeMenu}
+                modalComponent={<LoginFormModal />}
+              />
+            </div>
           </>
         )}
-      </ul>
+      </div>
     </div>
   );
 }

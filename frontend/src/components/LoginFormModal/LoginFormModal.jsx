@@ -23,10 +23,26 @@ function LoginFormModal() {
           console.log("ERRORS: ", data.errors);
         }
         else {
-          setErrors({ credential: "username or password is incorrect" });
+          setErrors({ credential: "The provided credentials were invalid" });
         }
       });
   };
+
+  const loginDemoUser = () => {
+    return dispatch(sessionActions.thunkLoginUser({ credential: 'Demo-lition', password: 'password' }))
+      .then(closeModal)
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          setErrors(data.errors);
+          console.log("ERRORS: ", data.errors);
+        }
+        else {
+          setErrors({ credential: "The provided credentials were invalid" });
+        }
+      });
+
+  }
 
   return (
     <div className='login-form-container'>
@@ -52,11 +68,13 @@ function LoginFormModal() {
         </label>
         <div>
           {errors.credential && (
-            <p>{errors.credential}</p>
+            <p className='error-message'>*{errors.credential}</p>
           )}
         </div>
-        <button type="submit">Log In</button>
+        <button type="submit" disabled={credential.length < 4 || password.length < 6}>Log In</button>
       </form>
+      <button onClick={loginDemoUser}>Log in as Demo User</button>
+
     </div>
   );
 }
