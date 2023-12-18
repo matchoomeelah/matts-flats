@@ -5,7 +5,7 @@ function SpotTile({ spot }) {
     return (
         <div className="spot-tile">
             <div className='spot-image'>
-                <img className='image' src={`seed-spot-images/${spot.previewImage}`}/>
+                <img className='image' src={`./seed-spot-images/${spot.previewImage}`}/>
             </div>
             <div className='spot-info'>
                 <div className="spot-city-state">
