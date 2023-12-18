@@ -11,7 +11,7 @@ function SpotTile({ spot }) {
                 {`${spot.city}, ${spot.state}`}
             </div>
             <div className="spot-star-rating">
-                <i class="fas fa-star"></i>
+                <i className="fas fa-star"></i>
                 {spot.avgRating}
             </div>
             <div className="spot-price">
