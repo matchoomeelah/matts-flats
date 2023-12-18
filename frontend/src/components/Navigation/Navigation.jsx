@@ -11,7 +11,9 @@ function Navigation({ isLoaded }) {
   return (
     <div className='header'>
       <div>
-        <img id='logo' src={logo} alt='mattsflats' />
+        <a href='/'>
+          <img id='logo' src={logo} alt='mattsflats' />
+        </a>
       </div>
       {isLoaded && (
         <div id='profile-dropdown'>
