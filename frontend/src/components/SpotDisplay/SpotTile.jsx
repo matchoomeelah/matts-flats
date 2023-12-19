@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 function SpotTile({ spot }) {
 
+
     return (
         <div className="spot-tile">
             <Link to={`/spots/${spot.id}`}>

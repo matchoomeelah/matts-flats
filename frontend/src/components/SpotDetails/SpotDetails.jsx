@@ -1,26 +1,23 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { thunkLoadSpots } from '../../store/spots';
+import { thunkGetSpotById, thunkLoadSpots } from '../../store/spots';
 import './SpotDetails.css'
 
 function SpotDetails() {
 
-    // Load in the spotId from the url and get all the spots
+    // Load in the spotId from the url and get the currentSpot
     const spotId = useParams().spotId;
-    const allSpots = useSelector(state => state.spots.allSpots);
-    console.log("ALL SPOTS:", allSpots);
+    const currSpot = useSelector(state => state.spots.currentSpot);
+    // console.log("Spot Details, current spot:", currSpot);
 
-    // Find the current spot based on the spotId
-    const currSpot = allSpots.find(spot => spot.id == spotId);
-    console.log("CURRSPOT: ", currSpot);
 
     // Import dispatch for thunks
     const dispatch = useDispatch();
 
     // Load the spots for reload
     useEffect(() => {
-        dispatch(thunkLoadSpots());
+        dispatch(thunkGetSpotById(spotId));
     }, [dispatch])
 
 
@@ -41,7 +38,7 @@ function SpotDetails() {
                 LOCATION: {currSpot.city}, {currSpot.state}, {currSpot.country}
             </div>
             <div className='owner-details'>
-                OWNER: (coming soon)
+                OWNER: {currSpot.Owner.firstName} {currSpot.Owner.lastName}
             </div>
             <div className='description'>
                 DESCRIPTION: {currSpot.description}
