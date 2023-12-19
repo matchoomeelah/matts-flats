@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './NewSpotForm.css';
 import { thunkCreateSpot } from '../../store/spots';
 import { validateForm } from './field-validation';
+import { useNavigate } from "react-router-dom";
 
 
 function NewSpotForm() {
@@ -22,13 +23,14 @@ function NewSpotForm() {
     const [errors, setErrors] = useState({});
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors({});
 
-        const formErrors = validateForm({country, streetAddress, city, state, description, spotName, price, previewImage, otherImage1, otherImage2, otherImage3, otherImage4});
+        const formErrors = validateForm({ country, streetAddress, city, state, description, spotName, price, previewImage, otherImage1, otherImage2, otherImage3, otherImage4 });
         console.log("FORM ERRORS", formErrors);
         setErrors(formErrors);
 
@@ -37,7 +39,7 @@ function NewSpotForm() {
         }
 
         // Attempt to create spot and images
-        dispatch(thunkCreateSpot({
+        const spot = await dispatch(thunkCreateSpot({
             ownerId: sessionUser.id,
             address: streetAddress,
             city,
@@ -61,6 +63,9 @@ function NewSpotForm() {
                     setErrors(prevErrors => { return { ...prevErrors, ...data.errors } });
                 }
             })
+
+        // console.log("SPOTID: ", spot.id);
+        navigate(`/spots/${spot.id}`);
     }
 
     return (
@@ -106,7 +111,7 @@ function NewSpotForm() {
                     </input>
                 </div>
                 <div>
-                <div>
+                    <div>
                         <span>State</span>
                         {errors.state && <span className='error-message'>*{errors.state}</span>}
                     </div>
@@ -122,7 +127,7 @@ function NewSpotForm() {
                 <p>{"Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood."}</p>
 
                 <div>
-                        {errors.description && <span className='error-message'>*{errors.description}</span>}
+                    {errors.description && <span className='error-message'>*{errors.description}</span>}
                 </div>
                 <textarea
                     id='spot-description-textarea'
@@ -144,7 +149,7 @@ function NewSpotForm() {
                     onChange={e => setSpotName(e.target.value)}>
                 </input>
                 <div>
-                        {errors.spotName && <span className='error-message'>*{errors.spotName}</span>}
+                    {errors.spotName && <span className='error-message'>*{errors.spotName}</span>}
                 </div>
 
                 <div className='horizontal-line'></div>
@@ -160,7 +165,7 @@ function NewSpotForm() {
                     </input>
                 </label>
                 <div>
-                        {errors.price && <span className='error-message'>*{errors.price}</span>}
+                    {errors.price && <span className='error-message'>*{errors.price}</span>}
                 </div>
 
                 <div className='horizontal-line'></div>

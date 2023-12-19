@@ -80,6 +80,8 @@ export const thunkCreateSpot = (spotDetails, images) => async (dispatch) => {
 
     // Send to the reducer
     if (response.ok) {
+        dispatch(actionCreateSpot(spot));
+
         for (let i = 0; i < images.length; i++) {
             let preview = "false";
 
@@ -104,7 +106,6 @@ export const thunkCreateSpot = (spotDetails, images) => async (dispatch) => {
             }
         }
 
-        dispatch(actionCreateSpot(spot));
     }
 
     return spot;
@@ -144,7 +145,7 @@ export default function spotsReducer(state = initialState, action) {
             return newSpots;
         }
         case CREATE_SPOT: {
-            const newSpots = { ...state, currentSpot: action.spot, allSpots: [...state.allSpots, action.spot] }
+            const newSpots = { ...state, allSpots: [...state.allSpots, action.spot] }
             return newSpots;
         }
         default:
