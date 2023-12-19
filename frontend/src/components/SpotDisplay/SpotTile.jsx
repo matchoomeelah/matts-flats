@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 
 function SpotTile({ spot }) {
@@ -7,7 +6,7 @@ function SpotTile({ spot }) {
         <div className="spot-tile">
             <Link to={`/spots/${spot.id}`}>
                 <div className='spot-image'>
-                    <img className='image' src={`../seed-spot-images/${spot.previewImage}`} />
+                    <img className='image' src={spot.previewImage} />
                 </div>
             </Link>
             <Link to={`/spots/${spot.id}`} style={ {textDecoration: 'none' }}>

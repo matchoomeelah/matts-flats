@@ -19,17 +19,22 @@ module.exports = {
     SpotImage.bulkCreate([
       {
         spotId: 1,
-        url: "yeadon.jpg",
+        url: "https://photos.zillowstatic.com/fp/e547addf4655d85da922497dc2901d47-cc_ft_960.jpg",
         preview: true
       },
       {
         spotId: 2,
-        url: "easyville.jpg",
+        url: "https://archivaldesigns.com/cdn/shop/products/Peach-Tree-Front_1200x.jpg?v=1648224612",
         preview: true
       },
       {
         spotId: 3,
-        url: "stuytown.jpg",
+        url: "https://cdn-img-feed.streeteasy.com/nyc/image/2/427713602.jpg",
+        preview: true
+      },
+      {
+        spotId: 4,
+        url: 'https://photos.zillowstatic.com/fp/48c4590267ea48ab60bb4d1e6069914f-uncropped_scaled_within_1536_1152.webp',
         preview: true
       }
     ] ,{validate: true})

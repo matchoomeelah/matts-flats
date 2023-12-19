@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { thunkLoadSpots } from '../../store/spots';
+import './SpotDetails.css'
 
 function SpotDetails() {
 
@@ -28,6 +29,11 @@ function SpotDetails() {
         return null;
     }
 
+    // Function for reserve button
+    const reserveAlert = () => {
+        alert('Feature Coming Soon');
+    }
+
     return (
         <div className='spot-details-container'>
             <h1>{currSpot.name}</h1>
@@ -43,7 +49,10 @@ function SpotDetails() {
             <div className='callout-info'>
                 <div>Check in date</div>
                 <div>Check out date</div>
-                <div>PRICE: {currSpot.price} </div>
+                <div>PRICE: {currSpot.price} night </div>
+                <button onClick={reserveAlert} className='reserve-button'>
+                    Reserve
+                </button>
             </div>
         </div>
     )
