@@ -1,0 +1,15 @@
+textarea {
+    width: 50%;
+    height: 10em;
+}
+
+.horizontal-line {
+    border-top: 1px solid gray;
+    width: 50%;
+    margin-top: 20px;
+}
+
+#submit-button {
+    background-color: red;
+    color: white;
+}

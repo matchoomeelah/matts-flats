@@ -6,6 +6,7 @@ import Navigation from './components/Navigation/Navigation';
 import SpotDisplay from './components/SpotDisplay/SpotDisplay';
 import SpotDetails from './components/SpotDetails/SpotDetails';
 import { thunkLoadSpots } from './store/spots';
+import NewSpotForm from './components/NewSpotForm/NewSpotForm';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: '/spots/:spotId',
         element: <SpotDetails />
+      },
+      {
+        path: '/spots/new',
+        element: <NewSpotForm />
       }
     ]
   }

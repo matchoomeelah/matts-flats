@@ -25,6 +25,16 @@ button {
 
 /* PROFILE & DROPDOWN */
 
+#user-menu-container {
+    display: flex;
+    align-items: center;
+}
+
+#new-spot-button {
+    margin-right: 8px;
+    font-size: 13px;
+}
+
 #profile-button {
     display: flex;
     align-items: center;
@@ -34,7 +44,6 @@ button {
     border-radius: 40px;
     padding: 15px;
 }
-
 
 #menu-bars {
     margin-right: 10px;
