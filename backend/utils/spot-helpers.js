@@ -9,7 +9,7 @@ const { Op } = require('sequelize');
 // Add average star rating of reviews for a spot
 //
 const addAvgRating = (spot) => {
-    let avg = "No reviews yet";
+    let avg = "New";
 
     if (spot.Reviews.length) {
         let sum = 0;

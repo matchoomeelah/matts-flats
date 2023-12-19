@@ -10,7 +10,7 @@ function SpotDisplay() {
     return (
         <div id='spot-display-container'>
             {allSpots.map(spot => {
-                return <SpotTile key={spot.id} spot={spot}/>
+                return <SpotTile key={spot.id} spot={spot} />
             })}
         </div>
     )

@@ -49,6 +49,18 @@ module.exports = {
       name: "StuyTown apt",
       description: "A place I used to love",
       price: 2000,
+    },
+    {
+      ownerId: 2,
+      address: "1424 Hillsborough Blvd",
+      city: "Brentwood",
+      state: "CA",
+      country: "USA",
+      lat: 50,
+      lng: 50,
+      name: "Big House",
+      description: "It's a big house",
+      price: 100,
     }
    ], { validate: true });
   },

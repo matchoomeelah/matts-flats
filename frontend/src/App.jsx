@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { thunkRestoreUser } from './store/session';
 import Navigation from './components/Navigation/Navigation';
 import SpotDisplay from './components/SpotDisplay/SpotDisplay';
+import SpotDetails from './components/SpotDetails/SpotDetails';
 import { thunkLoadSpots } from './store/spots';
 
 const router = createBrowserRouter([
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <SpotDisplay />
+      },
+      {
+        path: '/spots/:spotId',
+        element: <SpotDetails />
       }
     ]
   }
