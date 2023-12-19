@@ -23,9 +23,28 @@ function SpotDetails() {
     }, [dispatch])
 
 
+    // Wait for the spot to load
+    if (!currSpot) {
+        return null;
+    }
+
     return (
         <div className='spot-details-container'>
-            <h1>{currSpot.address}</h1>
+            <h1>{currSpot.name}</h1>
+            <div className='location-details'>
+                LOCATION: {currSpot.city}, {currSpot.state}, {currSpot.country}
+            </div>
+            <div className='owner-details'>
+                OWNER: (coming soon)
+            </div>
+            <div className='description'>
+                DESCRIPTION: {currSpot.description}
+            </div>
+            <div className='callout-info'>
+                <div>Check in date</div>
+                <div>Check out date</div>
+                <div>PRICE: {currSpot.price} </div>
+            </div>
         </div>
     )
 }
