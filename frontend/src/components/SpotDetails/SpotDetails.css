@@ -1,3 +1,45 @@
 .callout-info {
     border: 1px solid lightgray;
 }
+
+/*        */
+/* Images */
+/*        */
+
+.spot-images-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 300px;
+    width: 95%;
+    margin: 0 auto;
+    border: 1px solid green;
+}
+
+#main-image-container {
+    height: 280px;
+    border: 1px solid blue;
+    width: 49%;
+}
+
+#main-image-container img {
+    height: 100%;
+    width: 100%;
+}
+
+#other-images-container {
+    height: 280px;
+    border: 1px solid red;
+    width: 49%;
+}
+
+.other-image {
+    display: inline-block;
+    height: 49%;
+    width: 49%;
+}
+
+.other-image img {
+    height: 100%;
+    width: 100%;
+}

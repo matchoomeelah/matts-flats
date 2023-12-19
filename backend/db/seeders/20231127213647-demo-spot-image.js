@@ -36,6 +36,26 @@ module.exports = {
         spotId: 4,
         url: 'https://photos.zillowstatic.com/fp/48c4590267ea48ab60bb4d1e6069914f-uncropped_scaled_within_1536_1152.webp',
         preview: true
+      },
+      {
+        spotId: 5,
+        url: 'https://images.csmonitor.com/csm/2013/11/1101-luke-skywalker-home-tunisia.jpg?alias=standard_900x600',
+        preview: true
+      },
+      {
+        spotId: 5,
+        url: 'https://inhabitat.com/wp-content/blogs.dir/1/files/2012/07/save-lars-5.jpeg',
+        preview: false
+      },
+      {
+        spotId: 5,
+        url: 'https://travel.spotcoolstuff.com/wp-content/uploads/2011/02/star-wars-hotel-m.jpg',
+        preview: false
+      },
+      {
+        spotId: 5,
+        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR0DvYftysclX2r6yezhW3khogOX_yDeqGMvNzHSwdpw&s',
+        preview: false
       }
     ] ,{validate: true})
   },

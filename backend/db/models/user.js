@@ -77,9 +77,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       updatedAt: {
         type: DataTypes.DATE,
-        // get() {
-        //   return moment(this.dataValues.updatedAt).format('YYYY-MM-DD HH:mm:ss');
-        // }
       }
     },
     {

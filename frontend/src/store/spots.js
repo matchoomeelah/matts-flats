@@ -34,8 +34,6 @@ export const thunkLoadSpots =  () => async (dispatch) => {
     if (response.ok) {
         dispatch(actionLoadSpots(spots));
     }
-
-    console.log("SPOTS:", spots);
 }
 
 export const thunkGetSpotById = (spotId) => async (dispatch) => {

@@ -6,7 +6,6 @@ function SpotDisplay() {
 
   const allSpots = useSelector(state => state.spots.allSpots);
 
-
     return (
         <div id='spot-display-container'>
             {allSpots.map(spot => {
