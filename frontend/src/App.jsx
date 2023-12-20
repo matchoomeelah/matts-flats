@@ -2,13 +2,15 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { thunkRestoreUser } from './store/session';
+import { thunkLoadSpots } from './store/spots';
+
 import Navigation from './components/Navigation/Navigation';
 import SpotDisplay from './components/SpotDisplay/SpotDisplay';
 import SpotDetails from './components/SpotDetails/SpotDetails';
-import { thunkLoadSpots } from './store/spots';
 import NewSpotForm from './components/NewSpotForm/NewSpotForm';
 import ManageSpotsDisplay from './components/ManageSpots/ManageSpotsDisplay';
 import UpdateSpotForm from './components/UpdateSpotForm.jsx/UpdateSpotForm';
+import ManageReviewsDisplay from './components/ManageReviews/ManageReviewsDisplay';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: '/spots/:spotId/edit',
         element: <UpdateSpotForm />
+      },
+      {
+        path: 'reviews/current',
+        element: <ManageReviewsDisplay />
       }
     ]
   }

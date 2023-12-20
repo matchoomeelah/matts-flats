@@ -6,6 +6,7 @@ import SignupFormModal from '../SignupFormModal/SignupFormModal';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import * as sessionActions from '../../store/session';
 import { actionClearUserSpots } from '../../store/spots';
+import { actionClearUserReviews } from '../../store/reviews';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -43,11 +44,18 @@ function ProfileButton({ user }) {
     navigate('/spots/current')
   }
 
+  // Go to Manage Reviews Page
+  const onClickManageReviews = () => {
+    closeMenu();
+    navigate('/reviews/current')
+  }
+
   // Logout from current user and navigate to home page
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.thunkLogoutUser());
     dispatch(actionClearUserSpots());
+    dispatch(actionClearUserReviews());
     closeMenu();
     navigate('/');
   };
@@ -68,6 +76,7 @@ function ProfileButton({ user }) {
             <div>{user.email}</div>
             <div className='separator'></div>
             <div id='manage-spots-div' onClick={onClickManageSpots}>Manage Spots</div>
+            <div id='manage-reviews-div' onClick={onClickManageReviews}>Manage Reviews</div>
             <div className='separator'></div>
             <div>
               <button onClick={logout}>Log Out</button>

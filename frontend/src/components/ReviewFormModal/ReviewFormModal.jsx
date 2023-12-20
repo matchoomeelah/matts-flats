@@ -3,10 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import './ReviewForm.css'
 import { thunkAddReview } from '../../store/reviews';
+import { useModal } from '../../context/Modal';
+
 
 function ReviewFormModal() {
     const dispatch = useDispatch();
-    const currSpot = useSelector(state => state.spots.currentSpot)
+    const currSpot = useSelector(state => state.spots.currentSpot);
+    const {closeModal} = useModal();
+
 
     const [reviewText, setReviewText] = useState('');
     const [stars, setStars] = useState('');
@@ -15,17 +19,19 @@ function ReviewFormModal() {
 
 
     // Submit form
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
         // Handle Errors
         try {
-            const response = dispatch(thunkAddReview({
+            dispatch(thunkAddReview({
                 review: reviewText,
                 stars
-            }, currSpot.id));
+            }, currSpot.id)).then(closeModal);
 
-            console.log("REVIEW RESPONSE", response);
-        } catch (e) {
-            setServerError(e.message);
+            // console.log("REVIEW RESPONSE", response);
+        } catch (err) {
+            setServerError(err.message);
         }
 
     }

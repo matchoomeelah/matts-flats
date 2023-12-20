@@ -77,6 +77,11 @@
     font-weight: bolder;
  }
 
+ #manage-reviews-div:hover {
+    cursor: pointer;
+    font-weight: bolder;
+ }
+
  .separator {
      border-top: 1px solid gray;
      width: 115%;

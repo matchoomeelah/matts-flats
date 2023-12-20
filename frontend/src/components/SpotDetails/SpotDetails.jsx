@@ -16,9 +16,9 @@ function SpotDetails() {
     // Load in the spotId from the url and get the currentSpot
     const spotId = useParams().spotId;
     const currSpot = useSelector(state => state.spots.currentSpot);
-    const reviews = useSelector(state => state.reviews);
+    const reviews = useSelector(state => state.reviews.spotReviews);
     const sessionUser = useSelector(state => state.session.user);
-    console.log("SPOT", currSpot);
+    // console.log("SPOT", currSpot);
 
 
     // Import dispatch for thunks

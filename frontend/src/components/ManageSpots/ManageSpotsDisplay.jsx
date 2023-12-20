@@ -1,15 +1,17 @@
 // import SpotDisplay from "../SpotDisplay/SpotDisplay";
 import ManageSpotTile from './ManageSpotTile';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { thunkGetUserSpots } from '../../store/spots';
+
 
 import './ManageSpotsDisplay.css';
 
 function ManageSpotsDisplay() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
 
     const sessionUser = useSelector(state => state.session.user);
     const userSpots = useSelector(state => state.spots.userSpots);
@@ -22,7 +24,7 @@ function ManageSpotsDisplay() {
         } catch {
             return navigate('/');
         }
-    }, [dispatch, navigate, userSpots.length])
+    }, [dispatch, navigate])
 
 
     // Make sure someone's logged in
@@ -30,9 +32,6 @@ function ManageSpotsDisplay() {
         return navigate('/');
     }
 
-    if (!userSpots) {
-        return null;
-    }
 
     return (
         <div>
