@@ -9,7 +9,7 @@ function SpotDisplay() {
     // Map through the spots, rendering a SpotTile for each
     return (
         <div id='spot-display-container'>
-            {allSpots.map(spot => {
+            {Object.values(allSpots).map(spot => {
                 return <SpotTile key={spot.id} spot={spot} />
             })}
         </div>

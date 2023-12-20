@@ -77,7 +77,6 @@ export const thunkGetSpotById = (spotId) => async (dispatch) => {
 
 
 export const thunkCreateSpot = (spotDetails, images) => async (dispatch) => {
-    // console.log(spotDetails);
     // Fetch the data
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
@@ -178,7 +177,11 @@ export default function spotsReducer(state = initialState, action) {
     switch (action.type) {
         // Initial load
         case LOAD_SPOTS: {
-            const newSpots = { ...state, currentSpot: null, allSpots: action.spots }
+            const newAllSpots = {};
+            action.spots.forEach(spot => {
+                newAllSpots[spot.id] = spot;
+            });
+            const newSpots = { ...state, currentSpot: null, allSpots: newAllSpots }
             return newSpots;
         }
         case GET_SPOT_BY_ID: {
@@ -186,7 +189,9 @@ export default function spotsReducer(state = initialState, action) {
             return newSpots;
         }
         case CREATE_SPOT: {
-            const newSpots = { ...state, allSpots: [...state.allSpots, action.spot] }
+            const newAllSpots = { ...state.allSpots }
+            newAllSpots[action.spot.id] = action.spot;
+            const newSpots = { ...state, allSpots: newAllSpots }
             return newSpots;
         }
         case GET_USER_SPOTS: {
@@ -199,10 +204,9 @@ export default function spotsReducer(state = initialState, action) {
             return newSpots;
         }
         case EDIT_SPOT: {
-            const newSpots = { ...state};
-            const newAllSpots = newSpots.allSpots.filter(spot => action.spot.id != spot.id);
-            newAllSpots.push(action.spot);
-            newSpots.allSpots = newAllSpots;
+            const newAllSpots = { ...state.allSpots }
+            newAllSpots[action.spot.id] = {...newAllSpots[action.spot.id], ...action.spot};
+            const newSpots = { ...state, allSpots: newAllSpots};
             return newSpots;
         }
         default:
