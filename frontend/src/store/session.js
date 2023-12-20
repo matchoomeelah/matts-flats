@@ -49,7 +49,7 @@ export const thunkLoginUser = (userCredentials) => async (dispatch) => {
 // Logout the current user
 //
 export const thunkLogoutUser = () => async (dispatch) => {
-    const response = await csrfFetch('api/session', {
+    const response = await csrfFetch('/api/session', {
         method: 'DELETE'
     });
 

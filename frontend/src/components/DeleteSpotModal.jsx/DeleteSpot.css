@@ -1,0 +1,26 @@
+#delete-modal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#confirm-delete-heading {
+    margin-bottom: 5px;
+}
+
+#confirmation-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    width: 98%;
+}
+
+#yes-button {
+    background-color: red;
+    color: white;
+    margin-left: 0;
+}
+
+#no-button {
+    background-color: darkgray;
+
+}

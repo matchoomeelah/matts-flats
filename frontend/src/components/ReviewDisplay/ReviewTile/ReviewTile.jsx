@@ -1,5 +1,5 @@
-// import RatingInfo from "./RatingInfo";
-// import UserInfo from "./UserInfo";
+// import { useNavigate } from 'react-router-dom';
+
 
 const MONTHS = {
     '01': 'January',
@@ -16,17 +16,19 @@ const MONTHS = {
     '12': 'December'
 }
 
+
 function ReviewTile({ review }) {
+    if (!review) {
+        return null;
+    }
+
     return (
         <div className="review-tile">
-            {/* <UserInfo />
-            <RatingInfo /> */}
             <div className="reviewer-name">Name: {review.User.firstName}</div>
             <div className="review-stars">
                 <i className="fas fa-star"> </i>
                 {review.stars}
-                <span>  {MONTHS[new Date(review.createdAt).getMonth()]} {new Date(review.createdAt).getFullYear()} </span>
-                {/* <span>{console.log(new Date(review.createdAt).getMonth())}</span> */}
+                <span>  {MONTHS[new Date(review.createdAt).getMonth() + 1]} {new Date(review.createdAt).getFullYear()} </span>
             </div>
             <div className="review-content">{review.review}</div>
         </div>

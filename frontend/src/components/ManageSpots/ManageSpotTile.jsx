@@ -1,14 +1,15 @@
 import { useNavigate } from 'react-router-dom';
+import UpdateDeleteButtons from './UpdateDeleteButtons';
 
-function SpotTile({ spot }) {
+function ManageSpotTile({ spot }) {
     const navigate = useNavigate();
 
     return (
-        <div className="spot-tile" title={spot.name} onClick={() => navigate(`/spots/${spot.id}`)} >
-            <div className='spot-image'>
+        <div className="spot-tile" title={spot.name} >
+            <div className='spot-image' onClick={() => navigate(`/spots/${spot.id}`)}>
                 <img className='image' src={spot.previewImage} />
             </div>
-            <div className='spot-info'>
+            <div className='spot-info' onClick={() => navigate(`/spots/${spot.id}`)} style={{'marginTop': '12px'}}>
                 <div className='city-state-rating'>
                     <div className="spot-city-state">
                         {`${spot.city}, ${spot.state}`}
@@ -20,8 +21,9 @@ function SpotTile({ spot }) {
                 </div>
                 <span className="price-span">${Math.round(spot.price)}</span> <span className='night-span'>night</span>
             </div>
+            <UpdateDeleteButtons spotId={spot.id}/>
         </div>
     )
 }
 
-export default SpotTile;
+export default ManageSpotTile;

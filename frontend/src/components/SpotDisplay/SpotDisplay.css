@@ -11,11 +11,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 20em;
+    height: 25em;
     width: 23%;
     min-width: 20em;
-    border: 1px solid lightgray;
-    border-radius: 20px;
     margin: 10px;
     padding-bottom: 10px;
     overflow: hidden;
@@ -27,22 +25,42 @@
 
 .spot-image {
     overflow: hidden;
+    border-radius: 20px;
+    height: 20em;
+    width: 100%;
 }
 
 .image {
     width: 100%;
-    height: 15em;
+    height: 100%
 }
 
 .spot-info {
-    margin-left: 5px;
-    color: black;
     height: 4em;
 }
+
+.city-state-rating {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
 .spot-city-state {
     font-weight: bolder;
 }
 
+.fa-star {
+    font-size: 13px;
+    margin-right: 2px
+}
+
 .price-span {
-    font-weight: bolder;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.night-span {
+    font-weight: 100;
 }

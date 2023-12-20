@@ -7,6 +7,8 @@ import SpotDisplay from './components/SpotDisplay/SpotDisplay';
 import SpotDetails from './components/SpotDetails/SpotDetails';
 import { thunkLoadSpots } from './store/spots';
 import NewSpotForm from './components/NewSpotForm/NewSpotForm';
+import ManageSpotsDisplay from './components/ManageSpots/ManageSpotsDisplay';
+import UpdateSpotForm from './components/UpdateSpotForm.jsx/UpdateSpotForm';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
       {
         path: '/spots/new',
         element: <NewSpotForm />
+      },
+      {
+        path: '/spots/current',
+        element: <ManageSpotsDisplay />
+      },
+      {
+        path: '/spots/:spotId/edit',
+        element: <UpdateSpotForm />
       }
     ]
   }

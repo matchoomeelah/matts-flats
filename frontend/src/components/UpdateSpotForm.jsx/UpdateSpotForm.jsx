@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import './NewSpotForm.css';
-import { thunkCreateSpot } from '../../store/spots';
-import { validateForm } from './field-validation';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { thunkEditSpot, thunkGetSpotById } from '../../store/spots';
+import { validateForm } from '../NewSpotForm/field-validation'
+import '../NewSpotForm/NewSpotForm.css';
 
 
-function NewSpotForm() {
+function UpdateSpotForm() {
     const sessionUser = useSelector(state => state.session.user);
+    const currentSpot = useSelector(state => state.spots.currentSpot);
+    const { spotId } = useParams();
+
     const [country, setCountry] = useState('');
     const [streetAddress, setStreetAddress] = useState('');
     const [city, setCity] = useState('');
@@ -26,6 +29,63 @@ function NewSpotForm() {
     const navigate = useNavigate();
 
 
+    // Load the current spot into store
+    useEffect(() => {
+        dispatch(thunkGetSpotById(spotId));
+    }, [dispatch, spotId]);
+
+
+    // Populate the data from the spot into the fields
+    useEffect(() => {
+        if (currentSpot) {
+            console.log("CURRENT SPOT: ", currentSpot);
+            setCountry(currentSpot.country);
+            setStreetAddress(currentSpot.address);
+            setCity(currentSpot.city);
+            setState(currentSpot.state);
+            setDescription(currentSpot.description);
+            setSpotName(currentSpot.name);
+            setPrice(currentSpot.price);
+
+            // Images
+            const previewImage = currentSpot.SpotImages.find(img => img.preview === true).url;
+            setPreviewImage(previewImage);
+
+            // Add other images
+            const otherImages = currentSpot.SpotImages.filter(img => img.preview === false);
+
+            // Inefficient as can be
+            if (otherImages.length) {
+                setOtherImage1(otherImages.shift().url);
+            } else {
+                setOtherImage1('');
+            }
+
+            if (otherImages.length) {
+                setOtherImage2(otherImages.shift().url);
+            } else {
+                setOtherImage1('');
+            }
+
+            if (otherImages.length) {
+                setOtherImage3(otherImages.shift().url);
+            } else {
+                setOtherImage1('');
+            }
+
+            if (otherImages.length) {
+                setOtherImage4(otherImages.shift().url);
+            } else {
+                setOtherImage1('');
+            }
+        }
+    }, [currentSpot])
+
+    // Keep from trying to render too soon
+    if (!currentSpot) {
+        return null;
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors({});
@@ -39,7 +99,7 @@ function NewSpotForm() {
         }
 
         // Attempt to create spot and images
-        const spot = await dispatch(thunkCreateSpot({
+        const spot = await dispatch(thunkEditSpot({
             ownerId: sessionUser.id,
             address: streetAddress,
             city,
@@ -50,13 +110,7 @@ function NewSpotForm() {
             name: spotName,
             description,
             price
-        }, [
-            previewImage,
-            otherImage1,
-            otherImage2,
-            otherImage3,
-            otherImage4
-        ]))
+        }, spotId))
             .catch(async (res) => {
                 const data = await res.json();
                 if (data?.errors) {
@@ -216,10 +270,10 @@ function NewSpotForm() {
 
                 <div className='horizontal-line'></div>
 
-                <button id='submit-button'>Create Spot</button>
+                <button id='submit-button'>Update Spot</button>
             </form>
         </div>
     )
 }
 
-export default NewSpotForm;
+export default UpdateSpotForm;

@@ -1,15 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import * as sessionActions from '../../store/session';
-// import OpenModalButton from '../OpenModalButton/OpenModalButton';
+import { useNavigate } from 'react-router-dom';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
 import OpenModalMenuItem from './OpenModalMenuItem';
+import * as sessionActions from '../../store/session';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
-  const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
   const ulRef = useRef();
+
+  const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = (e) => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
@@ -30,12 +32,22 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
+  // Named function to use as a callback to close the menu
   const closeMenu = () => setShowMenu(false);
 
+
+  // Go to Manage Spots Page
+  const onClickManageSpots = () => {
+    closeMenu();
+    navigate('/spots/current')
+  }
+
+  // Logout from current user and navigate to home page
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.thunkLogoutUser());
     closeMenu();
+    navigate('/');
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -46,12 +58,15 @@ function ProfileButton({ user }) {
         <i id='menu-bars' className="fas fa-bars"></i>
         <i id='profile-icon' className="fas fa-user-circle fa-lg" />
       </button>
+
       <div id='dropdown-menu' className={ulClassName} ref={ulRef}>
         {user ? (
           <>
             <div>Hello, {user.username}!</div>
-            <div>{user.firstName} {user.lastName}</div>
             <div>{user.email}</div>
+            <div className='separator'></div>
+            <div id='manage-spots-div' onClick={onClickManageSpots}>Manage Spots</div>
+            <div className='separator'></div>
             <div>
               <button onClick={logout}>Log Out</button>
             </div>

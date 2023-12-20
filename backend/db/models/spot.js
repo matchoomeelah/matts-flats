@@ -94,9 +94,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     createdAt: {
       type: DataTypes.DATE,
-      // get() {
-      //   return moment(this.dataValues.createdAt).format('YYYY-MM-DD HH:mm:ss');
-      // }
     },
     updatedAt: {
       type: DataTypes.DATE,

@@ -2,10 +2,14 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { thunkGetSpotById } from '../../store/spots';
+import { thunkGetReviewsBySpotId } from '../../store/reviews';
+
 import SpotImagesDisplay from './SpotImagesDisplay/SpotImagesDisplay';
 import ReviewDisplay from '../ReviewDisplay/ReviewDisplay';
-import { thunkGetReviewsBySpotId } from '../../store/reviews';
-import './SpotDetails.css'
+import OpenModalButton from '../OpenModalButton/OpenModalButton';
+import ReviewFormModal from '../ReviewFormModal/ReviewFormModal';
+import StarRating from './StarRating';
+import './SpotDetails.css';
 
 function SpotDetails() {
 
@@ -13,8 +17,8 @@ function SpotDetails() {
     const spotId = useParams().spotId;
     const currSpot = useSelector(state => state.spots.currentSpot);
     const reviews = useSelector(state => state.reviews);
-    // console.log("REVIEWS", reviews);
-    // console.log("CURR SPOT: ", currSpot);
+    const sessionUser = useSelector(state => state.session.user);
+    console.log("SPOT", currSpot);
 
 
     // Import dispatch for thunks
@@ -29,7 +33,7 @@ function SpotDetails() {
 
 
     // Wait for the spot to load
-    if (!currSpot) {
+    if (!currSpot || !reviews) {
         return null;
     }
 
@@ -51,14 +55,8 @@ function SpotDetails() {
             <div className='description'>
                 DESCRIPTION: {currSpot.description}
             </div>
-            <div className='ratings-reviews'>
-                <i className="fas fa-star"></i>
-                {` ${currSpot.avgRating} `}
-                {currSpot.numReviews > 0 && <span>&#x2022;</span>}
-                {currSpot.numReviews > 0 && currSpot.numReviews === 1 && <span> {currSpot.numReviews} Review</span>}
-                {currSpot.numReviews > 0 && currSpot.numReviews !== 1 && <span> {currSpot.numReviews} Reviews</span>}
+            <StarRating currSpot={currSpot} />
 
-            </div>
             <div className='callout-info'>
                 <div>Check in date</div>
                 <div>Check out date</div>
@@ -67,16 +65,14 @@ function SpotDetails() {
                     Reserve
                 </button>
             </div>
-            <div className='ratings-reviews'>
-                <h2>
-                    <i className="fas fa-star"></i>
-                    {` ${currSpot.avgRating} `}
-                    {currSpot.numReviews > 0 && <span>&#x2022;</span>}
-                    {currSpot.numReviews > 0 && currSpot.numReviews === 1 && <span> {currSpot.numReviews} Review</span>}
-                    {currSpot.numReviews > 0 && currSpot.numReviews !== 1 && <span> {currSpot.numReviews} Reviews</span>}
-
-                </h2>
-            </div>
+            <StarRating currSpot={currSpot} />
+            {sessionUser
+            && !Object.values(reviews).find(rev => rev.userId === sessionUser.id)
+            && currSpot.ownerId !== sessionUser.id
+            && (<OpenModalButton
+                buttonText='Post Your Review'
+                modalComponent={<ReviewFormModal />}
+                />)}
             <ReviewDisplay reviews={reviews} />
         </div>
     )
