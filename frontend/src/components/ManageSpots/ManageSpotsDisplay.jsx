@@ -1,6 +1,6 @@
 // import SpotDisplay from "../SpotDisplay/SpotDisplay";
 import ManageSpotTile from './ManageSpotTile';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { thunkGetUserSpots } from '../../store/spots';
@@ -14,15 +14,15 @@ function ManageSpotsDisplay() {
     const sessionUser = useSelector(state => state.session.user);
     const userSpots = useSelector(state => state.spots.userSpots);
 
+
     // Load in user spots
     useEffect(() => {
         try {
             dispatch(thunkGetUserSpots());
         } catch {
             return navigate('/');
-
         }
-    }, [dispatch, navigate])
+    }, [dispatch, navigate, userSpots.length])
 
 
     // Make sure someone's logged in

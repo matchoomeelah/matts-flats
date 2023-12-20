@@ -16,7 +16,6 @@ function ReviewFormModal() {
 
     // Submit form
     const handleSubmit = async () => {
-
         // Handle Errors
         try {
             const response = dispatch(thunkAddReview({

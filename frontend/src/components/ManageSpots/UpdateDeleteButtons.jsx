@@ -14,13 +14,13 @@ function UpdateDeleteButtons({spotId}) {
         navigate(`/spots/${spotId}/edit`);
     }
 
+
     return (
         <div className="update-delete-buttons">
             <button onClick={clickUpdate}>Update</button>
-            {/* <button>Delete</button> */}
             <OpenModalButton
                 buttonText='Delete'
-                modalComponent={<DeleteSpotModal/>}
+                modalComponent={<DeleteSpotModal spotId={spotId}/>}
                 />
         </div>
     )

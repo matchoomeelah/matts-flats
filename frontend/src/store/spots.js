@@ -5,7 +5,9 @@ const LOAD_SPOTS = 'spots/loadSpots';
 const GET_SPOT_BY_ID = 'spots/getSpotOwner';
 const CREATE_SPOT = 'spots/createSpot';
 const GET_USER_SPOTS = 'spots/getUserSpots';
+const CLEAR_USER_SPOTS = 'spots/clearUserSpots'
 const EDIT_SPOT = 'spots/editSpot';
+const DELETE_SPOT = 'spots/deleteSpot';
 
 
 // action creators
@@ -37,10 +39,23 @@ export const actionGetUserSpots = (spots) => {
     }
 }
 
+export const actionClearUserSpots = () => {
+    return {
+        type: CLEAR_USER_SPOTS,
+    }
+}
+
 export const actionEditSpot = (spot) => {
     return {
         type: EDIT_SPOT,
         spot
+    }
+}
+
+export const actionDeleteSpot = (spotId) => {
+    return {
+        type: DELETE_SPOT,
+        spotId
     }
 }
 
@@ -95,7 +110,11 @@ export const thunkCreateSpot = (spotDetails, images) => async (dispatch) => {
 
     // Send to the reducer
     if (response.ok) {
-        dispatch(actionCreateSpot(spot));
+        dispatch(actionCreateSpot({
+            ...spot,
+            avgRating: 'New',
+            previewImage: images[0]
+        }));
 
         for (let i = 0; i < images.length; i++) {
             let preview = "false";
@@ -165,9 +184,27 @@ export const thunkEditSpot = (spotDetails, spotId) => async (dispatch) => {
     return spot;
 }
 
+
+export const thunkDeleteSpot = (spotId) => async (dispatch) => {
+    // Delete from server
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'DELETE'
+    });
+
+    // Send to reducer to delete from allSpots and user spots
+    if (response.ok) {
+        dispatch(actionDeleteSpot(spotId));
+    }
+
+    return response;
+}
+
+
+
+
 // initial state
 const initialState = {
-    allSpots: [],
+    allSpots: {},
     currentSpot: null,
     userSpots: {}
 };
@@ -190,7 +227,7 @@ export default function spotsReducer(state = initialState, action) {
         }
         case CREATE_SPOT: {
             const newAllSpots = { ...state.allSpots }
-            newAllSpots[action.spot.id] = action.spot;
+            newAllSpots[action.spot.id] = {...newAllSpots[action.spot.id], ...action.spot };
             const newSpots = { ...state, allSpots: newAllSpots }
             return newSpots;
         }
@@ -203,10 +240,29 @@ export default function spotsReducer(state = initialState, action) {
             newSpots.userSpots = newUserSpots;
             return newSpots;
         }
+        case CLEAR_USER_SPOTS: {
+            const newSpots = { ...state };
+            newSpots.userSpots = {};
+            return newSpots;
+        }
         case EDIT_SPOT: {
             const newAllSpots = { ...state.allSpots }
             newAllSpots[action.spot.id] = {...newAllSpots[action.spot.id], ...action.spot};
             const newSpots = { ...state, allSpots: newAllSpots};
+            return newSpots;
+        }
+        case DELETE_SPOT: {
+            // Delete from all spots
+            const newAllSpots = { ...state.allSpots };
+            delete newAllSpots[action.spotId]
+
+
+            // Delete from user spots
+            const newUserSpots = { ...state.userSpots };
+            delete newUserSpots[action.spotId];
+
+            const newSpots = { ...state, allSpots: newAllSpots, userSpots: newUserSpots };
+
             return newSpots;
         }
         default:

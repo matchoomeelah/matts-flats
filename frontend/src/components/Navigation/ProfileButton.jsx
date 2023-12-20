@@ -5,6 +5,7 @@ import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import * as sessionActions from '../../store/session';
+import { actionClearUserSpots } from '../../store/spots';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.thunkLogoutUser());
+    dispatch(actionClearUserSpots());
     closeMenu();
     navigate('/');
   };
