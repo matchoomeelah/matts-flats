@@ -56,7 +56,12 @@ module.exports = {
         spotId: 5,
         url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR0DvYftysclX2r6yezhW3khogOX_yDeqGMvNzHSwdpw&s',
         preview: false
-      }
+      },
+      {
+        spotId: 5,
+        url: 'https://i.pinimg.com/736x/cc/d3/83/ccd383ff052c910be451705ddf8f4c3e.jpg',
+        preview: false
+      },
     ] ,{validate: true})
   },
   // Un-seeding the initial data

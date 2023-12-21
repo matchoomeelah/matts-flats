@@ -6,9 +6,6 @@ import { thunkGetReviewsBySpotId } from '../../store/reviews';
 
 import SpotImagesDisplay from './SpotImagesDisplay/SpotImagesDisplay';
 import ReviewDisplay from '../ReviewDisplay/ReviewDisplay';
-import OpenModalButton from '../OpenModalButton/OpenModalButton';
-import ReviewFormModal from '../ReviewFormModal/ReviewFormModal';
-import StarRating from './StarRating';
 import './SpotDetails.css';
 
 function SpotDetails() {
@@ -17,8 +14,7 @@ function SpotDetails() {
     const spotId = useParams().spotId;
     const currSpot = useSelector(state => state.spots.currentSpot);
     const reviews = useSelector(state => state.reviews.spotReviews);
-    const sessionUser = useSelector(state => state.session.user);
-    // console.log("SPOT", currSpot);
+    // const sessionUser = useSelector(state => state.session.user);
 
 
     // Import dispatch for thunks
@@ -44,36 +40,43 @@ function SpotDetails() {
 
     return (
         <div className='spot-details-container'>
-            <h1>{currSpot.name}</h1>
-            <div className='location-details'>
-                LOCATION: {currSpot.city}, {currSpot.state}, {currSpot.country}
+            <h1 id='spot-title'>{currSpot.name}</h1>
+            <div id='spot-location'>
+                <h3>{currSpot.city}, {currSpot.state}, {currSpot.country} </h3>
             </div>
             <SpotImagesDisplay images={currSpot.SpotImages} />
-            <div className='owner-details'>
-                Hosted by {currSpot.Owner.firstName} {currSpot.Owner.lastName}
+            <div id='spot-owner-description-callout-container'>
+                <div id='spot-owner-description-container'>
+                    <div id='spot-owner'>
+                        <h2>Hosted by {currSpot.Owner.firstName} {currSpot.Owner.lastName} </h2>
+                    </div>
+                    <div id='spot-description'>
+                        <p>{currSpot.description}</p>
+                    </div>
+                </div>
+                <div id='callout-info'>
+                    <div id='price-reviews-container' >
+                        <div>
+                            <h2 style={{ 'display': 'inline', 'margin-right': '3px' }}>${currSpot.price}</h2>
+                            <span>night</span>
+                        </div>
+                        <div id='small-star-rating'>
+                            <i className="fas fa-star"></i>
+                            <span style={{ 'margin-right': '4px', 'margin-left': '1px' }}>{currSpot.avgRating === 'New' ? 'New' : parseFloat(currSpot.avgRating).toFixed(1)}</span>
+                            <span style={{ 'margin-right': '3px', 'margin-left': '2px' }}>{currSpot.numReviews > 0 && <span>&#x2022;</span>}</span>
+                            {currSpot.numReviews > 0 && currSpot.numReviews === 1 && <span> {currSpot.numReviews} Review</span>}
+                            {currSpot.numReviews > 0 && currSpot.numReviews !== 1 && <span> {currSpot.numReviews} Reviews</span>}
+                        </div>
+                    </div>
+                    <button onClick={reserveAlert} id='reserve-button'>
+                        Reserve
+                    </button>
+                </div>
             </div>
-            <div className='description'>
-                DESCRIPTION: {currSpot.description}
-            </div>
-            <StarRating currSpot={currSpot} />
 
-            <div className='callout-info'>
-                <div>Check in date</div>
-                <div>Check out date</div>
-                <div>PRICE: {currSpot.price} night </div>
-                <button onClick={reserveAlert} className='reserve-button'>
-                    Reserve
-                </button>
-            </div>
-            <StarRating currSpot={currSpot} />
-            {sessionUser
-            && !Object.values(reviews).find(rev => rev.userId === sessionUser.id)
-            && currSpot.ownerId !== sessionUser.id
-            && (<OpenModalButton
-                buttonText='Post Your Review'
-                modalComponent={<ReviewFormModal />}
-                />)}
-            <ReviewDisplay reviews={reviews} />
+            <div className='separator'></div>
+
+            <ReviewDisplay currSpot={currSpot} reviews={reviews} />
         </div>
     )
 }

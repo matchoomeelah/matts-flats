@@ -26,7 +26,7 @@ function ManageReviewsDisplay() {
 
     return (
         <div>
-            <h1>Manage Reviews</h1>
+            <h1 id="manage-reviews-heading">Manage Reviews</h1>
             <div id="reviews-container">
                 {Object.values(userReviews).map(rev => {
                     return <ManageReviewTile key={rev.id} review={rev} />

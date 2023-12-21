@@ -65,13 +65,13 @@ module.exports = {
     {
       ownerId: 5,
       address: "1 Desert Way",
-      city: "Deserty",
+      city: "Lars Farm",
       state: "Tatooine",
-      country: "Big Galaxy",
+      country: "Outer Rim",
       lat: 0,
       lng: 0,
       name: "Tatooine Dream",
-      description: "It's a big house",
+      description: "This sandy home is an absolute Tatooine Dream! My aunt and uncle raised me here, and I used to watch the double sunset every day. Old Ben Kenobi used to roam these parts too until I found out he was actually a Jedi and the EMPIRE decided to burn up my family LOLOL, life is CRAZY!. Don't worry though, I took care of them and I haven't had any incidents like that one since I've been the owner. Let me know if you want to SKYwalk a mile in my shoes!",
       price: 100,
     },
 
