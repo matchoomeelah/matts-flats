@@ -47,14 +47,14 @@ module.exports = {
       {
         spotId: 5,
         userId: 3,
-        review: "I got sand in my buns.",
+        review: "I got sand in my slime.",
         stars: 1
       },
       {
         spotId: 5,
         userId: 4,
         review: "Annual Wookie Bash, can I get a HGHHGGGGHGGGHHGGHGGHHHGGHGHGHGGGGHGGHH. A pleasure and a treasure. But sup with those Jawas? I mean c'mon man. Go get your own trash. This trash is mine. Other than that, a real light in my life and I can't wait to be back next year.",
-        stars: 4
+        stars: 5
       }
     ], { validate: true })
   },
