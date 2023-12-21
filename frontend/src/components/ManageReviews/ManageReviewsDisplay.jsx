@@ -4,8 +4,6 @@ import { thunkGetUserReviews } from '../../store/reviews';
 import './ManageReviews.css'
 import ManageReviewTile from './ManageReviewTile';
 
-// import ManageReviewTile from "./ManageReviewTile";
-
 
 function ManageReviewsDisplay() {
     const dispatch = useDispatch();

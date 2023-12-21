@@ -1,3 +1,32 @@
 #review-form-container {
-    margin: 30px;
+    margin: 50px;
+}
+
+#review-comment-area {
+    width: 85%;
+}
+
+/* .empty {
+    color: #ddd;
+} */
+
+.rating-list li {
+    float: right;
+    color: #ddd;
+    padding: 10px 5px;
+}
+
+.rating-list li:hover,
+.rating-list li:hover~li {
+    color: black;
+}
+
+.rating-list {
+    display: inline-block;
+    list-style: none;
+    padding: 0;
+}
+
+#stars-word-list-item {
+    color: black;
 }

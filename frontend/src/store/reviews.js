@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+// import {useSelector} from'react-redux';
 
 // constants
 const GET_REVIEWS_BY_SPOT_ID = 'reviews/getReviewsBySpotId';
@@ -93,13 +94,18 @@ export const thunkAddReview = (reviewDetails, spotId) => async (dispatch) => {
     const userResponse = await csrfFetch('/api/session');
     const sessionUser = await userResponse.json();
 
-    console.log("SESSION USER: ", sessionUser);
+
+    // Get current spot
+    const spotResponse = await csrfFetch(`/api/spots/${spotId}`);
+    const spot = await spotResponse.json();
+
 
     // Send to the reducer
     if (response.ok) {
         dispatch(actionAddReview({
             ...review,
-            User: sessionUser.user
+            User: sessionUser.user,
+            Spot: spot
         }));
     }
 

@@ -1,4 +1,7 @@
+/*         */
 /* General */
+/*         */
+
 .separator {
     width: 85%;
     margin: 0 auto;
@@ -141,7 +144,8 @@
 }
 
 #big-star-rating {
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 #big-star-rating > * {
     font-size: 22px;
