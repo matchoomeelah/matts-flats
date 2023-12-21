@@ -56,7 +56,7 @@ module.exports = {
         defaultValue: "MY SPOT"
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       price: {
