@@ -13,9 +13,9 @@ function SpotDetails() {
     // Load in the spotId from the url and get the currentSpot
     const spotId = useParams().spotId;
     const currSpot = useSelector(state => state.spots.currentSpot);
-    const reviews = useSelector(state => state.reviews.spotReviews);
-    // const sessionUser = useSelector(state => state.session.user);
+    const spotReviews = useSelector(state => state.reviews.spotReviews);
 
+    const currAvgRating = Object.values(spotReviews).reduce((acc, curr) => curr.stars + acc, 0) / Object.values(spotReviews).length;
 
     // Import dispatch for thunks
     const dispatch = useDispatch();
@@ -29,7 +29,7 @@ function SpotDetails() {
 
 
     // Wait for the spot to load
-    if (!currSpot || !reviews) {
+    if (!currSpot || !spotReviews) {
         return null;
     }
 
@@ -62,10 +62,10 @@ function SpotDetails() {
                         </div>
                         <div id='small-star-rating'>
                             <i className="fas fa-star"></i>
-                            <span style={{ 'margin-right': '4px', 'margin-left': '1px' }}>{currSpot.avgRating === 'New' ? 'New' : parseFloat(currSpot.avgRating).toFixed(1)}</span>
-                            <span style={{ 'margin-right': '3px', 'margin-left': '2px' }}>{currSpot.numReviews > 0 && <span>&#x2022;</span>}</span>
-                            {currSpot.numReviews > 0 && currSpot.numReviews === 1 && <span> {currSpot.numReviews} Review</span>}
-                            {currSpot.numReviews > 0 && currSpot.numReviews !== 1 && <span> {currSpot.numReviews} Reviews</span>}
+                            <span style={{ 'margin-right': '4px', 'margin-left': '1px' }}>{Object.values(spotReviews).length === 0 ? 'New' : parseFloat(currAvgRating).toFixed(1)}</span>
+                            <span style={{ 'margin-right': '3px', 'margin-left': '2px' }}>{Object.values(spotReviews).length > 0 && <span>&#x2022;</span>}</span>
+                            {Object.values(spotReviews).length > 0 && Object.values(spotReviews).length === 1 && <span> {Object.values(spotReviews).length} Review</span>}
+                            {Object.values(spotReviews).length > 0 && Object.values(spotReviews).length !== 1 && <span> {Object.values(spotReviews).length} Reviews</span>}
                         </div>
                     </div>
                     <button onClick={reserveAlert} id='reserve-button'>
@@ -76,7 +76,7 @@ function SpotDetails() {
 
             <div className='separator'></div>
 
-            <ReviewDisplay currSpot={currSpot} reviews={reviews} />
+            <ReviewDisplay currSpot={currSpot} reviews={spotReviews} />
         </div>
     )
 }

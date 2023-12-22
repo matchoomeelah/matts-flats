@@ -3,7 +3,6 @@ import * as sessionActions from '../../store/session';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import './LoginForm.css';
-// import { thunkGetUserSpots } from '../../store/spots';
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -15,7 +14,7 @@ function LoginFormModal() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
-    return dispatch(sessionActions.thunkLoginUser({ credential, password }))
+    dispatch(sessionActions.thunkLoginUser({ credential, password }))
       .then(closeModal)
       .catch(async (res) => {
         const data = await res.json();
@@ -27,6 +26,7 @@ function LoginFormModal() {
           setErrors({ credential: "The provided credentials were invalid" });
         }
       });
+
   };
 
   const loginDemoUser = () => {
@@ -48,10 +48,12 @@ function LoginFormModal() {
   return (
     <div className='login-form-container'>
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+      <form id="login-form" onSubmit={handleSubmit}>
         <label>
-          Username or Email
+          {/* Username or Email */}
           <input
+            id="username-input"
+            placeholder='Username or Email'
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
@@ -59,8 +61,10 @@ function LoginFormModal() {
           />
         </label>
         <label>
-          Password
+          {/* Password */}
           <input
+          id="password-input"
+          placeholder='Password'
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -72,9 +76,9 @@ function LoginFormModal() {
             <p className='error-message'>*{errors.credential}</p>
           )}
         </div>
-        <button type="submit" disabled={credential.length < 4 || password.length < 6}>Log In</button>
+        <button id="form-login-button" type="submit" disabled={credential.length < 4 || password.length < 6}>Log In</button>
       </form>
-      <button onClick={loginDemoUser}>Log in as Demo User</button>
+      <button id="demo-user-button" onClick={loginDemoUser}>Demo User</button>
 
     </div>
   );

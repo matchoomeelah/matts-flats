@@ -27,14 +27,17 @@ function NewSpotForm() {
 
 
     const handleSubmit = async (e) => {
+        //Prevent refresh
         e.preventDefault();
+
         setErrors({});
 
+        // Check if anything empty or too short
         const formErrors = validateForm({ country, streetAddress, city, state, description, spotName, price, previewImage, otherImage1, otherImage2, otherImage3, otherImage4 });
         console.log("FORM ERRORS", formErrors);
         setErrors(formErrors);
 
-        if (Object.values(errors).length) {
+        if (Object.values(formErrors).length) {
             return;
         }
 
@@ -60,12 +63,11 @@ function NewSpotForm() {
             .catch(async (res) => {
                 const data = await res.json();
                 if (data?.errors) {
-                    setErrors(data.errors);
+                    setErrors({ ...formErrors, ...data.errors });
                 }
                 console.log("DATA ERRORS", data.errors)
             })
 
-        // console.log("SPOTID: ", spot.id);
         if (spot) {
             navigate(`/spots/${spot.id}`);
         }
@@ -73,9 +75,9 @@ function NewSpotForm() {
 
     return (
         <div id='create-spot-div'>
-            <h1>Create a new Spot</h1>
-            <form onSubmit={handleSubmit}>
-                <h2>{"Where's your place located?"}</h2>
+            <form id='create-spot-form' onSubmit={handleSubmit}>
+                <h1 id='create-spot-heading'>Create a new Spot</h1>
+                <h2 id="where-heading">{"Where's your place located?"}</h2>
                 <p>{"Guests will only get your exact address once they've booked a reservation."}</p>
                 <div>
                     <div>
@@ -125,13 +127,12 @@ function NewSpotForm() {
                         onChange={e => setState(e.target.value)}>
                     </input>
                 </div>
-                <div className='horizontal-line'></div>
+
+                <div className='create-spot-horizontal-line'></div>
+
                 <h2> Describe your place to guests</h2>
                 <p>{"Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood."}</p>
 
-                <div>
-                    {errors.description && <span className='error-message'>*{errors.description}</span>}
-                </div>
                 <textarea
                     id='spot-description-textarea'
                     placeholder='Please write at least 30 characters'
@@ -139,9 +140,11 @@ function NewSpotForm() {
                     onChange={e => setDescription(e.target.value)}
                 >
                 </textarea>
+                <div>
+                    {errors.description && <span className='error-message'>*{errors.description}</span>}
+                </div>
 
-                <div className='horizontal-line'></div>
-
+                <div className='create-spot-horizontal-line'></div>
 
                 <h2>Create a title for your spot</h2>
                 <p>{"Catch guests' attention with a spot title that highlights what makes your place special."}</p>
@@ -155,23 +158,26 @@ function NewSpotForm() {
                     {errors.spotName && <span className='error-message'>*{errors.spotName}</span>}
                 </div>
 
-                <div className='horizontal-line'></div>
+                <div className='create-spot-horizontal-line'></div>
 
                 <h2>Set a base price for your spot</h2>
                 <p>{"Competitive pricing can help your listing stand out and rank higher in search results."}</p>
-                <label htmlFor='price'>{"$ "}
-                    <input
-                        id='price'
-                        placeholder='Price per night (USD)'
-                        value={price}
-                        onChange={e => setPrice(e.target.value)}>
-                    </input>
+                <label htmlFor='price'>
+                    <div id='price-container'>
+                        <span>{"$ "}</span>
+                        <input
+                            id='price'
+                            placeholder='Price per night (USD)'
+                            value={price}
+                            onChange={e => setPrice(e.target.value)}>
+                        </input>
+                    </div>
                 </label>
                 <div>
                     {errors.price && <span className='error-message'>*{errors.price}</span>}
                 </div>
 
-                <div className='horizontal-line'></div>
+                <div className='create-spot-horizontal-line'></div>
 
                 <h2>Liven up your spot with photos</h2>
                 <input
@@ -214,9 +220,9 @@ function NewSpotForm() {
                 {errors.otherImage4 && <p className='error-message'>*{errors.otherImage4}</p>}
 
 
-                <div className='horizontal-line'></div>
+                <div className='create-spot-horizontal-line'></div>
 
-                <button id='submit-button'>Create Spot</button>
+                <button id='create-spot-submit-button'>Create Spot</button>
             </form>
         </div>
     )

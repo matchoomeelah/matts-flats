@@ -2,18 +2,46 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 50px;
+    justify-content: space-around;
+    min-width: 300px;
+    width: 30em;
+    min-height: 150px;
+    height: 27em;
 }
 
-form {
+#sign-up-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    height: 70%;
 }
 
 .error-message {
     color: #FF5A5F;
     margin: 5px;
     font-size: 14px;
+}
+
+.signup-input {
+    width: 25em;
+    padding: 4px 2px;
+    background-color: rgb(230, 235, 250);
+    margin-bottom: 3px;
+}
+
+#form-signup-button {
+    width: 25.4em;
+    margin: 0;
+    margin-top: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #FF5A5F;
+    color: white;
+    box-shadow: 2px 2px 1px rgb(107, 105, 105);
+}
+
+#form-signup-button:disabled {
+    background-color: white;
+    color: gray
 }

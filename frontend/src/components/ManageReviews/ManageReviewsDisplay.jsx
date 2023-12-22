@@ -26,7 +26,7 @@ function ManageReviewsDisplay() {
         <div>
             <h1 id="manage-reviews-heading">Manage Reviews</h1>
             <div id="reviews-container">
-                {Object.values(userReviews).map(rev => {
+                {Object.values(userReviews).sort((a, b) => b.id - a.id).map(rev => {
                     return <ManageReviewTile key={rev.id} review={rev} />
                 })}
             </div>

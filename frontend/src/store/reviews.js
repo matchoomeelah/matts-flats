@@ -90,6 +90,7 @@ export const thunkAddReview = (reviewDetails, spotId) => async (dispatch) => {
     // Extract the data
     const review = await response.json();
 
+
     // Get current user details
     const userResponse = await csrfFetch('/api/session');
     const sessionUser = await userResponse.json();

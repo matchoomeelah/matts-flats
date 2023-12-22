@@ -16,7 +16,7 @@ module.exports = {
     Review.bulkCreate([
       {
         spotId: 1,
-        userId: 1,
+        userId: 3,
         review: "Pretty good" ,
         stars: 3
       },

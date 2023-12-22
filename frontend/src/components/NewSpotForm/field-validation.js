@@ -26,11 +26,11 @@ export function validateForm({country, streetAddress, city, state, description, 
     }
 
     if (otherImage3 && !validURL(otherImage3)) {
-        errors['otherImage1'] = "Invalid image URL";
+        errors['otherImage3'] = "Invalid image URL";
     }
 
     if (otherImage4 && !validURL(otherImage4)) {
-        errors['otherImage1'] = "Invalid image URL";
+        errors['otherImage4'] = "Invalid image URL";
     }
 
     // Others

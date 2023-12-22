@@ -1,9 +1,6 @@
- /* GENERAL  */
- button {
-     cursor: pointer;
- }
+/* GENERAL HEADER */
 
- .header {
+.header {
      display: flex;
      justify-content: space-between;
      align-items: center;
@@ -55,6 +52,7 @@
 
  #dropdown-menu {
      position: absolute;
+     width: 170px;
      right: 32px;
      border: 1px solid lightgray;
      border-radius: 3px;
@@ -64,11 +62,12 @@
      padding-right: 15px;
      padding-bottom: 3px;
      background-color: white;
+     overflow: hidden;
  }
 
- #dropdown-menu > div {
+ #dropdown-menu * {
      padding: 2px;
-     text-align: center;
+     margin-bottom: 3px;
      width: 100%;
  }
 
@@ -102,3 +101,13 @@
  .hidden {
      display: none;
  }
+
+ #logout-button {
+    width: 60%;
+    border: none;
+    border-radius: 40px;
+    font-size: 14px;
+    margin-left: 33px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

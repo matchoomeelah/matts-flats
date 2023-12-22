@@ -27,25 +27,11 @@ function ReviewFormModal() {
                 review: reviewText,
                 stars
             }, currSpot.id)).then(closeModal);
-
-            // dispatch(thunkGetUserReviews());
-
-            // console.log("REVIEW RESPONSE", response);
         } catch (err) {
             setServerError(err.message);
         }
 
     }
-
-    // const ratingStars = document.querySelectorAll("li.fa");
-
-    // ratingStars.forEach(star => {
-    //     star.addEventListener("click", () => {
-    //         ratingStars.forEach(star => star.classList.add("empty"));
-    //         const prevStars = document.querySelectorAll("li~li")
-    //     })
-    // })
-
 
     return (
         <div id='review-form-container'>
@@ -57,15 +43,16 @@ function ReviewFormModal() {
                     placeholder='Leave your review here...'
                     value={reviewText}
                     onChange={e => setReviewText(e.target.value)} />
-
-                <ul className="rating-list">
-                    <li id='stars-word-list-item'>Stars</li>
-                    <li onClick={() => setStars(5)}><i className="fa fa-star empty" title="Rate 5"></i></li>
-                    <li onClick={() => setStars(4)}><i className="fa fa-star empty" title="Rate 4"></i></li>
-                    <li onClick={() => {setStars(3); console.log(stars)}}><i className="fa fa-star empty" title="Rate 3"></i></li>
-                    <li onClick={() => setStars(2)}><i className="fa fa-star empty" title="Rate 2"></i></li>
-                    <li onClick={() => setStars(1)}><i className="fa fa-star empty" title="Rate 1"></i></li>
-                </ul>
+                <div>
+                    <ul className="rating-list">
+                        <li id='stars-word-list-item'>Stars</li>
+                        <li onClick={() => setStars(5)}><i className="fa fa-star empty" title="Rate 5"></i></li>
+                        <li onClick={() => setStars(4)}><i className="fa fa-star empty" title="Rate 4"></i></li>
+                        <li onClick={() => { setStars(3); console.log(stars) }}><i className="fa fa-star empty" title="Rate 3"></i></li>
+                        <li onClick={() => setStars(2)}><i className="fa fa-star empty" title="Rate 2"></i></li>
+                        <li onClick={() => setStars(1)}><i className="fa fa-star empty" title="Rate 1"></i></li>
+                    </ul>
+                </div>
 
                 <button disabled={reviewText.length < 10 || stars === ''}>Submit your review</button>
             </form>

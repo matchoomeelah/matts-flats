@@ -227,49 +227,6 @@ function UpdateSpotForm() {
 
                 <div className='horizontal-line'></div>
 
-                <h2>Liven up your spot with photos</h2>
-                <input
-                    id='preview-image'
-                    placeholder='Preview Image URL'
-                    value={previewImage}
-                    onChange={e => setPreviewImage(e.target.value)}>
-                </input>
-                {errors.previewImage && <p className='error-message'>*{errors.previewImage}</p>}
-                <input
-                    id='other-image-1'
-                    placeholder='Image URL'
-                    value={otherImage1}
-                    onChange={e => setOtherImage1(e.target.value)}>
-                </input>
-                {errors.otherImage1 && <p className='error-message'>*{errors.otherImage1}</p>}
-
-                <input
-                    id='other-image-2'
-                    placeholder='Image URL'
-                    value={otherImage2}
-                    onChange={e => setOtherImage2(e.target.value)}>
-                </input>
-                {errors.otherImage2 && <p className='error-message'>*{errors.otherImage2}</p>}
-
-                <input
-                    id='other-image-3'
-                    placeholder='Image URL'
-                    value={otherImage3}
-                    onChange={e => setOtherImage3(e.target.value)}>
-                </input>
-                {errors.otherImage3 && <p className='error-message'>*{errors.otherImage3}</p>}
-
-                <input
-                    id='other-image-4'
-                    placeholder='Image URL'
-                    value={otherImage4}
-                    onChange={e => setOtherImage4(e.target.value)}>
-                </input>
-                {errors.otherImage4 && <p className='error-message'>*{errors.otherImage4}</p>}
-
-
-                <div className='horizontal-line'></div>
-
                 <button id='submit-button'>Update Spot</button>
             </form>
         </div>

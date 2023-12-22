@@ -79,7 +79,7 @@ function ProfileButton({ user }) {
             <div id='manage-reviews-div' onClick={onClickManageReviews}>Manage Reviews</div>
             <div className='separator'></div>
             <div>
-              <button onClick={logout}>Log Out</button>
+              <button id="logout-button" onClick={logout}>Log Out</button>
             </div>
           </>
         ) : (

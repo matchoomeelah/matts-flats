@@ -1,16 +1,11 @@
-// import { useNavigate } from 'react-router-dom'
-// import {useDispatch} from 'react-redux';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import DeleteReviewModal from '../ReviewDisplay/DeleteReviewModal/DeleteReviewModal';
 
 function UpdateDeleteButtons({ reviewId }) {
-    // const navigate = useNavigate();
-    // const dispatch = useDispatch();
 
     function clickUpdate() {
-        // dispatch(thunkGetSpotById(spotId));
+        alert("Feature Coming Soon!")
     }
-
 
     return (
         <div className="update-delete-buttons">
