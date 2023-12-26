@@ -57,13 +57,13 @@ function SpotDetails() {
                 <div id='callout-info'>
                     <div id='price-reviews-container' >
                         <div>
-                            <h2 style={{ 'display': 'inline', 'margin-right': '3px' }}>${currSpot.price}</h2>
+                            <h2 style={{ 'display': 'inline', 'marginRight': '3px' }}>${currSpot.price}</h2>
                             <span>night</span>
                         </div>
                         <div id='small-star-rating'>
                             <i className="fas fa-star"></i>
-                            <span style={{ 'margin-right': '4px', 'margin-left': '1px' }}>{Object.values(spotReviews).length === 0 ? 'New' : parseFloat(currAvgRating).toFixed(1)}</span>
-                            <span style={{ 'margin-right': '3px', 'margin-left': '2px' }}>{Object.values(spotReviews).length > 0 && <span>&#x2022;</span>}</span>
+                            <span style={{ 'marginRight': '4px', 'marginLeft': '1px' }}>{Object.values(spotReviews).length === 0 ? 'New' : parseFloat(currAvgRating).toFixed(1)}</span>
+                            <span style={{ 'marginRight': '3px', 'marginLeft': '2px' }}>{Object.values(spotReviews).length > 0 && <span>&#x2022;</span>}</span>
                             {Object.values(spotReviews).length > 0 && Object.values(spotReviews).length === 1 && <span> {Object.values(spotReviews).length} Review</span>}
                             {Object.values(spotReviews).length > 0 && Object.values(spotReviews).length !== 1 && <span> {Object.values(spotReviews).length} Reviews</span>}
                         </div>

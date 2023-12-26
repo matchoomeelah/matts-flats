@@ -5,5 +5,18 @@
 
 .manage-review-tile {
     margin: 60px;
-    width: 100%;
+    width: 90%;
+}
+
+#manage-reviews-update-button, #manage-reviews-delete-button  {
+    margin-top: 3px;
+    margin-bottom: 7px;
+    padding: 3px;
+    background-color: #999999;
+    color: white;
+    box-shadow: 1px 1px 1px black;
+}
+
+#manage-reviews-update-button {
+    margin-left: 0;
 }

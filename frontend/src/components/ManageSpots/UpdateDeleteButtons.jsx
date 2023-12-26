@@ -17,10 +17,12 @@ function UpdateDeleteButtons({spotId}) {
 
     return (
         <div className="update-delete-buttons">
-            <button onClick={clickUpdate}>Update</button>
+            <button className='update-button' onClick={clickUpdate}>Update</button>
             <OpenModalButton
                 buttonText='Delete'
-                modalComponent={<DeleteSpotModal spotId={spotId}/>}
+                buttonId='delete-spot-button'
+                modalComponent={<DeleteSpotModal
+                spotId={spotId} />}
                 />
         </div>
     )

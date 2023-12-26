@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import { actionEditSpot } from "./spots";
 // import {useSelector} from'react-redux';
 
 // constants
@@ -31,7 +32,7 @@ export const actionAddReview = (review) => {
 }
 
 export const actionDeleteReview = (reviewId) => {
-    return  {
+    return {
         type: DELETE_REVIEW,
         reviewId
     }
@@ -100,6 +101,9 @@ export const thunkAddReview = (reviewDetails, spotId) => async (dispatch) => {
     const spotResponse = await csrfFetch(`/api/spots/${spotId}`);
     const spot = await spotResponse.json();
 
+    // Update the new avgRating
+    spot.avgReview = spot.avgReview === 'New' ? review.stars : (spot.avgReview + review.stars) / (spot.numReviews + 1);
+    dispatch(actionEditSpot(spot));
 
     // Send to the reducer
     if (response.ok) {
@@ -113,11 +117,25 @@ export const thunkAddReview = (reviewDetails, spotId) => async (dispatch) => {
     return review;
 }
 
-export const thunkDeleteReview = (reviewId) => async (dispatch) => {
+export const thunkDeleteReview = (reviewId, spotId, review) => async (dispatch) => {
     // Delete from the database
     const response = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: 'DELETE'
     });
+
+    // Get current spot
+    const spotResponse = await csrfFetch(`/api/spots/${spotId}`);
+    const spot = await spotResponse.json();
+
+    // Update the new avgRating
+    spot.avgReview -= review.stars;
+    if (spot.avgReview == 0) {
+        spot.avgReview = "New";
+    }
+    else {
+        spot.avgReview /= (spot.numReviews - 1);
+    }
+    dispatch(actionEditSpot(spot));
 
     // Delete from the store if successful
     if (response.ok) {
@@ -143,7 +161,7 @@ export default function reviewsReducer(state = initialState, action) {
                 newSpotReviews[rev.id] = rev;
             });
 
-            const newState = { ...state, spotReviews: newSpotReviews};
+            const newState = { ...state, spotReviews: newSpotReviews };
 
             return newState;
         }
@@ -153,7 +171,7 @@ export default function reviewsReducer(state = initialState, action) {
                 newUserReviews[rev.id] = rev;
             });
 
-            const newState = { ...state, userReviews: newUserReviews};
+            const newState = { ...state, userReviews: newUserReviews };
 
             return newState;
         }
@@ -183,7 +201,7 @@ export default function reviewsReducer(state = initialState, action) {
             return newState;
         }
         case CLEAR_USER_REVIEWS: {
-            const newState = { ...state, userReviews: {}};
+            const newState = { ...state, userReviews: {} };
             return newState;
         }
         default: {

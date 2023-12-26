@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from "react-router-dom";
 import { thunkEditSpot, thunkGetSpotById } from '../../store/spots';
 import { validateForm } from '../NewSpotForm/field-validation'
-import '../NewSpotForm/NewSpotForm.css';
+import './UpdateSpotForm.css';
 
 
 function UpdateSpotForm() {
@@ -127,8 +127,8 @@ function UpdateSpotForm() {
 
     return (
         <div id='create-spot-div'>
-            <h1>Create a new Spot</h1>
-            <form onSubmit={handleSubmit}>
+            <form id='update-spot-form' onSubmit={handleSubmit}>
+                <h1>Update your Spot</h1>
                 <h2>{"Where's your place located?"}</h2>
                 <p>{"Guests will only get your exact address once they've booked a reservation."}</p>
                 <div>
@@ -179,7 +179,7 @@ function UpdateSpotForm() {
                         onChange={e => setState(e.target.value)}>
                     </input>
                 </div>
-                <div className='horizontal-line'></div>
+                <div className='update-spot-horizontal-line'></div>
                 <h2> Describe your place to guests</h2>
                 <p>{"Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood."}</p>
 
@@ -194,7 +194,7 @@ function UpdateSpotForm() {
                 >
                 </textarea>
 
-                <div className='horizontal-line'></div>
+                <div className='update-spot-horizontal-line'></div>
 
 
                 <h2>Create a title for your spot</h2>
@@ -209,25 +209,36 @@ function UpdateSpotForm() {
                     {errors.spotName && <span className='error-message'>*{errors.spotName}</span>}
                 </div>
 
-                <div className='horizontal-line'></div>
+                <div className='update-spot-horizontal-line'></div>
 
                 <h2>Set a base price for your spot</h2>
                 <p>{"Competitive pricing can help your listing stand out and rank higher in search results."}</p>
-                <label htmlFor='price'>{"$ "}
+                {/* <label htmlFor='price'>{"$ "}
                     <input
                         id='price'
                         placeholder='Price per night (USD)'
                         value={price}
                         onChange={e => setPrice(e.target.value)}>
                     </input>
+                </label> */}
+                <label htmlFor='price'>
+                    <div id='price-container'>
+                        <span>{"$ "}</span>
+                        <input
+                            id='price'
+                            placeholder='Price per night (USD)'
+                            value={price}
+                            onChange={e => setPrice(e.target.value)}>
+                        </input>
+                    </div>
                 </label>
                 <div>
                     {errors.price && <span className='error-message'>*{errors.price}</span>}
                 </div>
 
-                <div className='horizontal-line'></div>
+                <div className='update-spot-horizontal-line'></div>
 
-                <button id='submit-button'>Update Spot</button>
+                <button id='update-spot-submit-button'>Create Spot</button>
             </form>
         </div>
     )

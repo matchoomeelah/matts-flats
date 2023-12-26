@@ -53,6 +53,7 @@
  #dropdown-menu {
      position: absolute;
      width: 170px;
+     min-width: fit-content;
      right: 32px;
      border: 1px solid lightgray;
      border-radius: 3px;
@@ -104,10 +105,13 @@
 
  #logout-button {
     width: 60%;
-    border: none;
+    border: 1px solid black;
     border-radius: 40px;
     font-size: 14px;
     margin-left: 33px;
     padding-top: 5px;
     padding-bottom: 5px;
+    background-color: darkgray;
+    color: white;
+    box-shadow: 1px 1px 1px black;
 }

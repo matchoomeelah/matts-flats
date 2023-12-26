@@ -39,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: 'reviews/current',
         element: <ManageReviewsDisplay />
+      },
+      {
+        path: "*",
+        element: <SpotDisplay />
       }
     ]
   }

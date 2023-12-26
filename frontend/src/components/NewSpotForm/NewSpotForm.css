@@ -2,7 +2,7 @@
 
 .create-spot-horizontal-line {
     border-top: 2px solid gray;
-    width: 100%;
+    width: 102%;
     margin-top: 20px;
 }
 
@@ -44,6 +44,7 @@ input, textarea {
     color: rgb(253, 253, 253);
     width: fit-content;
     margin: 10px auto;
+    margin-top: 20px;
     border: none;
     border-radius: 3px;
     box-shadow: 1px 2px 1px gray;

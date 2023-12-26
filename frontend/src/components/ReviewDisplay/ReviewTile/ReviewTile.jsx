@@ -18,7 +18,8 @@ function ReviewTile({ review }) {
             && sessionUser.id === review.User.id
             && <OpenModalButton
             buttonText='Delete'
-            modalComponent={<DeleteReviewModal reviewId={review.id}/>}
+            buttonId="delete-review-button"
+            modalComponent={<DeleteReviewModal reviewId={review.id} spotId={review.spotId} />}
             />}
         </div>
 

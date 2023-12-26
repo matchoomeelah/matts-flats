@@ -6,7 +6,7 @@ function ManageReviewTile({review}) {
             <h2>{review.Spot.name}</h2>
             <h3>{new Date(review.createdAt).toLocaleString('default', {month: 'long'})} {new Date(review.createdAt).getFullYear()} </h3>
             <p>{review.review}</p>
-            <UpdateDeleteButtons reviewId={review.id}/>
+            <UpdateDeleteButtons reviewId={review.id} spotId={review.spotId}/>
         </div>
     )
 }

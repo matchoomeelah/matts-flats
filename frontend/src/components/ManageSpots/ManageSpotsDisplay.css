@@ -1,11 +1,12 @@
 #manage-heading {
-    margin-left: 10px;
+    margin-left: 60px;
 }
 
 /* Spot Container */
 #spot-display-container {
     display: flex;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    margin-left: 55px;
 }
 
 .update-delete-buttons {
@@ -14,4 +15,31 @@
 
 button {
     margin-left: 5px;
+}
+
+#manage-spots-create-button {
+    margin-top: 3px;
+    margin-bottom: 7px;
+    padding: 5px;
+    background-color: #999999;
+    color: white;
+    box-shadow: 1px 1px 1px black;
+}
+
+.update-button {
+    margin-top: 10px;
+    margin-bottom: 7px;
+    padding: 3px;
+    background-color: #999999;
+    color: white;
+    box-shadow: 1px 1px 1px black;
+}
+
+#delete-spot-button {
+    margin-top: 3px;
+    margin-bottom: 7px;
+    padding: 3px;
+    background-color: #999999;
+    color: white;
+    box-shadow: 1px 1px 1px black;
 }

@@ -1,7 +1,7 @@
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import DeleteReviewModal from '../ReviewDisplay/DeleteReviewModal/DeleteReviewModal';
 
-function UpdateDeleteButtons({ reviewId }) {
+function UpdateDeleteButtons({ reviewId, spotId }) {
 
     function clickUpdate() {
         alert("Feature Coming Soon!")
@@ -9,10 +9,11 @@ function UpdateDeleteButtons({ reviewId }) {
 
     return (
         <div className="update-delete-buttons">
-            <button onClick={clickUpdate}>Update</button>
+            <button id="manage-reviews-update-button"onClick={clickUpdate}>Update</button>
             <OpenModalButton
                 buttonText='Delete'
-                modalComponent={<DeleteReviewModal reviewId={reviewId} />}
+                buttonId='manage-reviews-delete-button'
+                modalComponent={<DeleteReviewModal reviewId={reviewId} spotId={spotId} />}
             />
         </div>
     )

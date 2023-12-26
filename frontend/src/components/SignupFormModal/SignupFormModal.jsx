@@ -50,7 +50,7 @@ function SignupFormModal() {
 
   return (
     <div className='signup-form-container'>
-      <h1>Sign Up</h1>
+      <h1 id='sign-up-form-header'>Sign Up</h1>
       <form id="sign-up-form" onSubmit={handleSubmit}>
         <label>
           <input

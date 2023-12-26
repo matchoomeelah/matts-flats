@@ -17,6 +17,10 @@
     height: 70%;
 }
 
+#sign-up-form-header {
+    margin-bottom: 0;
+}
+
 .error-message {
     color: #FF5A5F;
     margin: 5px;

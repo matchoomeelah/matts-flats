@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
-import './ReviewForm.css'
 import { thunkAddReview } from '../../store/reviews';
 import { useModal } from '../../context/Modal';
+
+import './ReviewForm.css'
 
 
 function ReviewFormModal() {
@@ -37,24 +38,22 @@ function ReviewFormModal() {
         <div id='review-form-container'>
             <h1>How was your stay?</h1>
             {serverError.length > 0 && <p>{serverError}</p>}
-            <form onSubmit={handleSubmit}>
+            <form id='review-form' onSubmit={handleSubmit}>
                 <textarea
                     id='review-comment-area'
                     placeholder='Leave your review here...'
                     value={reviewText}
                     onChange={e => setReviewText(e.target.value)} />
-                <div>
-                    <ul className="rating-list">
-                        <li id='stars-word-list-item'>Stars</li>
-                        <li onClick={() => setStars(5)}><i className="fa fa-star empty" title="Rate 5"></i></li>
-                        <li onClick={() => setStars(4)}><i className="fa fa-star empty" title="Rate 4"></i></li>
-                        <li onClick={() => { setStars(3); console.log(stars) }}><i className="fa fa-star empty" title="Rate 3"></i></li>
-                        <li onClick={() => setStars(2)}><i className="fa fa-star empty" title="Rate 2"></i></li>
-                        <li onClick={() => setStars(1)}><i className="fa fa-star empty" title="Rate 1"></i></li>
-                    </ul>
-                </div>
+                <ul className="rating-list">
+                    <li id='stars-word-list-item'>Stars</li>
+                    <li onClick={() => setStars(5)}><i className={`fa fa-star ${stars >= 5 ? "filled" : "empty"}`} title="Rate 5"></i></li>
+                    <li onClick={() => setStars(4)}><i className={`fa fa-star ${stars >= 4 ? "filled" : "empty"}`} title="Rate 4"></i></li>
+                    <li onClick={() => setStars(3)}><i className={`fa fa-star ${stars >= 3 ? "filled" : "empty"}`}></i></li>
+                    <li onClick={() => setStars(2)}><i className={`fa fa-star ${stars >= 2 ? "filled" : "empty"}`}></i></li>
+                    <li onClick={() => setStars(1)}><i className={`fa fa-star ${stars >= 1 ? "filled" : "empty"}`}></i></li>
+                </ul>
 
-                <button disabled={reviewText.length < 10 || stars === ''}>Submit your review</button>
+                <button id='form-review-submit-button' disabled={reviewText.length < 10 || stars === ''}>Submit your review</button>
             </form>
         </div>
     )

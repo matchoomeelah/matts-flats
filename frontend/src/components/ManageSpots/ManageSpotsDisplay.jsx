@@ -37,7 +37,7 @@ function ManageSpotsDisplay() {
         <div>
             <div id='manage-heading'>
                 <h1>Manage Your Spots</h1>
-                <button onClick={() => navigate('/spots/new')}>Create a New Spot</button>
+                <button id='manage-spots-create-button' onClick={() => navigate('/spots/new')}>Create a New Spot</button>
             </div>
 
             <div id='spot-display-container'>

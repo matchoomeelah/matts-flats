@@ -17,6 +17,10 @@
     height: 40%;
 }
 
+#login-form-header {
+    margin-bottom: 0;
+}
+
 
 .error-message {
     color: #FF5A5F;
