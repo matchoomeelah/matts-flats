@@ -9,7 +9,8 @@ const LOAD_SPOTS = 'spots/loadSpots';
 const GET_SPOT_BY_ID = 'spots/getSpotOwner';
 const CREATE_SPOT = 'spots/createSpot';
 const GET_USER_SPOTS = 'spots/getUserSpots';
-const CLEAR_USER_SPOTS = 'spots/clearUserSpots'
+const CLEAR_USER_SPOTS = 'spots/clearUserSpots';
+const CLEAR_CURR_SPOT = 'spots/clearCurrSpot';
 const EDIT_SPOT = 'spots/editSpot';
 const DELETE_SPOT = 'spots/deleteSpot';
 
@@ -49,6 +50,12 @@ export const actionGetUserSpots = (spots) => {
 export const actionClearUserSpots = () => {
     return {
         type: CLEAR_USER_SPOTS,
+    }
+}
+
+export const actionClearCurrSpot = () => {
+    return {
+        type: CLEAR_CURR_SPOT,
     }
 }
 
@@ -242,6 +249,10 @@ export default function spotsReducer(state = initialState, action) {
         case CLEAR_USER_SPOTS: {
             const newSpots = { ...state };
             newSpots.userSpots = {};
+            return newSpots;
+        }
+        case CLEAR_CURR_SPOT: {
+            const newSpots = { ...state, currentSpot: null}
             return newSpots;
         }
         case EDIT_SPOT: {

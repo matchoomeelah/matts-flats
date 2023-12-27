@@ -1,10 +1,15 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import SpotTile from "./SpotTile";
 import './SpotDisplay.css';
+import { actionClearCurrSpot } from '../../store/spots';
 
 function SpotDisplay() {
     // Select all spots from state
     const allSpots = useSelector(state => state.spots.allSpots);
+
+    // Clear the currSpot state
+    const dispatch = useDispatch();
+    dispatch(actionClearCurrSpot());
 
     // Map through the spots, rendering a SpotTile for each
     return (
