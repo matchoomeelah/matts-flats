@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import SpotTile from "./SpotTile";
-import './SpotDisplay.css';
 import { actionClearCurrSpot } from '../../store/spots';
+import './SpotDisplay.css';
 
 function SpotDisplay() {
     // Select all spots from state

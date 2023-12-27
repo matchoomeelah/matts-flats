@@ -1,15 +1,22 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
-import { thunkAddReview } from '../../store/reviews';
+import { thunkEditReview } from '../../store/reviews';
 import { useModal } from '../../context/Modal';
 
-import './ReviewForm.css'
+import './ReviewEditFormModal.css'
 
 
-function ReviewFormModal() {
+function ReviewEditFormModal({ reviewId }) {
     const dispatch = useDispatch();
-    const currSpot = useSelector(state => state.spots.currentSpot);
+    // const stateCurrentSpot = useSelector(state => state.spots.currentSpot);
+    // const reviewSpot
+
+    const userReviews = useSelector(state => state.reviews.userReviews);
+    console.log("USER REVIEWS: ", userReviews);
+    const currReview = userReviews[reviewId];
+    console.log("CURR REVIEW SPOT NAME", currReview.Spot.name);
+
     const { closeModal } = useModal();
 
 
@@ -24,10 +31,10 @@ function ReviewFormModal() {
 
         // Handle Errors
         try {
-            dispatch(thunkAddReview({
+            dispatch(thunkEditReview(reviewId, {
                 review: reviewText,
                 stars
-            }, currSpot.id)).then(closeModal);
+            })).then(closeModal);
         } catch (err) {
             setServerError(err.message);
         }
@@ -36,7 +43,8 @@ function ReviewFormModal() {
 
     return (
         <div id='review-form-container'>
-            <h1 id="review-form-heading">How was your stay?</h1>
+            <h1 id='review-edit-heading-1'>How was your stay at</h1>
+            <h1 id='review-edit-heading-2'>{currReview.Spot.name}?</h1>
             {serverError.length > 0 && <p>{serverError}</p>}
             <form id='review-form' onSubmit={handleSubmit}>
                 <textarea
@@ -59,4 +67,4 @@ function ReviewFormModal() {
     )
 }
 
-export default ReviewFormModal;
+export default ReviewEditFormModal;

@@ -1,4 +1,6 @@
 import { csrfFetch } from "./csrf";
+import { thunkGetUserReviews } from "./reviews";
+import { thunkGetUserSpots } from "./spots";
 
 
 // constants
@@ -39,7 +41,14 @@ export const thunkLoginUser = (userCredentials) => async (dispatch) => {
 
 
     if (response.ok) {
+        // Set session user in state
         dispatch(loginUser(data))
+
+        // Get reviews of current user and set in state
+        dispatch(thunkGetUserReviews());
+
+        // Get spots of current user and set in state
+        dispatch(thunkGetUserSpots());
     }
 
     return data;

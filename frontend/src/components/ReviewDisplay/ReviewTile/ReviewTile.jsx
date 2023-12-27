@@ -2,6 +2,7 @@ import {useSelector} from 'react-redux';
 import DeleteReviewModal from '../DeleteReviewModal/DeleteReviewModal';
 import OpenModalButton from '../../OpenModalButton/OpenModalButton';
 import '../ReviewDisplay.css';
+import UpdateDeleteButtons from '../../ManageReviews/UpdateDeleteButtons';
 
 function ReviewTile({ review }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -17,10 +18,11 @@ function ReviewTile({ review }) {
             <p className='review-comment'>{review.review}</p>
             {sessionUser
             && sessionUser.id === review.User.id
-            && <OpenModalButton
-            buttonText='Delete'
-            buttonId="delete-review-button"
-            modalComponent={<DeleteReviewModal reviewId={review.id} spotId={review.spotId} />}
+            && <UpdateDeleteButtons reviewId={review.id} spotId={review.spotId}
+            // && <OpenModalButton
+            // buttonText='Delete'
+            // buttonId="delete-review-button"
+            // modalComponent={<DeleteReviewModal reviewId={review.id} spotId={review.spotId} />}
             />}
         </div>
 

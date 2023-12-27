@@ -6,6 +6,7 @@ import { actionEditSpot } from "./spots";
 const GET_REVIEWS_BY_SPOT_ID = 'reviews/getReviewsBySpotId';
 const GET_USER_REVIEWS = 'reviews/getUserReviews';
 const ADD_REVIEW = 'reviews/addReview';
+const EDIT_REVIEW = 'reviews/updateReview';
 const DELETE_REVIEW = 'reviews/deleteReview';
 const CLEAR_USER_REVIEWS = 'reviews/clearUserReviews';
 
@@ -27,6 +28,13 @@ export const actionGetUserReviews = (reviews) => {
 export const actionAddReview = (review) => {
     return {
         type: ADD_REVIEW,
+        review
+    }
+}
+
+export const actionEditReview = (review) => {
+    return {
+        type: EDIT_REVIEW,
         review
     }
 }
@@ -91,11 +99,9 @@ export const thunkAddReview = (reviewDetails, spotId) => async (dispatch) => {
     // Extract the data
     const review = await response.json();
 
-
     // Get current user details
     const userResponse = await csrfFetch('/api/session');
     const sessionUser = await userResponse.json();
-
 
     // Get current spot
     const spotResponse = await csrfFetch(`/api/spots/${spotId}`);
@@ -116,6 +122,46 @@ export const thunkAddReview = (reviewDetails, spotId) => async (dispatch) => {
 
     return review;
 }
+
+
+export const thunkEditReview = (reviewId, reviewDetails) => async (dispatch) => {
+    // Fetch (edit) the data
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reviewDetails)
+    });
+
+    // Retrieve the data
+    const review = await response.json();
+    console.log('REVIEW EDITING: ', review);
+
+    // Get current user details
+    const userResponse = await csrfFetch('/api/session');
+    const sessionUser = await userResponse.json();
+
+    // Get current spot
+    const spotResponse = await csrfFetch(`/api/spots/${review.spotId}`);
+    const spot = await spotResponse.json();
+
+    // Update the new avgRating
+    spot.avgReview = spot.avgReview === 'New' ? review.stars : (spot.avgReview + review.stars) / (spot.numReviews + 1);
+    dispatch(actionEditSpot(spot));
+
+    // Send to the reducer
+    if (response.ok) {
+        dispatch(actionAddReview({
+            ...review,
+            User: sessionUser.user,
+            Spot: spot
+        }));
+    }
+
+    return review;
+}
+
 
 export const thunkDeleteReview = (reviewId, spotId, review) => async (dispatch) => {
     // Delete from the database

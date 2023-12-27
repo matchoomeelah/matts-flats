@@ -1,5 +1,6 @@
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import DeleteReviewModal from '../ReviewDisplay/DeleteReviewModal/DeleteReviewModal';
+import ReviewEditFormModal from '../ReviewEditFormModal/ReviewEditFormModal';
 
 function UpdateDeleteButtons({ reviewId, spotId }) {
 
@@ -9,7 +10,12 @@ function UpdateDeleteButtons({ reviewId, spotId }) {
 
     return (
         <div className="update-delete-buttons">
-            <button id="manage-reviews-update-button"onClick={clickUpdate}>Update</button>
+            {/* <button id="manage-reviews-update-button"onClick={clickUpdate}>Update</button> */}
+            <OpenModalButton
+                buttonText='Update'
+                buttonId='manage-reviews-update-button'
+                modalComponent={<ReviewEditFormModal reviewId={reviewId} />}
+            />
             <OpenModalButton
                 buttonText='Delete'
                 buttonId='manage-reviews-delete-button'
