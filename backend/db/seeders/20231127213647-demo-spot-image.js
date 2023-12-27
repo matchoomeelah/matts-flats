@@ -92,31 +92,31 @@ module.exports = {
         url: "https://drive.google.com/file/d/1-7T_s3mF2-HZ-LIDyfDqeElrp9gOIr_l/view?usp=drive_link",
         preview: false
       },
-      // {
-      //   spotId: 10,
-      //   url: "https://render.fineartamerica.com/images/rendered/default/poster/8/5/break/images-medium-5/cloud-city-cynthia-decker.jpg",
-      //   preview: true
-      // },
-      // {
-      //   spotId: 10,
-      //   url: "https://images.squarespace-cdn.com/content/v1/5bba607e049079392fbe25ac/1539335354323-XQTXLBE1VL5WCX2A0IY5/bespin-1.jpg?format=2500w",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 10,
-      //   url: "https://static1.srcdn.com/wordpress/wp-content/uploads/2020/02/Bespin-Feature-Image-1.jpg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 10,
-      //   url: "https://i.ebayimg.com/images/g/xfMAAOSwoQ9h2TWU/s-l1200.webp",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 10,
-      //   url: "https://img.freepik.com/premium-photo/realistic-interior-photograph-from-inside-star-wars-cloud-city-apartment-generative-ai_873793-191.jpg",
-      //   preview: false
-      // },
+      {
+        spotId: 10,
+        url: "https://render.fineartamerica.com/images/rendered/default/poster/8/5/break/images-medium-5/cloud-city-cynthia-decker.jpg",
+        preview: true
+      },
+      {
+        spotId: 10,
+        url: "https://images.squarespace-cdn.com/content/v1/5bba607e049079392fbe25ac/1539335354323-XQTXLBE1VL5WCX2A0IY5/bespin-1.jpg?format=2500w",
+        preview: false
+      },
+      {
+        spotId: 10,
+        url: "https://static1.srcdn.com/wordpress/wp-content/uploads/2020/02/Bespin-Feature-Image-1.jpg",
+        preview: false
+      },
+      {
+        spotId: 10,
+        url: "https://i.ebayimg.com/images/g/xfMAAOSwoQ9h2TWU/s-l1200.webp",
+        preview: false
+      },
+      {
+        spotId: 10,
+        url: "https://img.freepik.com/premium-photo/realistic-interior-photograph-from-inside-star-wars-cloud-city-apartment-generative-ai_873793-191.jpg",
+        preview: false
+      },
       // {
       //   spotId: 5,
       //   url: 'https://images.csmonitor.com/csm/2013/11/1101-luke-skywalker-home-tunisia.jpg?alias=standard_900x600',
