@@ -89,7 +89,7 @@ module.exports = {
       },
       {
         spotId: 3,
-        url: "https://drive.google.com/file/d/1-7T_s3mF2-HZ-LIDyfDqeElrp9gOIr_l/view?usp=drive_link",
+        url: "https://drive.google.com/uc?id=1-7T_s3mF2-HZ-LIDyfDqeElrp9gOIr_l",
         preview: false
       },
       {
