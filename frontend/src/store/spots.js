@@ -130,7 +130,7 @@ export const thunkCreateSpot = (spotDetails, images) => async (dispatch) => {
 
             // Check in case one of the image fields was passed over
             if (images[i].length) {
-                const imgResponse = await csrfFetch(`/api/spots/${spot.id}/images`, {
+                await csrfFetch(`/api/spots/${spot.id}/images`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
