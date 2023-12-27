@@ -142,31 +142,31 @@ module.exports = {
         url: 'https://i.pinimg.com/736x/cc/d3/83/ccd383ff052c910be451705ddf8f4c3e.jpg',
         preview: false
       },
-      // {
-      //   spotId: 6,
-      //   url: 'https://lumiere-a.akamaihd.net/v1/images/image_a42df384.jpeg',
-      //   preview: false
-      // },
-      // {
-      //   spotId: 6,
-      //   url: "https://lumiere-a.akamaihd.net/v1/images/image_f9e9cb5b.jpeg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 6,
-      //   url: 'https://imgix.bustle.com/inverse/4e/14/75/f4/2e3b/4ec3/98e5/e2ab1004488f/inside-the-millennium-falcon-in-solo-a-star-wars-story.jpeg?w=1200&h=630&fit=crop&crop=faces&fm=jpg',
-      //   preview: true
-      // },
-      // {
-      //   spotId: 6,
-      //   url: "https://media.king5.com/assets/KING/images/26968157-c282-4ef8-b5a8-722fb7c3d8a9/26968157-c282-4ef8-b5a8-722fb7c3d8a9_1140x641.png",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 6,
-      //   url: "https://i.pinimg.com/736x/d5/03/3c/d5033c0751774fdb05a1cdc2957f092c.jpg",
-      //   preview: false
-      // },
+      {
+        spotId: 6,
+        url: 'https://lumiere-a.akamaihd.net/v1/images/image_a42df384.jpeg',
+        preview: false
+      },
+      {
+        spotId: 6,
+        url: "https://lumiere-a.akamaihd.net/v1/images/image_f9e9cb5b.jpeg",
+        preview: false
+      },
+      {
+        spotId: 6,
+        url: 'https://imgix.bustle.com/inverse/4e/14/75/f4/2e3b/4ec3/98e5/e2ab1004488f/inside-the-millennium-falcon-in-solo-a-star-wars-story.jpeg?w=1200&h=630&fit=crop&crop=faces&fm=jpg',
+        preview: true
+      },
+      {
+        spotId: 6,
+        url: "https://media.king5.com/assets/KING/images/26968157-c282-4ef8-b5a8-722fb7c3d8a9/26968157-c282-4ef8-b5a8-722fb7c3d8a9_1140x641.png",
+        preview: false
+      },
+      {
+        spotId: 6,
+        url: "https://i.pinimg.com/736x/d5/03/3c/d5033c0751774fdb05a1cdc2957f092c.jpg",
+        preview: false
+      },
       // {
       //   spotId: 7,
       //   url: "https://i.pinimg.com/1200x/0a/1f/66/0a1f66e27788885c833d3e8418847d34.jpg",
