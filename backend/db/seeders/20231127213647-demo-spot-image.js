@@ -167,31 +167,31 @@ module.exports = {
         url: "https://i.pinimg.com/736x/d5/03/3c/d5033c0751774fdb05a1cdc2957f092c.jpg",
         preview: false
       },
-      // {
-      //   spotId: 7,
-      //   url: "https://i.pinimg.com/1200x/0a/1f/66/0a1f66e27788885c833d3e8418847d34.jpg",
-      //   preview: true
-      // },
-      // {
-      //   spotId: 7,
-      //   url: "https://i.pinimg.com/originals/0a/ae/85/0aae85f8674735a413d587259dd332d7.jpg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 7,
-      //   url: "https://www.renderhub.com/dazinbane/jedi-council-chamber-star-wars/jedi-council-chamber-star-wars-02.jpg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 7,
-      //   url: "https://media1.cgtrader.com/variants/TyvMJzUVX4YXWdYA4f7Dz5pG/e44aa6a6359827c9089792cde0c079681b83d3b5c3037cc0525c25607e54355b/cam02h.jpg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 7,
-      //   url: "https://preview.redd.it/5q11s8izdja11.jpg?width=1920&format=pjpg&auto=webp&s=026e6ea95f83869e52d0b4b5af77fd22a0a22acb",
-      //   preview: false
-      // },
+      {
+        spotId: 7,
+        url: "https://i.pinimg.com/1200x/0a/1f/66/0a1f66e27788885c833d3e8418847d34.jpg",
+        preview: true
+      },
+      {
+        spotId: 7,
+        url: "https://i.pinimg.com/originals/0a/ae/85/0aae85f8674735a413d587259dd332d7.jpg",
+        preview: false
+      },
+      {
+        spotId: 7,
+        url: "https://www.renderhub.com/dazinbane/jedi-council-chamber-star-wars/jedi-council-chamber-star-wars-02.jpg",
+        preview: false
+      },
+      {
+        spotId: 7,
+        url: "https://media1.cgtrader.com/variants/TyvMJzUVX4YXWdYA4f7Dz5pG/e44aa6a6359827c9089792cde0c079681b83d3b5c3037cc0525c25607e54355b/cam02h.jpg",
+        preview: false
+      },
+      {
+        spotId: 7,
+        url: "https://preview.redd.it/5q11s8izdja11.jpg?width=1920&format=pjpg&auto=webp&s=026e6ea95f83869e52d0b4b5af77fd22a0a22acb",
+        preview: false
+      },
       // {
       //   spotId: 8,
       //   url: "https://i.pinimg.com/originals/19/87/c7/1987c7091cc42c88418abe9a9707dc6a.jpg",
