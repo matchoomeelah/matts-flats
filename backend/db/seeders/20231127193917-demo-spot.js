@@ -135,19 +135,30 @@ module.exports = {
       description: "Welcome to Lando's Sky Escape! Nestled high above the clouds on the stunning planet of Bespin, this luxurious retreat offers the pinnacle of sophisticated living. Step into the elegance of Cloud City, where every corner exudes charm and style. From the sleek corridors to the panoramic views of the cloud-covered landscape, indulge in opulence like never before. Our spacious suites boast the finest amenities, perfect for a smooth and lavish stay. Fancy a game of sabacc? Our entertainment district is the place to be. And don't forget our exclusive dining experiences—you'll savor flavors from across the galaxy. So, if you're ready for a stay that's as smooth as my charm, book your adventure at Lando's Sky City Escape. Trust me, it's a deal you won't want to miss!",
       price: 1050,
     },
-    // {
-    //   ownerId: 5,
-    //   address: "77 Island Place",
-    //   city: "Northern Latitudes",
-    //   state: "Ahch-To",
-    //   country: "Trailing Sectors",
-    //   lat: 0,
-    //   lng: 0,
-    //   name: "Jedi Hideaway",
-    //   description:
-    //   "Welcome to Jedi Island, where the Force flows through the very soil beneath your feet. Tucked away in the tranquil embrace of Ahch-To's rugged beauty, this secluded haven is steeped in the legacy of the Jedi Order. Picture yourself amidst ancient stone structures, remnants of a bygone era, where wisdom and contemplation intertwine. The mesmerizing vistas of crashing waves and towering cliffs create an ethereal backdrop for self-discovery and reflection. Our modest yet comfortable dwellings provide respite from the hustle of the galaxy, inviting you to delve into the teachings of the Force. Wander the mystical pathways, meditate by the ancient tree, or immerse yourself in the lore within the Jedi library. For those seeking enlightenment and a connection with the Force, a stay on Jedi Island promises an unforgettable journey of discovery and purpose.",
-    //   price: 500
-    // }
+    {
+      ownerId: 5,
+      address: "20 Ice Ave",
+      city: "Clabburn Range",
+      state: "Hoth",
+      country: "Outer Rim",
+      lat: 0,
+      lng: 0,
+      name: "Echo Base",
+      description: "Welcome to the Hoth Echo Base, a refuge amidst the icy tundra of this remote and strategic Rebel outpost. Nestled within the frozen plains, this base offers a unique experience for daring adventurers seeking an unforgettable stay. Despite the chilling temperatures, our accommodations provide warmth and comfort, ensuring a cozy respite from the frosty exterior. Explore the labyrinthine corridors, witness the cutting-edge technology of our defense systems, and immerse yourself in the heart of Rebel operations. The breathtaking vistas of snow-covered landscapes and towering ice formations offer a serene backdrop for those seeking quiet reflection or exhilarating snowspeeder rides. Join us at Hoth Echo Base and be part of the Rebellion's spirit, as we strive to keep hope alive in the face of the Empire's might.",
+      price: 50,
+    },
+    {
+      ownerId: 8,
+      address: "20 Lava Lane",
+      city: "Gahenn Plains",
+      state: "Mustafar",
+      country: "Outer Rim",
+      lat: 0,
+      lng: 0,
+      name: "Fortress Vader",
+      description: "Welcome to Fortress Vader, a bastion of power and sovereignty within the galaxy. Situated on the formidable planet of Mustafar, this imposing stronghold embodies the might and supremacy of the Dark Side. Prepare to be immersed in the heart of Sith lore and dominance. The fortress, a testament to strength and resilience, offers accommodations that reflect the pinnacle of power and authority. Witness the fiery rivers of lava, a constant reminder of the planet's intensity and the Force's resonance within. Explore the chambers where the secrets of the Dark Side await discovery, and experience the grandeur of commanding the galaxy from this strategic location. Join me at Fortress Vader, where power reigns supreme and the legacy of the Sith endures.",
+      price: 380,
+    }
 
    ], { validate: true });
   },

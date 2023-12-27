@@ -34,7 +34,7 @@ module.exports = {
       },
       {
         spotId: 1,
-        url: "https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/4a869194933395.5fb51c6eb56b2.jpg",
+        url: "https://www.bobafettfanclub.com/tn/640x640/multimedia/galleries/albums/userpics/10001/boba-fett-s-ship-interior-illustration-by-ryan-church-1650782157.jpeg",
         preview: false
       },
       {
@@ -99,24 +99,24 @@ module.exports = {
       },
       {
         spotId: 10,
-        url: "https://1.bp.blogspot.com/-QMOVbFFOj2c/XjxDmk1HZVI/AAAAAAAAw_8/oXH12rqphj42Uy8kGHwXORDThPmZBZJ1wCLcBGAsYHQ/s1600/Cloud%2BCity%2B2.jpg",
+        url: "https://images.squarespace-cdn.com/content/v1/5bba607e049079392fbe25ac/1539335354323-XQTXLBE1VL5WCX2A0IY5/bespin-1.jpg?format=2500w",
         preview: false
       },
-      // {
-      //   spotId: 4,
-      //   url: "https://thewestsidegazette.com/wp-content/uploads/2021/03/F-Picture-shows-the-inside-of-the-replica-of-the-Razor-Crest-spaceship-from-The-Mandalorian-spin-off-who-was-built-by-Ayaal-Fedorov-28-and-his-friends-in-Russia.-40just.ayaal-.-Real-Press.jpg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 4,
-      //   url: "https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/4a869194933395.5fb51c6eb56b2.jpg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 4,
-      //   url: "https://www.brickvault.toys/cdn/shop/products/sq_d0_1050x1050.png?v=1612216977",
-      //   preview: false
-      // },
+      {
+        spotId: 10,
+        url: "https://static1.srcdn.com/wordpress/wp-content/uploads/2020/02/Bespin-Feature-Image-1.jpg",
+        preview: false
+      },
+      {
+        spotId: 10,
+        url: "https://i.ebayimg.com/images/g/xfMAAOSwoQ9h2TWU/s-l1200.webp",
+        preview: false
+      },
+      {
+        spotId: 10,
+        url: "https://img.freepik.com/premium-photo/realistic-interior-photograph-from-inside-star-wars-cloud-city-apartment-generative-ai_873793-191.jpg",
+        preview: false
+      },
       {
         spotId: 5,
         url: 'https://images.csmonitor.com/csm/2013/11/1101-luke-skywalker-home-tunisia.jpg?alias=standard_900x600',
@@ -265,6 +265,56 @@ module.exports = {
       {
         spotId: 4,
         url: "https://pm1.aminoapps.com/6263/d2986c208da81364687ae2688b2e19a2a8f8ed3c_hq.jpg",
+        preview: false
+      },
+      {
+        spotId: 11,
+        url: "https://imagedelivery.net/9sCnq8t6WEGNay0RAQNdvQ/UUID-cl9e6j5n43983rtolft78w6ui/public",
+        preview: true
+      },
+      {
+        spotId: 11,
+        url: "https://i.ebayimg.com/images/g/GYcAAOSwyxNhrtaS/s-l1600.jpg",
+        preview: false
+      },
+      {
+        spotId: 11,
+        url: "https://cdna.artstation.com/p/assets/covers/images/062/475/078/large/kevin-cefalo-kevin-cefalo-seq01-0113.jpg?1683216030",
+        preview: false
+      },
+      {
+        spotId: 11,
+        url: "https://i.ytimg.com/vi/mTEc_6oSSjo/maxresdefault.jpg",
+        preview: false
+      },
+      {
+        spotId: 11,
+        url: "https://i.insider.com/5e346701ab49fd20826aa527?width=1000&format=jpeg&auto=webp",
+        preview: false
+      },
+      {
+        spotId: 12,
+        url: "https://steamuserimages-a.akamaihd.net/ugc/1812144454068621639/E89E617F7B9B369A1B49D2031421C15CCECFE3C3/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+        preview: true
+      },
+      {
+        spotId: 12,
+        url: "https://img.freepik.com/premium-photo/flowing-lava-flow-with-glowing-fire_932514-2146.jpg?w=360",
+        preview: false
+      },
+      {
+        spotId: 12,
+        url: "https://pbs.twimg.com/media/FEbspa8X0AAdQyo.jpg",
+        preview: false
+      },
+      {
+        spotId: 12,
+        url: "https://payhip.com/cdn-cgi/image/format=auto,width=1500/https://pe56d.s3.amazonaws.com/o_1h14s1qkleap1419kpa17712h81g.png",
+        preview: false
+      },
+      {
+        spotId: 12,
+        url: "https://preview.redd.it/how-much-time-does-darth-vader-spend-in-the-bacta-tank-v0-dropbm6not3a1.jpg?auto=webp&s=205830a358e7961b2e640083dce344f938d63b61",
         preview: false
       }
     ] ,{validate: true})

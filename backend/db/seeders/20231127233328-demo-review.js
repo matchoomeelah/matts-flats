@@ -123,6 +123,12 @@ module.exports = {
         review: "Vakyrian Villa was an absolute dream! Nestled in the heart of Naboo's serene beauty, this villa surpassed all expectations. From the moment I arrived, the hosts welcomed me with genuine warmth and grace. The villa itself was a masterpiece of elegance, blending Naboo's rich cultural heritage with modern comforts flawlessly. The accommodations were spacious and luxurious, offering stunning views of the picturesque landscape. Every detail was meticulously curated, from the lush gardens to the exquisite décor, creating an ambiance of refined tranquility. The hosts' hospitality was exceptional, attending to every need with genuine care and attention. The dining experiences were exquisite, showcasing Naboo's delectable cuisine in its finest form. A stay at Vakyrian Villa is an immersive journey into elegance, sophistication, and the pure beauty of Naboo's charm. Highly recommended for a luxurious and unforgettable retreat.",
         stars: 5
       },
+      {
+        spotId: 11,
+        userId: 6,
+        review: "Alright, so here's the deal with the Hoth Rebel Base. It's cold, I mean really cold. But hey, it's Hoth, what did you expect? The accommodations, well, they're snug and functional, keeping you warm amidst all that ice and snow. The base itself? Impressive defense systems and all that, but it's not exactly a luxury resort. You'll get your share of adventures, from tauntaun rides to dodging Imperial walkers. The surrounding scenery? Majestic, in that freezing sort of way. But hey, if you're up for some Rebel spirit and don't mind a bit of frostbite, it's an experience you won't forget. Just make sure to pack your thermal gear!",
+        stars: 4
+      },
     ], { validate: true })
   },
 
