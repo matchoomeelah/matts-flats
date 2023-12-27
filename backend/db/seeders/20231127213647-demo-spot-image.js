@@ -60,7 +60,8 @@ module.exports = {
       {
         spotId: 2,
         // url: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7d283479-10ef-48d5-b8be-f8512bca4ae9/dde5b0z-8e757866-382e-4e9c-a501-9c08df8c8923.jpg/v1/fill/w_1280,h_544,q_75,strp/yoda_s_hut_by_blazer003_dde5b0z-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTQ0IiwicGF0aCI6IlwvZlwvN2QyODM0NzktMTBlZi00OGQ1LWI4YmUtZjg1MTJiY2E0YWU5XC9kZGU1YjB6LThlNzU3ODY2LTM4MmUtNGU5Yy1hNTAxLTljMDhkZjhjODkyMy5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.f1-ktYtWSPMotpj5zzAZTkzCeoABSj1_DfIk-Dt_64Q',
-        url: "https://drive.google.com/uc?export=view&id=/1cEB2FSHb3Mq7VbCy69elHT9OKka35Vdn/",
+        // url: "https://drive.google.com/uc?export=view&id=/1cEB2FSHb3Mq7VbCy69elHT9OKka35Vdn/",
+        url: "https://drive.google.com/uc?id=1cEB2FSHb3Mq7VbCy69elHT9OKka35Vdn",
         preview: false
       },
       {
