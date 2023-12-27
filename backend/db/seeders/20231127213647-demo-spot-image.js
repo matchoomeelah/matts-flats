@@ -272,56 +272,56 @@ module.exports = {
         url: 'https://drive.google.com/uc?id=1cftk3YlgBdyYc3_iiybikxIL3sqWF8HR',
         preview: false
       },
-      // {
-      //   spotId: 11,
-      //   url: "https://imagedelivery.net/9sCnq8t6WEGNay0RAQNdvQ/UUID-cl9e6j5n43983rtolft78w6ui/public",
-      //   preview: true
-      // },
-      // {
-      //   spotId: 11,
-      //   url: "https://i.ebayimg.com/images/g/GYcAAOSwyxNhrtaS/s-l1600.jpg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 11,
-      //   url: "https://cdna.artstation.com/p/assets/covers/images/062/475/078/large/kevin-cefalo-kevin-cefalo-seq01-0113.jpg?1683216030",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 11,
-      //   url: "https://i.ytimg.com/vi/mTEc_6oSSjo/maxresdefault.jpg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 11,
-      //   url: "https://i.insider.com/5e346701ab49fd20826aa527?width=1000&format=jpeg&auto=webp",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 12,
-      //   url: "https://steamuserimages-a.akamaihd.net/ugc/1812144454068621639/E89E617F7B9B369A1B49D2031421C15CCECFE3C3/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
-      //   preview: true
-      // },
-      // {
-      //   spotId: 12,
-      //   url: "https://img.freepik.com/premium-photo/flowing-lava-flow-with-glowing-fire_932514-2146.jpg?w=360",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 12,
-      //   url: "https://pbs.twimg.com/media/FEbspa8X0AAdQyo.jpg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 12,
-      //   url: "https://payhip.com/cdn-cgi/image/format=auto,width=1500/https://pe56d.s3.amazonaws.com/o_1h14s1qkleap1419kpa17712h81g.png",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 12,
-      //   url: "https://preview.redd.it/how-much-time-does-darth-vader-spend-in-the-bacta-tank-v0-dropbm6not3a1.jpg?auto=webp&s=205830a358e7961b2e640083dce344f938d63b61",
-      //   preview: false
-      // }
+      {
+        spotId: 11,
+        url: "https://imagedelivery.net/9sCnq8t6WEGNay0RAQNdvQ/UUID-cl9e6j5n43983rtolft78w6ui/public",
+        preview: true
+      },
+      {
+        spotId: 11,
+        url: "https://i.ebayimg.com/images/g/GYcAAOSwyxNhrtaS/s-l1600.jpg",
+        preview: false
+      },
+      {
+        spotId: 11,
+        url: "https://cdna.artstation.com/p/assets/covers/images/062/475/078/large/kevin-cefalo-kevin-cefalo-seq01-0113.jpg?1683216030",
+        preview: false
+      },
+      {
+        spotId: 11,
+        url: "https://i.ytimg.com/vi/mTEc_6oSSjo/maxresdefault.jpg",
+        preview: false
+      },
+      {
+        spotId: 11,
+        url: "https://i.insider.com/5e346701ab49fd20826aa527?width=1000&format=jpeg&auto=webp",
+        preview: false
+      },
+      {
+        spotId: 12,
+        url: "https://steamuserimages-a.akamaihd.net/ugc/1812144454068621639/E89E617F7B9B369A1B49D2031421C15CCECFE3C3/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
+        preview: true
+      },
+      {
+        spotId: 12,
+        url: "https://img.freepik.com/premium-photo/flowing-lava-flow-with-glowing-fire_932514-2146.jpg?w=360",
+        preview: false
+      },
+      {
+        spotId: 12,
+        url: "https://pbs.twimg.com/media/FEbspa8X0AAdQyo.jpg",
+        preview: false
+      },
+      {
+        spotId: 12,
+        url: "https://payhip.com/cdn-cgi/image/format=auto,width=1500/https://pe56d.s3.amazonaws.com/o_1h14s1qkleap1419kpa17712h81g.png",
+        preview: false
+      },
+      {
+        spotId: 12,
+        url: "https://preview.redd.it/how-much-time-does-darth-vader-spend-in-the-bacta-tank-v0-dropbm6not3a1.jpg?auto=webp&s=205830a358e7961b2e640083dce344f938d63b61",
+        preview: false
+      }
     ] ,{validate: true})
   },
   // Un-seeding the initial data
