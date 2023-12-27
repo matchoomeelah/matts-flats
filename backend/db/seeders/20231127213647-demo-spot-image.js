@@ -192,31 +192,31 @@ module.exports = {
         url: "https://preview.redd.it/5q11s8izdja11.jpg?width=1920&format=pjpg&auto=webp&s=026e6ea95f83869e52d0b4b5af77fd22a0a22acb",
         preview: false
       },
-      // {
-      //   spotId: 8,
-      //   url: "https://i.pinimg.com/originals/19/87/c7/1987c7091cc42c88418abe9a9707dc6a.jpg",
-      //   preview: true
-      // },
-      // {
-      //   spotId: 8,
-      //   url: "https://www.tasbo.org/uploads/images/news/Spaceship.png",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 8,
-      //   url: "https://wallpapers.com/images/hd/zoom-video-background-1920-x-1080-wyl8ict6x8hhsstp.jpg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 8,
-      //   url: "https://info.hughesenv.com/hubfs/Imported_Blog_Media/death-star.jpg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 8,
-      //   url: "https://galacticfab.com/cdn/shop/products/1.jpg?v=1664564881",
-      //   preview: false
-      // },
+      {
+        spotId: 8,
+        url: "https://i.pinimg.com/originals/19/87/c7/1987c7091cc42c88418abe9a9707dc6a.jpg",
+        preview: true
+      },
+      {
+        spotId: 8,
+        url: "https://www.tasbo.org/uploads/images/news/Spaceship.png",
+        preview: false
+      },
+      {
+        spotId: 8,
+        url: "https://wallpapers.com/images/hd/zoom-video-background-1920-x-1080-wyl8ict6x8hhsstp.jpg",
+        preview: false
+      },
+      {
+        spotId: 8,
+        url: "https://info.hughesenv.com/hubfs/Imported_Blog_Media/death-star.jpg",
+        preview: false
+      },
+      {
+        spotId: 8,
+        url: "https://galacticfab.com/cdn/shop/products/1.jpg?v=1664564881",
+        preview: false
+      },
       // {
       //   spotId: 9,
       //   url: "https://i.natgeofe.com/n/5aeb03fe-a20b-4812-a14e-c7a92ac03b91/lake-como-italy-2_16x9.jpg?w=1200",
