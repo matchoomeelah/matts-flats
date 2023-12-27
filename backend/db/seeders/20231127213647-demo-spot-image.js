@@ -217,31 +217,31 @@ module.exports = {
         url: "https://galacticfab.com/cdn/shop/products/1.jpg?v=1664564881",
         preview: false
       },
-      // {
-      //   spotId: 9,
-      //   url: "https://i.natgeofe.com/n/5aeb03fe-a20b-4812-a14e-c7a92ac03b91/lake-como-italy-2_16x9.jpg?w=1200",
-      //   preview: true
-      // },
-      // {
-      //   spotId: 9,
-      //   url: "https://64.media.tumblr.com/94819733770a674a1ecc8dbd38d5bdd9/tumblr_oz7tuozWYG1sqzou6o1_1280.jpg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 9,
-      //   url: "https://www.villavarykino.com/wp-content/uploads/2016/08/Villa01.jpg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 9,
-      //   url: "https://i.natgeofe.com/n/0fd59470-7fcc-4a85-8cee-777f6cd63e94/lake-como-italy-1.jpg?w=1084.125&h=766.5",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 9,
-      //   url: "https://www.oyster.com/wp-content/uploads/sites/35/2020/03/160092-Post-Ranch-Inn127-1024x683.jpg",
-      //   preview: false
-      // },
+      {
+        spotId: 9,
+        url: "https://i.natgeofe.com/n/5aeb03fe-a20b-4812-a14e-c7a92ac03b91/lake-como-italy-2_16x9.jpg?w=1200",
+        preview: true
+      },
+      {
+        spotId: 9,
+        url: "https://64.media.tumblr.com/94819733770a674a1ecc8dbd38d5bdd9/tumblr_oz7tuozWYG1sqzou6o1_1280.jpg",
+        preview: false
+      },
+      {
+        spotId: 9,
+        url: "https://www.villavarykino.com/wp-content/uploads/2016/08/Villa01.jpg",
+        preview: false
+      },
+      {
+        spotId: 9,
+        url: "https://i.natgeofe.com/n/0fd59470-7fcc-4a85-8cee-777f6cd63e94/lake-como-italy-1.jpg?w=1084.125&h=766.5",
+        preview: false
+      },
+      {
+        spotId: 9,
+        url: "https://www.oyster.com/wp-content/uploads/sites/35/2020/03/160092-Post-Ranch-Inn127-1024x683.jpg",
+        preview: false
+      },
       {
         spotId: 4,
         // url: "https://img.atlasobscura.com/mZYyAHRgj8Vonz63RPi6ZQwkTfgCsvFJ0EJHIGY__O0/rs:fill:12000:12000/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL2Fzc2V0/cy85NTJjNzM2YjFj/ZWIwZmE1N2NfODAw/cHgtU2tlbGxpZ19N/aWNoYWVsXy1fY2Vt/ZXRlcnlfYW5kX2xh/cmdlX29yYXRvcnku/anBn.jpg",
