@@ -42,10 +42,38 @@ module.exports = {
       {
         email: 'lukey@space.io',
         username: 'YoungLuke',
-        hashedPassword: bcrypt.hashSync('i<3yoda!'),
+        hashedPassword: bcrypt.hashSync('password'),
         firstName: "Luke",
         lastName: "Skywalker"
       },
+      {
+        email: "the_han_man@space.io",
+        username: "big_solo_77",
+        hashedPassword: bcrypt.hashSync('password'),
+        firstName: "Han",
+        lastName: "Solo"
+      },
+      {
+        email: "old_ben@space.io",
+        username: "good_ol_ben",
+        hashedPassword: bcrypt.hashSync('password'),
+        firstName: "Obi-Wan",
+        lastName: "Kenobi"
+      },
+      {
+        email: "darksiderules@space.io",
+        username: "darthv",
+        hashedPassword: bcrypt.hashSync('password'),
+        firstName: "Darth",
+        lastName: "Vader"
+      },
+      {
+        email: "oberenko@space.io",
+        username: "oberenko",
+        hashedPassword: bcrypt.hashSync('password'),
+        firstName: "Omar",
+        lastName: "Berenko"
+      }
     ], { validate: true });
   },
 

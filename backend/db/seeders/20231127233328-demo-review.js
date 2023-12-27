@@ -27,7 +27,7 @@ module.exports = {
         stars: 4
       },
       {
-        spotId: 3,
+        spotId: 4,
         userId: 3,
         review: "AWESOME" ,
         stars: 5
