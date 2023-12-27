@@ -42,31 +42,31 @@ module.exports = {
         url: "https://d2bgjx2gb489de.cloudfront.net/gbb-blogs/wp-content/uploads/2023/03/15211106/Mandalorian-Filming-Locations-1.jpg",
         preview: false
       },
-      // {
-      //   spotId: 2,
-      //   url: "https://lumiere-a.akamaihd.net/v1/images/yodas-hut_a3d1133d.jpeg",
-      //   preview: true
-      // },
-      // {
-      //   spotId: 2,
-      //   url: "https://blenderartists.org/uploads/default/original/4X/e/d/b/edb26267d15fbaae57dc354ae7c20bb1127ef601.jpg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 2,
-      //   url: "https://lumiere-a.akamaihd.net/v1/images/Dagobah_890df592.jpeg?region=355%2C0%2C905%2C679",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 2,
-      //   url: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7d283479-10ef-48d5-b8be-f8512bca4ae9/dde5b0z-8e757866-382e-4e9c-a501-9c08df8c8923.jpg/v1/fill/w_1280,h_544,q_75,strp/yoda_s_hut_by_blazer003_dde5b0z-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTQ0IiwicGF0aCI6IlwvZlwvN2QyODM0NzktMTBlZi00OGQ1LWI4YmUtZjg1MTJiY2E0YWU5XC9kZGU1YjB6LThlNzU3ODY2LTM4MmUtNGU5Yy1hNTAxLTljMDhkZjhjODkyMy5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.f1-ktYtWSPMotpj5zzAZTkzCeoABSj1_DfIk-Dt_64Q",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 2,
-      //   url: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/724868c7-958f-4b1c-a72e-7b8b0d731edd/d9mo6vd-aa9a1d79-89f0-4640-b6f2-93b7504a6308.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzcyNDg2OGM3LTk1OGYtNGIxYy1hNzJlLTdiOGIwZDczMWVkZFwvZDltbzZ2ZC1hYTlhMWQ3OS04OWYwLTQ2NDAtYjZmMi05M2I3NTA0YTYzMDgucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.SwrnObORhbvvv4-OYoEsbauYPiewqvAyOs9yvcHnpSQ",
-      //   preview: false
-      // },
+      {
+        spotId: 2,
+        url: "https://lumiere-a.akamaihd.net/v1/images/yodas-hut_a3d1133d.jpeg",
+        preview: true
+      },
+      {
+        spotId: 2,
+        url: "https://blenderartists.org/uploads/default/original/4X/e/d/b/edb26267d15fbaae57dc354ae7c20bb1127ef601.jpg",
+        preview: false
+      },
+      {
+        spotId: 2,
+        url: "https://lumiere-a.akamaihd.net/v1/images/Dagobah_890df592.jpeg",
+        preview: false
+      },
+      {
+        spotId: 2,
+        url: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7d283479-10ef-48d5-b8be-f8512bca4ae9/dde5b0z-8e757866-382e-4e9c-a501-9c08df8c8923.jpg/v1/fill/w_1280,h_544,q_75,strp/yoda_s_hut_by_blazer003_dde5b0z-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTQ0IiwicGF0aCI6IlwvZlwvN2QyODM0NzktMTBlZi00OGQ1LWI4YmUtZjg1MTJiY2E0YWU5XC9kZGU1YjB6LThlNzU3ODY2LTM4MmUtNGU5Yy1hNTAxLTljMDhkZjhjODkyMy5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.f1-ktYtWSPMotpj5zzAZTkzCeoABSj1_DfIk-Dt_64Q",
+        preview: false
+      },
+      {
+        spotId: 2,
+        url: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/724868c7-958f-4b1c-a72e-7b8b0d731edd/d9mo6vd-aa9a1d79-89f0-4640-b6f2-93b7504a6308.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzcyNDg2OGM3LTk1OGYtNGIxYy1hNzJlLTdiOGIwZDczMWVkZFwvZDltbzZ2ZC1hYTlhMWQ3OS04OWYwLTQ2NDAtYjZmMi05M2I3NTA0YTYzMDgucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.SwrnObORhbvvv4-OYoEsbauYPiewqvAyOs9yvcHnpSQ",
+        preview: false
+      },
       // {
       //   spotId: 3,
       //   url: "https://qph.cf2.quoracdn.net/main-qimg-f1d6ea592cf3fc4b94e6bf784a6446c4-lq",
