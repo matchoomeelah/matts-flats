@@ -117,31 +117,31 @@ module.exports = {
         url: "https://img.freepik.com/premium-photo/realistic-interior-photograph-from-inside-star-wars-cloud-city-apartment-generative-ai_873793-191.jpg",
         preview: false
       },
-      // {
-      //   spotId: 5,
-      //   url: 'https://images.csmonitor.com/csm/2013/11/1101-luke-skywalker-home-tunisia.jpg?alias=standard_900x600',
-      //   preview: true
-      // },
-      // {
-      //   spotId: 5,
-      //   url: 'https://inhabitat.com/wp-content/blogs.dir/1/files/2012/07/save-lars-5.jpeg',
-      //   preview: false
-      // },
-      // {
-      //   spotId: 5,
-      //   url: 'https://travel.spotcoolstuff.com/wp-content/uploads/2011/02/star-wars-hotel-m.jpg',
-      //   preview: false
-      // },
-      // {
-      //   spotId: 5,
-      //   url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR0DvYftysclX2r6yezhW3khogOX_yDeqGMvNzHSwdpw&s',
-      //   preview: false
-      // },
-      // {
-      //   spotId: 5,
-      //   url: 'https://i.pinimg.com/736x/cc/d3/83/ccd383ff052c910be451705ddf8f4c3e.jpg',
-      //   preview: false
-      // },
+      {
+        spotId: 5,
+        url: 'https://images.csmonitor.com/csm/2013/11/1101-luke-skywalker-home-tunisia.jpg?alias=standard_900x600',
+        preview: true
+      },
+      {
+        spotId: 5,
+        url: 'https://inhabitat.com/wp-content/blogs.dir/1/files/2012/07/save-lars-5.jpeg',
+        preview: false
+      },
+      {
+        spotId: 5,
+        url: 'https://travel.spotcoolstuff.com/wp-content/uploads/2011/02/star-wars-hotel-m.jpg',
+        preview: false
+      },
+      {
+        spotId: 5,
+        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR0DvYftysclX2r6yezhW3khogOX_yDeqGMvNzHSwdpw&s',
+        preview: false
+      },
+      {
+        spotId: 5,
+        url: 'https://i.pinimg.com/736x/cc/d3/83/ccd383ff052c910be451705ddf8f4c3e.jpg',
+        preview: false
+      },
       // {
       //   spotId: 6,
       //   url: 'https://lumiere-a.akamaihd.net/v1/images/image_a42df384.jpeg',
@@ -244,27 +244,32 @@ module.exports = {
       // },
       {
         spotId: 4,
-        url: "https://img.atlasobscura.com/mZYyAHRgj8Vonz63RPi6ZQwkTfgCsvFJ0EJHIGY__O0/rs:fill:12000:12000/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL2Fzc2V0/cy85NTJjNzM2YjFj/ZWIwZmE1N2NfODAw/cHgtU2tlbGxpZ19N/aWNoYWVsXy1fY2Vt/ZXRlcnlfYW5kX2xh/cmdlX29yYXRvcnku/anBn.jpg",
+        // url: "https://img.atlasobscura.com/mZYyAHRgj8Vonz63RPi6ZQwkTfgCsvFJ0EJHIGY__O0/rs:fill:12000:12000/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL2Fzc2V0/cy85NTJjNzM2YjFj/ZWIwZmE1N2NfODAw/cHgtU2tlbGxpZ19N/aWNoYWVsXy1fY2Vt/ZXRlcnlfYW5kX2xh/cmdlX29yYXRvcnku/anBn.jpg",
+        url: "https://drive.google.com/uc?id=1NM_8tidpboxvHgWF-mSjY5iYoo8RbmNB",
         preview: true
       },
       {
         spotId: 4,
-        url: "https://media-manager.starsinsider.com/gallery/400/na_60d5ec9314560.jpg",
+        // url: "https://media-manager.starsinsider.com/gallery/400/na_60d5ec9314560.jpg",
+        url: "https://drive.google.com/uc?id=1zJVKjNMimEeRsTAFN4hvb0NuqZ9HyrMq",
         preview: false
       },
       {
         spotId: 4,
-        url: "https://www.home-designing.com/wp-content/uploads/2022/06/black-stone-feature-wall.jpg",
+        // url: "https://www.home-designing.com/wp-content/uploads/2022/06/black-stone-feature-wall.jpg",
+        url: "https://drive.google.com/uc?id=1wEooAkJfVGBy3y1Ttle5MF2a_WrItjCn",
         preview: false
       },
       {
         spotId: 4,
-        url: "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71rv4fM6l9L._AC_UF894,1000_QL80_.jpg",
+        // url: "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71rv4fM6l9L._AC_UF894,1000_QL80_.jpg",
+        url: "https://drive.google.com/uc?id=1yDJbKd2VFD1vwBZtlAEUCzoTEvxHxsQN",
         preview: false
       },
       {
         spotId: 4,
-        url: "https://pm1.aminoapps.com/6263/d2986c208da81364687ae2688b2e19a2a8f8ed3c_hq.jpg",
+        // url: "https://pm1.aminoapps.com/6263/d2986c208da81364687ae2688b2e19a2a8f8ed3c_hq.jpg",
+        url: 'https://drive.google.com/uc?id=1cftk3YlgBdyYc3_iiybikxIL3sqWF8HR',
         preview: false
       },
       // {
