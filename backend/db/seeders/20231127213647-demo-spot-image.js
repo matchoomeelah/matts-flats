@@ -242,31 +242,31 @@ module.exports = {
       //   url: "https://www.oyster.com/wp-content/uploads/sites/35/2020/03/160092-Post-Ranch-Inn127-1024x683.jpg",
       //   preview: false
       // },
-      // {
-      //   spotId: 4,
-      //   url: "https://img.atlasobscura.com/mZYyAHRgj8Vonz63RPi6ZQwkTfgCsvFJ0EJHIGY__O0/rs:fill:12000:12000/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL2Fzc2V0/cy85NTJjNzM2YjFj/ZWIwZmE1N2NfODAw/cHgtU2tlbGxpZ19N/aWNoYWVsXy1fY2Vt/ZXRlcnlfYW5kX2xh/cmdlX29yYXRvcnku/anBn.jpg",
-      //   preview: true
-      // },
-      // {
-      //   spotId: 4,
-      //   url: "https://media-manager.starsinsider.com/gallery/400/na_60d5ec9314560.jpg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 4,
-      //   url: "https://www.home-designing.com/wp-content/uploads/2022/06/black-stone-feature-wall.jpg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 4,
-      //   url: "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71rv4fM6l9L._AC_UF894,1000_QL80_.jpg",
-      //   preview: false
-      // },
-      // {
-      //   spotId: 4,
-      //   url: "https://pm1.aminoapps.com/6263/d2986c208da81364687ae2688b2e19a2a8f8ed3c_hq.jpg",
-      //   preview: false
-      // },
+      {
+        spotId: 4,
+        url: "https://img.atlasobscura.com/mZYyAHRgj8Vonz63RPi6ZQwkTfgCsvFJ0EJHIGY__O0/rs:fill:12000:12000/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL2Fzc2V0/cy85NTJjNzM2YjFj/ZWIwZmE1N2NfODAw/cHgtU2tlbGxpZ19N/aWNoYWVsXy1fY2Vt/ZXRlcnlfYW5kX2xh/cmdlX29yYXRvcnku/anBn.jpg",
+        preview: true
+      },
+      {
+        spotId: 4,
+        url: "https://media-manager.starsinsider.com/gallery/400/na_60d5ec9314560.jpg",
+        preview: false
+      },
+      {
+        spotId: 4,
+        url: "https://www.home-designing.com/wp-content/uploads/2022/06/black-stone-feature-wall.jpg",
+        preview: false
+      },
+      {
+        spotId: 4,
+        url: "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71rv4fM6l9L._AC_UF894,1000_QL80_.jpg",
+        preview: false
+      },
+      {
+        spotId: 4,
+        url: "https://pm1.aminoapps.com/6263/d2986c208da81364687ae2688b2e19a2a8f8ed3c_hq.jpg",
+        preview: false
+      },
       // {
       //   spotId: 11,
       //   url: "https://imagedelivery.net/9sCnq8t6WEGNay0RAQNdvQ/UUID-cl9e6j5n43983rtolft78w6ui/public",
