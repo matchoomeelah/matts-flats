@@ -1,6 +1,10 @@
 import { csrfFetch } from "./csrf";
 
-// constants
+
+//           //
+// constants //
+//           //
+
 const LOAD_SPOTS = 'spots/loadSpots';
 const GET_SPOT_BY_ID = 'spots/getSpotOwner';
 const CREATE_SPOT = 'spots/createSpot';
@@ -10,7 +14,10 @@ const EDIT_SPOT = 'spots/editSpot';
 const DELETE_SPOT = 'spots/deleteSpot';
 
 
-// action creators
+//                   //
+//  action creators  //
+//                   //
+
 export const actionLoadSpots = (spots) => {
     return {
         type: LOAD_SPOTS,
@@ -59,8 +66,10 @@ export const actionDeleteSpot = (spotId) => {
     }
 }
 
+//        //
+// thunks //
+//        //
 
-// thunks
 export const thunkLoadSpots = () => async (dispatch) => {
     // Fetch the data
     const response = await csrfFetch('/api/spots');
@@ -95,18 +104,12 @@ export const thunkCreateSpot = (spotDetails, images) => async (dispatch) => {
     // Fetch the data
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(spotDetails)
     });
 
-
     // Extract the data
     const spot = await response.json();
-
-    console.log("SPOT", spot);
-
 
     // Send to the reducer
     if (response.ok) {
@@ -116,30 +119,28 @@ export const thunkCreateSpot = (spotDetails, images) => async (dispatch) => {
             previewImage: images[0]
         }));
 
+        // Post spot images to the server
         for (let i = 0; i < images.length; i++) {
             let preview = "false";
 
+            // First image in the array should be set as preview
             if (i === 0) {
                 preview = true;
             }
 
+            // Check in case one of the image fields was passed over
             if (images[i].length) {
                 const imgResponse = await csrfFetch(`/api/spots/${spot.id}/images`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         spotId: spot.id,
                         url: images[i],
                         preview: preview
                     })
                 })
-
-                console.log(await imgResponse.json());
             }
         }
-
     }
 
     return spot;
@@ -147,13 +148,14 @@ export const thunkCreateSpot = (spotDetails, images) => async (dispatch) => {
 
 
 export const thunkGetUserSpots = () => async (dispatch) => {
+    // Fetch the data
     const response = await csrfFetch('/api/spots/current');
 
+    // Extract the data
     const data = await response.json();
     const spots = data.Spots;
 
-    console.log(spots);
-
+    // Send to the reducer
     if (response.ok) {
         dispatch(actionGetUserSpots(spots));
     }
@@ -171,10 +173,8 @@ export const thunkEditSpot = (spotDetails, spotId) => async (dispatch) => {
         body: JSON.stringify(spotDetails)
     });
 
-
-    //Extract the data
+    // Extract the data
     const spot = await response.json();
-
 
     // Send to the reducer
     if (response.ok) {
@@ -198,7 +198,6 @@ export const thunkDeleteSpot = (spotId) => async (dispatch) => {
 
     return response;
 }
-
 
 
 
@@ -256,13 +255,11 @@ export default function spotsReducer(state = initialState, action) {
             const newAllSpots = { ...state.allSpots };
             delete newAllSpots[action.spotId]
 
-
             // Delete from user spots
             const newUserSpots = { ...state.userSpots };
             delete newUserSpots[action.spotId];
 
             const newSpots = { ...state, allSpots: newAllSpots, userSpots: newUserSpots };
-
             return newSpots;
         }
         default:

@@ -43,3 +43,15 @@ button {
     color: white;
     box-shadow: 1px 1px 1px black;
 }
+
+.manage-spot-tile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 28em;
+    width: 23%;
+    min-width: 20em;
+    margin: 10px;
+    padding-bottom: 10px;
+    overflow: hidden;
+}

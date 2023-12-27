@@ -1,6 +1,7 @@
 import {useSelector} from 'react-redux';
 import DeleteReviewModal from '../DeleteReviewModal/DeleteReviewModal';
 import OpenModalButton from '../../OpenModalButton/OpenModalButton';
+import '../ReviewDisplay.css';
 
 function ReviewTile({ review }) {
     const sessionUser = useSelector(state => state.session.user);

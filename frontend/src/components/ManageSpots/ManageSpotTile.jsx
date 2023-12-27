@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import UpdateDeleteButtons from './UpdateDeleteButtons';
+import './ManageSpotsDisplay.css';
 
 function ManageSpotTile({ spot }) {
     const navigate = useNavigate();
 
     return (
-        <div className="spot-tile" title={spot.name} >
+        <div className="manage-spot-tile" title={spot.name} >
             <div className='spot-image' onClick={() => navigate(`/spots/${spot.id}`)}>
                 <img className='image' src={spot.previewImage} />
             </div>
