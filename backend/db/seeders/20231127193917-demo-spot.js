@@ -51,16 +51,17 @@ module.exports = {
       price: 2000,
     },
     {
-      ownerId: 4,
-      address: "22 Sky Blvd",
-      city: "Cloud City",
-      state: "Bespin",
-      country: "Inner Rim",
+      ownerId: 5,
+      address: "77 Island Place",
+      city: "Northern Latitudes",
+      state: "Ahch-To",
+      country: "Trailing Sectors",
       lat: 0,
       lng: 0,
-      name: "Lando's Sky Escape",
-      description: "Welcome to Lando's Sky Escape! Nestled high above the clouds on the stunning planet of Bespin, this luxurious retreat offers the pinnacle of sophisticated living. Step into the elegance of Cloud City, where every corner exudes charm and style. From the sleek corridors to the panoramic views of the cloud-covered landscape, indulge in opulence like never before. Our spacious suites boast the finest amenities, perfect for a smooth and lavish stay. Fancy a game of sabacc? Our entertainment district is the place to be. And don't forget our exclusive dining experiences—you'll savor flavors from across the galaxy. So, if you're ready for a stay that's as smooth as my charm, book your adventure at Lando's Sky City Escape. Trust me, it's a deal you won't want to miss!",
-      price: 1050,
+      name: "Jedi Hideaway",
+      description:
+      "Welcome to Jedi Island, where the Force flows through the very soil beneath your feet. Tucked away in the tranquil embrace of Ahch-To's rugged beauty, this secluded haven is steeped in the legacy of the Jedi Order. Picture yourself amidst ancient stone structures, remnants of a bygone era, where wisdom and contemplation intertwine. The mesmerizing vistas of crashing waves and towering cliffs create an ethereal backdrop for self-discovery and reflection. Our modest yet comfortable dwellings provide respite from the hustle of the galaxy, inviting you to delve into the teachings of the Force. Wander the mystical pathways, meditate by the ancient tree, or immerse yourself in the lore within the Jedi library. For those seeking enlightenment and a connection with the Force, a stay on Jedi Island promises an unforgettable journey of discovery and purpose.",
+      price: 500
     },
     {
       ownerId: 5,
@@ -123,18 +124,30 @@ module.exports = {
       price: 500
     },
     {
-      ownerId: 5,
-      address: "77 Island Place",
-      city: "Northern Latitudes",
-      state: "Ahch-To",
-      country: "Trailing Sectors",
+      ownerId: 4,
+      address: "22 Sky Blvd",
+      city: "Cloud City",
+      state: "Bespin",
+      country: "Inner Rim",
       lat: 0,
       lng: 0,
-      name: "Jedi Hideaway",
-      description:
-      "Welcome to Jedi Island, where the Force flows through the very soil beneath your feet. Tucked away in the tranquil embrace of Ahch-To's rugged beauty, this secluded haven is steeped in the legacy of the Jedi Order. Picture yourself amidst ancient stone structures, remnants of a bygone era, where wisdom and contemplation intertwine. The mesmerizing vistas of crashing waves and towering cliffs create an ethereal backdrop for self-discovery and reflection. Our modest yet comfortable dwellings provide respite from the hustle of the galaxy, inviting you to delve into the teachings of the Force. Wander the mystical pathways, meditate by the ancient tree, or immerse yourself in the lore within the Jedi library. For those seeking enlightenment and a connection with the Force, a stay on Jedi Island promises an unforgettable journey of discovery and purpose.",
-      price: 500
-    }
+      name: "Lando's Sky Escape",
+      description: "Welcome to Lando's Sky Escape! Nestled high above the clouds on the stunning planet of Bespin, this luxurious retreat offers the pinnacle of sophisticated living. Step into the elegance of Cloud City, where every corner exudes charm and style. From the sleek corridors to the panoramic views of the cloud-covered landscape, indulge in opulence like never before. Our spacious suites boast the finest amenities, perfect for a smooth and lavish stay. Fancy a game of sabacc? Our entertainment district is the place to be. And don't forget our exclusive dining experiences—you'll savor flavors from across the galaxy. So, if you're ready for a stay that's as smooth as my charm, book your adventure at Lando's Sky City Escape. Trust me, it's a deal you won't want to miss!",
+      price: 1050,
+    },
+    // {
+    //   ownerId: 5,
+    //   address: "77 Island Place",
+    //   city: "Northern Latitudes",
+    //   state: "Ahch-To",
+    //   country: "Trailing Sectors",
+    //   lat: 0,
+    //   lng: 0,
+    //   name: "Jedi Hideaway",
+    //   description:
+    //   "Welcome to Jedi Island, where the Force flows through the very soil beneath your feet. Tucked away in the tranquil embrace of Ahch-To's rugged beauty, this secluded haven is steeped in the legacy of the Jedi Order. Picture yourself amidst ancient stone structures, remnants of a bygone era, where wisdom and contemplation intertwine. The mesmerizing vistas of crashing waves and towering cliffs create an ethereal backdrop for self-discovery and reflection. Our modest yet comfortable dwellings provide respite from the hustle of the galaxy, inviting you to delve into the teachings of the Force. Wander the mystical pathways, meditate by the ancient tree, or immerse yourself in the lore within the Jedi library. For those seeking enlightenment and a connection with the Force, a stay on Jedi Island promises an unforgettable journey of discovery and purpose.",
+    //   price: 500
+    // }
 
    ], { validate: true });
   },

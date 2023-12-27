@@ -93,12 +93,12 @@ module.exports = {
         preview: false
       },
       {
-        spotId: 4,
+        spotId: 10,
         url: "https://render.fineartamerica.com/images/rendered/default/poster/8/5/break/images-medium-5/cloud-city-cynthia-decker.jpg",
         preview: true
       },
       {
-        spotId: 4,
+        spotId: 10,
         url: "https://1.bp.blogspot.com/-QMOVbFFOj2c/XjxDmk1HZVI/AAAAAAAAw_8/oXH12rqphj42Uy8kGHwXORDThPmZBZJ1wCLcBGAsYHQ/s1600/Cloud%2BCity%2B2.jpg",
         preview: false
       },
@@ -243,27 +243,27 @@ module.exports = {
         preview: false
       },
       {
-        spotId: 10,
+        spotId: 4,
         url: "https://img.atlasobscura.com/mZYyAHRgj8Vonz63RPi6ZQwkTfgCsvFJ0EJHIGY__O0/rs:fill:12000:12000/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL2Fzc2V0/cy85NTJjNzM2YjFj/ZWIwZmE1N2NfODAw/cHgtU2tlbGxpZ19N/aWNoYWVsXy1fY2Vt/ZXRlcnlfYW5kX2xh/cmdlX29yYXRvcnku/anBn.jpg",
         preview: true
       },
       {
-        spotId: 10,
+        spotId: 4,
         url: "https://media-manager.starsinsider.com/gallery/400/na_60d5ec9314560.jpg",
         preview: false
       },
       {
-        spotId: 10,
-        url: "https://i.pinimg.com/originals/23/5c/d0/235cd06045aec34fb3437f7bba430b0f.png",
+        spotId: 4,
+        url: "https://www.home-designing.com/wp-content/uploads/2022/06/black-stone-feature-wall.jpg",
         preview: false
       },
       {
-        spotId: 10,
+        spotId: 4,
         url: "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71rv4fM6l9L._AC_UF894,1000_QL80_.jpg",
         preview: false
       },
       {
-        spotId: 10,
+        spotId: 4,
         url: "https://pm1.aminoapps.com/6263/d2986c208da81364687ae2688b2e19a2a8f8ed3c_hq.jpg",
         preview: false
       }
