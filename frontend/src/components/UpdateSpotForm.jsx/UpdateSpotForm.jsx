@@ -53,6 +53,7 @@ function UpdateSpotForm() {
 
             // Add other images
             const otherImages = currentSpot.SpotImages.filter(img => img.preview === false);
+            // console.log("OTHER IMAGES EDIT FORM: ", otherImages);
 
             // Inefficient as can be
             if (otherImages.length) {
@@ -64,19 +65,19 @@ function UpdateSpotForm() {
             if (otherImages.length) {
                 setOtherImage2(otherImages.shift().url);
             } else {
-                setOtherImage1('');
+                setOtherImage2('');
             }
 
             if (otherImages.length) {
                 setOtherImage3(otherImages.shift().url);
             } else {
-                setOtherImage1('');
+                setOtherImage3('');
             }
 
             if (otherImages.length) {
                 setOtherImage4(otherImages.shift().url);
             } else {
-                setOtherImage1('');
+                setOtherImage4('');
             }
         }
     }, [currentSpot])
@@ -94,7 +95,7 @@ function UpdateSpotForm() {
         console.log("FORM ERRORS", formErrors);
         setErrors(formErrors);
 
-        if (Object.values(errors).length) {
+        if (Object.values(formErrors).length) {
             return;
         }
 
@@ -110,16 +111,22 @@ function UpdateSpotForm() {
             name: spotName,
             description,
             price
-        }, spotId))
+        }, [
+            previewImage,
+            otherImage1,
+            otherImage2,
+            otherImage3,
+            otherImage4
+        ], spotId))
             .catch(async (res) => {
                 const data = await res.json();
                 if (data?.errors) {
                     setErrors(data.errors);
                 }
                 console.log("DATA ERRORS", data.errors)
+                // console.log(res);
             })
 
-        // console.log("SPOTID: ", spot.id);
         if (spot) {
             navigate(`/spots/${spot.id}`);
         }
@@ -238,6 +245,55 @@ function UpdateSpotForm() {
 
                 <div className='update-spot-horizontal-line'></div>
 
+                <h2>Liven up your spot with photos</h2>
+                <input
+                    id='preview-image'
+                    placeholder='Preview Image URL'
+                    value={previewImage}
+                    onChange={e => { setPreviewImage(e.target.value); return console.log("PREVIEW IMAGE: ", previewImage);}}>
+                </input>
+                {errors.previewImage && <p className='error-message'>*{errors.previewImage}</p>}
+                <input
+                    id='other-image-1'
+                    placeholder='Image URL'
+                    value={otherImage1}
+                    onChange={e => setOtherImage1(e.target.value)}>
+                </input>
+                {errors.otherImage1 && <p className='error-message'>*{errors.otherImage1}</p>}
+
+                <input
+                    id='other-image-2'
+                    placeholder='Image URL'
+                    value={otherImage2}
+                    onChange={e => setOtherImage2(e.target.value)}>
+                </input>
+                {errors.otherImage2 && <p className='error-message'>*{errors.otherImage2}</p>}
+
+                <input
+                    id='other-image-3'
+                    placeholder='Image URL'
+                    value={otherImage3}
+                    onChange={e => setOtherImage3(e.target.value)}>
+                </input>
+                {errors.otherImage3 && <p className='error-message'>*{errors.otherImage3}</p>}
+
+                <input
+                    id='other-image-4'
+                    placeholder='Image URL'
+                    value={otherImage4}
+                    onChange={e => setOtherImage4(e.target.value)}>
+                </input>
+                {errors.otherImage4 && <p className='error-message'>*{errors.otherImage4}</p>}
+
+                <div id='image-previews'>
+                    {previewImage && <img src={`${previewImage}`}></img>}
+                    {otherImage1 && <img src={`${otherImage1}`}></img>}
+                    {otherImage2 && <img src={`${otherImage2}`}></img>}
+                    {otherImage3 && <img src={`${otherImage3}`}></img>}
+                    {otherImage4 && <img src={`${otherImage4}`}></img>}
+                </div>
+
+                <div className='create-spot-horizontal-line'></div>
                 <button id='update-spot-submit-button'>Create Spot</button>
             </form>
         </div>

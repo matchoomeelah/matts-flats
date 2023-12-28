@@ -170,7 +170,7 @@ export const thunkGetUserSpots = () => async (dispatch) => {
     return spots;
 }
 
-export const thunkEditSpot = (spotDetails, spotId) => async (dispatch) => {
+export const thunkEditSpot = (spotDetails, images, spotId) => async (dispatch) => {
     // Fetch the data
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
@@ -183,10 +183,52 @@ export const thunkEditSpot = (spotDetails, spotId) => async (dispatch) => {
     // Extract the data
     const spot = await response.json();
 
+    // Get the spot by id so we can get the images for deletion
+    const spotById = await csrfFetch(`/api/spots/${spotId}`);
+    const spotByIdData = await spotById.json();
+    const spotImages = spotByIdData.SpotImages;
+    console.log("SPOT IMAGES: ", spotImages)
+
+    for (let image of spotImages) {
+        csrfFetch(`/api/spot-images/${image.id}`, {
+            method: 'DELETE'
+        });
+    }
+
+
     // Send to the reducer
     if (response.ok) {
         dispatch(actionEditSpot(spot))
+
+        // Post spot images to the server
+        for (let i = 0; i < images.length; i++) {
+
+
+            // await csrfFetch(`api/spot-images/`)
+
+            let preview = "false";
+
+            // First image in the array should be set as preview
+            if (i === 0) {
+                preview = true;
+            }
+
+            // Check in case one of the image fields was passed over
+            if (images[i].length) {
+                await csrfFetch(`/api/spots/${spot.id}/images`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        spotId: spot.id,
+                        url: images[i],
+                        preview: preview
+                    })
+                })
+            }
+        }
     }
+
+
 
     return spot;
 }

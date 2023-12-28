@@ -2,6 +2,11 @@
 /* General */
 /*         */
 
+.spot-details-container {
+    max-width: 1176px;
+    margin: 0 auto;
+}
+
 .separator {
     width: 85%;
     margin: 0 auto;
@@ -38,7 +43,7 @@
 .spot-images-container {
     display: flex;
     justify-content: space-around;
-    height: 400px;
+    height: 375px;
     width: 85%;
     margin: 0 auto;
     border-radius: 20px;
@@ -49,7 +54,7 @@
     height: 100%;
     width: 50%;
     overflow: hidden;
-    margin-right: 7px;
+    margin-right: 6px;
 }
 
 #main-image-container img {
@@ -70,7 +75,7 @@
 }
 
 .other-image {
-    height: 48.4%;
+    height: 48.6%;
     width: 49.3%;
     overflow: hidden;
 }
