@@ -2,6 +2,11 @@
 /* General */
 /*         */
 
+.spot-details-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
 .separator {
     width: 85%;
     margin: 0 auto;
