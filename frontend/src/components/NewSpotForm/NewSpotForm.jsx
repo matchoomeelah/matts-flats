@@ -180,6 +180,7 @@ function NewSpotForm() {
                 <div className='create-spot-horizontal-line'></div>
 
                 <h2>Liven up your spot with photos</h2>
+                <p>{"Submit a link to at least one photo to publish your spot."}</p>
                 <input
                     id='preview-image'
                     placeholder='Preview Image URL'
