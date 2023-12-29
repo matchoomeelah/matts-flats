@@ -103,29 +103,26 @@ function NewSpotForm() {
                         onChange={e => setStreetAddress(e.target.value)}>
                     </input>
                 </div>
-                <div>
+                <div id="city-state-container">
                     <div>
-                        <span>City</span>
-                        {errors.city && <span className='error-message'>*{errors.city}</span>}
+                        <span>City {errors.city && <span className='error-message'>*{errors.city}</span>}</span>
+                        <input
+                            id="city"
+                            placeholder='City'
+                            value={city}
+                            onChange={e => setCity(e.target.value)}>
+                        </input>
                     </div>
-                    <input
-                        id="city"
-                        placeholder='City'
-                        value={city}
-                        onChange={e => setCity(e.target.value)}>
-                    </input>
-                </div>
-                <div>
                     <div>
-                        <span>State</span>
-                        {errors.state && <span className='error-message'>*{errors.state}</span>}
+
+                        <span>State {errors.state && <span className='error-message'>*{errors.state}</span>}</span>
+                        <input
+                            id="state"
+                            placeholder='State'
+                            value={state}
+                            onChange={e => setState(e.target.value)}>
+                        </input>
                     </div>
-                    <input
-                        id="state"
-                        placeholder='State'
-                        value={state}
-                        onChange={e => setState(e.target.value)}>
-                    </input>
                 </div>
 
                 <div className='create-spot-horizontal-line'></div>
