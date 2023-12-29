@@ -36,7 +36,14 @@ input, textarea {
     margin-bottom:0;
 }
 
+#city-state-container {
+    display: flex;
+    justify-content: space-between;
+}
 
+#city-state-container div {
+    width: 45%;
+}
 
 
 #create-spot-submit-button {
