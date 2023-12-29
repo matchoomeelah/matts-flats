@@ -30,7 +30,7 @@ function LoginFormModal() {
   };
 
   const loginDemoUser = () => {
-    return dispatch(sessionActions.thunkLoginUser({ credential: 'Baby_Yoda', password: 'password' }))
+    return dispatch(sessionActions.thunkLoginUser({ credential: 'demo-lition', password: 'password' }))
       .then(closeModal)
       .catch(async (res) => {
         const data = await res.json();
