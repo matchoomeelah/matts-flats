@@ -52,14 +52,26 @@ function Layout() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const allSpots = useSelector(state => state.spots.allSpots);
+
+
   // Attempt to restore the user before loading the page
   useEffect(() => {
     dispatch(thunkRestoreUser()).then(() => {
       setIsLoaded(true)
     });
 
-    dispatch(thunkLoadSpots());
-  }, [dispatch]);
+    // Handle timeout
+    if (Object.keys(allSpots).length === 0) {
+      dispatch(thunkLoadSpots());
+    }
+
+    // Get reviews of current user and set in state
+    dispatch(thunkGetUserReviews());
+
+    // Get spots of current user and set in state
+    dispatch(thunkGetUserSpots());
+  }, [dispatch, allSpots]);
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { thunkGetSpotById } from '../../store/spots';
+import { thunkGetSpotById, thunkLoadSpots } from '../../store/spots';
 import { thunkGetReviewsBySpotId } from '../../store/reviews';
 
 import SpotImagesDisplay from './SpotImagesDisplay/SpotImagesDisplay';
@@ -23,6 +23,13 @@ function SpotDetails() {
 
     // Load the spots for reload
     useEffect(() => {
+        // Handle timeout from render
+        // if (!currSpot || Object.keys(currSpot).length == 0) {
+        //     dispatch(thunkLoadSpots());
+        //     dispatch(thunkGetUserReviews());
+        //     dispatch(thunkGetUserSpots());
+        // }
+
         dispatch(thunkGetSpotById(spotId));
         dispatch(thunkGetReviewsBySpotId(spotId));
     }, [dispatch, spotId])
