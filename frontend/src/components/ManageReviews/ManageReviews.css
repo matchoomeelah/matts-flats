@@ -3,8 +3,12 @@
     margin-left: 60px;
 }
 
+#reviews-container {
+    margin-left: 60px;
+}
+
 .manage-review-tile {
-    margin: 60px;
+    /* margin: 60px; */
     width: 90%;
 }
 
