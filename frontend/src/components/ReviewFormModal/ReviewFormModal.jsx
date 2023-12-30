@@ -53,7 +53,7 @@ function ReviewFormModal() {
                     <li onClick={() => setStars(1)}><i className={`fa fa-star ${stars >= 1 ? "filled" : "empty"}`}></i></li>
                 </ul>
 
-                <button id='form-review-submit-button' disabled={reviewText.length < 10 || stars === ''}>Submit your review</button>
+                <button id='form-review-submit-button' disabled={reviewText.length < 10 || stars === ''}>Submit Your Review</button>
             </form>
         </div>
     )

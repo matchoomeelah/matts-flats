@@ -9,6 +9,10 @@
     margin-left: 55px;
 }
 
+.spot-image, .spot-info {
+    cursor: pointer;
+}
+
 .update-delete-buttons {
     cursor: default;
 }
