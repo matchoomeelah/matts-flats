@@ -36,7 +36,7 @@ function ReviewDisplay({ reviews, currSpot }) {
                 /></span>)
             }
 
-            {Object.values(reviews).length === 0 && <h3>Be the first to post a review!</h3>}
+            {Object.values(reviews).length === 0 && currSpot.ownerId !== sessionUser.id && <h3>Be the first to post a review!</h3>}
 
             <div id="review-tile-display">
                 {/* Sort the values so newer reviews (with higher id prop) come first */}

@@ -15,3 +15,9 @@
     color: white;
     box-shadow: 1px 1px 1px black;
 }
+
+.review-image {
+    height: 75px;
+    width: 100px;
+    margin-right: 3px;
+}

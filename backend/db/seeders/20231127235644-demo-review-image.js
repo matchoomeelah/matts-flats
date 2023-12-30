@@ -14,18 +14,18 @@ const { Op } = require('sequelize');
 module.exports = {
   async up (queryInterface, Sequelize) {
     ReviewImage.bulkCreate([
-      {
-        reviewId: 1,
-        url: 'pic1.jpg'
-      },
-      {
-        reviewId: 1,
-        url: 'pic2.jpg'
-      },
-      {
-        reviewId: 2,
-        url: 'pic3.jpg'
-      }
+      // {
+      //   reviewId: 1,
+      //   url: 'pic1.jpg'
+      // },
+      // {
+      //   reviewId: 1,
+      //   url: 'pic2.jpg'
+      // },
+      // {
+      //   reviewId: 2,
+      //   url: 'pic3.jpg'
+      // }
     ], { validate: true });
   },
 

@@ -86,7 +86,7 @@ export const thunkGetUserReviews = () => async (dispatch) => {
     return reviews;
 }
 
-export const thunkAddReview = (reviewDetails, spotId) => async (dispatch) => {
+export const thunkAddReview = (reviewDetails, images, spotId) => async (dispatch) => {
     // Get response
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: 'POST',
@@ -110,6 +110,24 @@ export const thunkAddReview = (reviewDetails, spotId) => async (dispatch) => {
     // Update the new avgRating
     spot.avgReview = spot.avgReview === 'New' ? review.stars : (spot.avgReview + review.stars) / (spot.numReviews + 1);
     dispatch(actionEditSpot(spot));
+
+
+    // Post images to the server, if any
+    for (let img of images) {
+        await csrfFetch(`/api/reviews/${review.id}/images`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ url: img})
+        });
+
+        console.log("ADDING IMAGE: ", img);
+    }
+
+    // Load the images in
+    dispatch(thunkGetReviewsBySpotId(spotId));
+
 
     // Send to the reducer
     if (response.ok) {

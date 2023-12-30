@@ -1,0 +1,18 @@
+#outer-container {
+    margin-left: 7.5%;
+}
+
+#booking-details-form {
+    width: 50%;
+}
+
+#date-selection-container {
+    display: flex;
+    justify-content: space-between;
+    width: fit-content;
+    height: 30px;
+}
+
+#date-selection-container input {
+    width: fit-content;
+}

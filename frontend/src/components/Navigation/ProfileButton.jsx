@@ -72,7 +72,7 @@ function ProfileButton({ user }) {
       <div id='dropdown-menu' className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <div>Hello, {user.username}!</div>
+            <div>Hello, {user.firstName}!</div>
             <div>{user.email}</div>
             <div className='separator'></div>
             <div id='manage-spots-div' onClick={onClickManageSpots}>Manage Spots</div>

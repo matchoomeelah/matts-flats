@@ -4,9 +4,9 @@ import ReviewEditFormModal from '../ReviewEditFormModal/ReviewEditFormModal';
 
 function UpdateDeleteButtons({ reviewId, spotId }) {
 
-    function clickUpdate() {
-        alert("Feature Coming Soon!")
-    }
+    // function clickUpdate() {
+    //     alert("Feature Coming Soon!")
+    // }
 
     return (
         <div className="update-delete-buttons">

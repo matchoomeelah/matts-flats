@@ -12,6 +12,7 @@ import ManageSpotsDisplay from './components/ManageSpots/ManageSpotsDisplay';
 import UpdateSpotForm from './components/UpdateSpotForm.jsx/UpdateSpotForm';
 import ManageReviewsDisplay from './components/ManageReviews/ManageReviewsDisplay';
 import { thunkGetUserReviews } from './store/reviews';
+import CreateBookingForm from './components/CreateBookingForm/CreateBookingForm';
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,11 @@ const router = createBrowserRouter([
         element: <UpdateSpotForm />
       },
       {
-        path: 'reviews/current',
+        path:'/spots/:spotId/bookings',
+        element: <CreateBookingForm />
+      },
+      {
+        path: '/reviews/current',
         element: <ManageReviewsDisplay />
       },
       {
@@ -55,8 +60,7 @@ function Layout() {
 
   // Attempt to restore the user before loading the page
   useEffect(() => {
-    dispatch(thunkRestoreUser()).then(() => {
-      setIsLoaded(true)
+    dispatch(thunkRestoreUser()).then(() => { setIsLoaded(true)
     });
 
     dispatch(thunkLoadSpots());
