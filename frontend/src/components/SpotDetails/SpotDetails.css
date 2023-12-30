@@ -107,6 +107,10 @@
     margin-top: 0;
 }
 
+#spot-description {
+    overflow-wrap: break-word;
+}
+
 #callout-info {
     display: flex;
     flex-direction: column;

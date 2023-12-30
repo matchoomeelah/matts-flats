@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { thunkGetSpotById, thunkLoadSpots } from '../../store/spots';
+import { thunkGetSpotById } from '../../store/spots';
 import { thunkGetReviewsBySpotId } from '../../store/reviews';
 
 import SpotImagesDisplay from './SpotImagesDisplay/SpotImagesDisplay';
