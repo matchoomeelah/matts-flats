@@ -365,7 +365,7 @@ function NewSpotForm() {
                     id='spot-description-textarea'
                     placeholder='Please write at least 30 characters'
                     value={description}
-                    onChange={e => {if (description.length < 2000 && e.target.value.length < 2000) {setDescription(e.target.value)} setDescription(e.target.value.substring(0,1001))}}
+                    onChange={e => {if (description.length < 5000 && e.target.value.length < 5000) {setDescription(e.target.value)} setDescription(e.target.value.substring(0,5001))}}
                 >
                 </textarea>
                 <div>
