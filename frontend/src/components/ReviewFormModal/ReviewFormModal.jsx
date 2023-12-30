@@ -43,7 +43,14 @@ function ReviewFormModal() {
                     id='review-comment-area'
                     placeholder='Leave your review here...'
                     value={reviewText}
-                    onChange={e => setReviewText(e.target.value)} />
+                    onChange={e => {
+                        if (reviewText.length < 1000 && e.target.length < 1000){
+                            setReviewText(e.target.value)
+                        }
+                        else {
+                            setReviewText(e.target.value(0, 1001));
+                        }
+                    }} />
                 <ul className="rating-list">
                     <li id='stars-word-list-item'>Stars</li>
                     <li onClick={() => setStars(5)}><i className={`fa fa-star ${stars >= 5 ? "filled" : "empty"}`} title="Rate 5"></i></li>
