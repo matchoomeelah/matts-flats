@@ -44,11 +44,11 @@ function ReviewFormModal() {
                     placeholder='Leave your review here...'
                     value={reviewText}
                     onChange={e => {
-                        if (reviewText.length < 1000 && e.target.length < 1000){
+                        if (reviewText.length < 1000 && e.target.value.length < 1000){
                             setReviewText(e.target.value)
                         }
                         else {
-                            setReviewText(e.target.value(0, 1001));
+                            setReviewText(e.target.value.substring(0, 1001));
                         }
                     }} />
                 <ul className="rating-list">
