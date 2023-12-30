@@ -318,7 +318,7 @@ function NewSpotForm() {
                         id="country"
                         placeholder='Country'
                         value={country}
-                        onChange={e => {if (country.length < 30) {setCountry(e.target.value)} else setCountry(e.target.value.substring(0,31))}}>
+                        onChange={e => {if (country.length < 30 && e.target.value.length < 30) {setCountry(e.target.value)} else setCountry(e.target.value.substring(0,31))}}>
                     </input>
                 </div>
                 <div>
@@ -340,7 +340,7 @@ function NewSpotForm() {
                             id="city"
                             placeholder='City'
                             value={city}
-                            onChange={e => {if (city.length < 30) {setCity(e.target.value)} else setCity(e.target.value.substring(0,31))}}>
+                            onChange={e => {if (city.length < 30 && e.target.value.length < 30) {setCity(e.target.value)} else setCity(e.target.value.substring(0,31))}}>
                         </input>
                     </div>
                     <div>
@@ -351,7 +351,7 @@ function NewSpotForm() {
                             id="state"
                             placeholder='State'
                             value={state}
-                            onChange={e => {if (state.length < 30) {setState(e.target.value)} else setState(e.target.value.substring(0,31))}}>
+                            onChange={e => {if (state.length < 30 && e.target.value.length < 30) {setState(e.target.value)} else setState(e.target.value.substring(0,31))}}>
                         </input>
                     </div>
                 </div>
@@ -365,7 +365,7 @@ function NewSpotForm() {
                     id='spot-description-textarea'
                     placeholder='Please write at least 30 characters'
                     value={description}
-                    onChange={e => {if (description.length < 1000) {setDescription(e.target.value)} setDescription(e.target.value.substring(0,1001))}}
+                    onChange={e => {if (description.length < 2000 && e.target.value.length < 2000) {setDescription(e.target.value)} setDescription(e.target.value.substring(0,1001))}}
                 >
                 </textarea>
                 <div>
@@ -380,7 +380,7 @@ function NewSpotForm() {
                     id='spot-name'
                     placeholder='Name of your spot'
                     value={spotName}
-                    onChange={e => {if (spotName.length < 30) {setSpotName(e.target.value)} else setSpotName(e.target.value.substring(0,31))}}>
+                    onChange={e => {if (spotName.length < 30 && e.target.value.length < 30) {setSpotName(e.target.value)} else setSpotName(e.target.value.substring(0,31))}}>
                 </input>
                 <div>
                     {errors.spotName && <span className='error-message'>*{errors.spotName}</span>}
@@ -397,7 +397,7 @@ function NewSpotForm() {
                             id='price'
                             placeholder='Price per night (USD)'
                             value={price}
-                            onChange={e => {if (price.length < 9) {setPrice(e.target.value)} else setPrice(e.target.value.substring(0,9))}}>
+                            onChange={e => {if (price.length < 9 && e.target.value.length < 9) {setPrice(e.target.value)} else setPrice(e.target.value.substring(0,9))}}>
                         </input>
                     </div>
                 </label>
