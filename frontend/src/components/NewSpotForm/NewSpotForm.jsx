@@ -458,13 +458,6 @@ function NewSpotForm() {
                     {errors.otherImage4 && <span className='error-message'>*{errors.otherImage4}</span>}
                 </div>
 
-                {/* <div id='image-previews'>
-                    {previewImage && <img src={`${previewImage}`}></img>}
-                    {otherImage1 && <img src={`${otherImage1}`}></img>}
-                    {otherImage2 && <img src={`${otherImage2}`}></img>}
-                    {otherImage3 && <img src={`${otherImage3}`}></img>}
-                    {otherImage4 && <img src={`${otherImage4}`}></img>}
-                </div> */}
 
                 <div className='create-spot-horizontal-line'></div>
 
