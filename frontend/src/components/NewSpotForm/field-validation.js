@@ -51,7 +51,7 @@ export function validateForm({country, streetAddress, city, state, description, 
     }
 
     if (description.length < 30) {
-        errors.description = 'Description needs a minimum of 30 character';
+        errors.description = 'Description needs a minimum of 30 characters';
     }
 
     if (spotName.length === 0) {
