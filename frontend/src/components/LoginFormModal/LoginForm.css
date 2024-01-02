@@ -126,6 +126,7 @@
 #form-login-button:disabled {
     background-color: white;
     color: gray;
+    cursor: default;
 }
 
 #demo-user-button {

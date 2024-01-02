@@ -102,5 +102,6 @@
 
 #form-signup-button:disabled {
     background-color: white;
-    color: gray
+    color: gray;
+    cursor: default;
 }
