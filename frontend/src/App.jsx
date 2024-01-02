@@ -72,7 +72,7 @@ function Layout() {
 
     // Get spots of current user and set in state
     dispatch(thunkGetUserSpots());
-  }, [dispatch, allSpots]);
+  }, [dispatch]);
 
   return (
     <>
