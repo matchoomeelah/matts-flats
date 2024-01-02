@@ -310,7 +310,8 @@ function NewSpotForm() {
     }
 
     if (!sessionUser) {
-        navigate('/');
+        // navigate('/');
+        return null;
     }
 
     return (
