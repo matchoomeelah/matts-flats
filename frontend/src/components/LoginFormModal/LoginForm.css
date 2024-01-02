@@ -96,6 +96,7 @@
 
 .error-message {
     color: #FF5A5F;
+    text-align: center;
 }
 
 #username-input {
