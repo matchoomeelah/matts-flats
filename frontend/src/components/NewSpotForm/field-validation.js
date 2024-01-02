@@ -34,32 +34,32 @@ export function validateForm({country, streetAddress, city, state, description, 
     }
 
     // Others
-    if (country.length === 0) {
-        errors.trim().country = 'Country is required';
+    if (country.trim().length === 0) {
+        errors.country = 'Country is required';
     }
 
-    if (streetAddress.length === 0) {
-        errors.trim().address = 'Street Address is required';
+    if (streetAddress.trim().length === 0) {
+        errors.address = 'Street Address is required';
     }
 
-    if (city.length === 0) {
-        errors.trim().city = 'City is required';
+    if (city.trim().length === 0) {
+        errors.city = 'City is required';
     }
 
-    if (state.length === 0) {
-        errors.trim().state = 'State is required';
+    if (state.trim().length === 0) {
+        errors.state = 'State is required';
     }
 
-    if (description.length < 30) {
-        errors.trim().description = 'Description needs a minimum of 30 characters';
+    if (description.trim().length < 30) {
+        errors.description = 'Description needs a minimum of 30 characters';
     }
 
-    if (spotName.length === 0) {
+    if (spotName.trim().length === 0) {
         errors.trim().spotName = 'Name is required'
     }
 
-    if (price.length === 0) {
-        errors.trim().price = 'Price is required';
+    if (price.trim().length === 0) {
+        errors.price = 'Price is required';
     }
 
 
