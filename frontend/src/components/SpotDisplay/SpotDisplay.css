@@ -5,6 +5,7 @@
     /* justify-content: space-between; */
     margin-left: 50px;
     margin-right: 25px;
+    max-width: 1900px;
 }
 
 
@@ -99,5 +100,9 @@
 @media only screen and (min-width: 1900px){
     .spot-tile {
         width: 15%;
+    }
+
+    #landing-spot-display-container {
+        margin: 0 auto;
     }
 }
