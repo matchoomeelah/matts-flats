@@ -35,31 +35,31 @@ export function validateForm({country, streetAddress, city, state, description, 
 
     // Others
     if (country.length === 0) {
-        errors.country = 'Country is required';
+        errors.trim().country = 'Country is required';
     }
 
     if (streetAddress.length === 0) {
-        errors.address = 'Street Address is required';
+        errors.trim().address = 'Street Address is required';
     }
 
     if (city.length === 0) {
-        errors.city = 'City is required';
+        errors.trim().city = 'City is required';
     }
 
     if (state.length === 0) {
-        errors.state = 'State is required';
+        errors.trim().state = 'State is required';
     }
 
     if (description.length < 30) {
-        errors.description = 'Description needs a minimum of 30 characters';
+        errors.trim().description = 'Description needs a minimum of 30 characters';
     }
 
     if (spotName.length === 0) {
-        errors.spotName = 'Name is required'
+        errors.trim().spotName = 'Name is required'
     }
 
     if (price.length === 0) {
-        errors.price = 'Price is required';
+        errors.trim().price = 'Price is required';
     }
 
 

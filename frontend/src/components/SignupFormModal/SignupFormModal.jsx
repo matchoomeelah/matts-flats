@@ -44,7 +44,7 @@ function SignupFormModal() {
 
   // Check if any fields are empty in form
   const hasEmptyField = () => {
-    return email.length === 0 || username.length < 4 || firstName.length === 0 || lastName.length === 0 || password.length < 6 || confirmPassword.length === 0;
+    return email.trim().length === 0 || username.trim().length < 4 || firstName.trim().length === 0 || lastName.trim().length === 0 || password.trim().length < 6 || confirmPassword.trim().length === 0;
   }
 
   return (
