@@ -260,7 +260,13 @@ function NewSpotForm() {
         //Prevent refresh
         e.preventDefault();
 
+        // Don't allow submission without user logged in
+        if (!sessionUser) {
+            navigate('/');
+        }
+
         setErrors({});
+
 
         // Check if anything empty or too short
         const formErrors = validateForm({ country, streetAddress, city, state, description, spotName, price, previewImage, otherImage1, otherImage2, otherImage3, otherImage4 });
@@ -301,6 +307,10 @@ function NewSpotForm() {
         if (spot) {
             navigate(`/spots/${spot.id}`);
         }
+    }
+
+    if (!sessionUser) {
+        navigate('/');
     }
 
     return (
