@@ -9,7 +9,7 @@ function ManageReviewsDisplay() {
     const dispatch = useDispatch();
 
     const userReviews = useSelector(state => state.reviews.userReviews);
-
+    const sessionUser = useSelector(state => state.session.user);
 
     // Ensure userReviews in available in state
     useEffect(() => {
