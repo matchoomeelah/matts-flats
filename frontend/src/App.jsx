@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { thunkRestoreUser } from './store/session';
 import { thunkGetUserSpots, thunkLoadSpots } from './store/spots';
 
@@ -53,7 +53,7 @@ function Layout() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const allSpots = useSelector(state => state.spots.allSpots);
+  // const allSpots = useSelector(state => state.spots.allSpots);
 
 
   // Attempt to restore the user before loading the page
@@ -64,7 +64,7 @@ function Layout() {
 
     // Handle timeout
     // if (Object.keys(allSpots).length === 0) {
-      dispatch(thunkLoadSpots());
+    dispatch(thunkLoadSpots());
     // }
 
     // Get reviews of current user and set in state
