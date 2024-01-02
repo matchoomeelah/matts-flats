@@ -63,9 +63,9 @@ function Layout() {
     });
 
     // Handle timeout
-    if (Object.keys(allSpots).length === 0) {
+    // if (Object.keys(allSpots).length === 0) {
       dispatch(thunkLoadSpots());
-    }
+    // }
 
     // Get reviews of current user and set in state
     dispatch(thunkGetUserReviews());
