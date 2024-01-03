@@ -23,6 +23,13 @@ function SpotDetails() {
 
     // Load the spots for reload
     useEffect(() => {
+        // Handle timeout from render
+        // if (!currSpot || Object.keys(currSpot).length == 0) {
+        //     dispatch(thunkLoadSpots());
+        //     dispatch(thunkGetUserReviews());
+        //     dispatch(thunkGetUserSpots());
+        // }
+
         dispatch(thunkGetSpotById(spotId));
         dispatch(thunkGetReviewsBySpotId(spotId));
     }, [dispatch, spotId])

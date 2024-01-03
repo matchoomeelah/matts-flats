@@ -25,6 +25,11 @@ function ManageReviewsDisplay() {
         return null;
     }
 
+    // Handle case where no user logged in
+    if (!sessionUser) {
+        return null;
+    }
+
 
     return (
         <div>

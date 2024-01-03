@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { thunkRestoreUser } from './store/session';
 import { thunkGetUserSpots, thunkLoadSpots } from './store/spots';
+import { thunkGetUserSpots, thunkLoadSpots } from './store/spots';
 
 import Navigation from './components/Navigation/Navigation';
 import SpotDisplay from './components/SpotDisplay/SpotDisplay';
@@ -11,8 +12,6 @@ import NewSpotForm from './components/NewSpotForm/NewSpotForm';
 import ManageSpotsDisplay from './components/ManageSpots/ManageSpotsDisplay';
 import UpdateSpotForm from './components/UpdateSpotForm.jsx/UpdateSpotForm';
 import ManageReviewsDisplay from './components/ManageReviews/ManageReviewsDisplay';
-import { thunkGetUserReviews } from './store/reviews';
-import CreateBookingForm from './components/CreateBookingForm/CreateBookingForm';
 
 const router = createBrowserRouter([
   {
@@ -58,22 +57,12 @@ function Layout() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // const allSpots = useSelector(state => state.spots.allSpots);
-
   // Attempt to restore the user before loading the page
   useEffect(() => {
     dispatch(thunkRestoreUser()).then(() => { setIsLoaded(true)
     });
 
-    // if (Object.keys(allSpots).length === 0) {
-      dispatch(thunkLoadSpots());
-    // }
-
-    // Get reviews of current user and set in state
-    dispatch(thunkGetUserReviews());
-
-    // Get spots of current user and set in state
-    dispatch(thunkGetUserSpots());
+    dispatch(thunkLoadSpots());
   }, [dispatch]);
 
   return (

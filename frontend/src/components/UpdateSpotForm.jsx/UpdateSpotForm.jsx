@@ -89,6 +89,12 @@ function UpdateSpotForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Don't allow submission without user logged in
+        if (!sessionUser) {
+            navigate('/');
+        }
+
         setErrors({});
 
         const formErrors = validateForm({ country, streetAddress, city, state, description, spotName, price, previewImage, otherImage1, otherImage2, otherImage3, otherImage4 });
