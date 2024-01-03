@@ -25,6 +25,7 @@
 
 .error-message {
     color: #FF5A5F;
+    text-align: center;
 }
 
 #username-input {
@@ -53,7 +54,8 @@
 
 #form-login-button:disabled {
     background-color: white;
-    color: gray
+    color: gray;
+    cursor: default;
 }
 
 #demo-user-button {

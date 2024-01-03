@@ -89,7 +89,14 @@ function ReviewFormModal() {
                     id='review-comment-area'
                     placeholder='Leave your review here...'
                     value={reviewText}
-                    onChange={e => setReviewText(e.target.value)} />
+                    onChange={e => {
+                        if (reviewText.length < 5000 && e.target.value.length < 5000){
+                            setReviewText(e.target.value)
+                        }
+                        else {
+                            setReviewText(e.target.value.substring(0, 5001));
+                        }
+                    }} />
 
                 <button id='add-image-button' onClick={addImageInput}>+ Add Image</button>
                 {imageInputs.map((img, i) => {

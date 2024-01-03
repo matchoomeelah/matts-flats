@@ -162,7 +162,29 @@ function UpdateSpotForm() {
                         onChange={e => setStreetAddress(e.target.value)}>
                     </input>
                 </div>
-                <div>
+                <div id="city-state-container">
+                    <div>
+                        <span>City {errors.city && <span className='error-message'>*{errors.city}</span>}</span>
+                        <input
+                            id="city"
+                            placeholder='City'
+                            value={city}
+                            onChange={e => { if (city.length < 30 && e.target.value.length < 30) { setCity(e.target.value) } else setCity(e.target.value.substring(0, 31)) }}>
+                        </input>
+                    </div>
+                    <div>
+
+                        <span>State {errors.state && <span className='error-message'>*{errors.state}</span>}</span>
+
+                        <input
+                            id="state"
+                            placeholder='State'
+                            value={state}
+                            onChange={e => { if (state.length < 30 && e.target.value.length < 30) { setState(e.target.value) } else setState(e.target.value.substring(0, 31)) }}>
+                        </input>
+                    </div>
+                </div>
+                {/* <div>
                     <div>
                         <span>City</span>
                         {errors.city && <span className='error-message'>*{errors.city}</span>}
@@ -185,7 +207,7 @@ function UpdateSpotForm() {
                         value={state}
                         onChange={e => setState(e.target.value)}>
                     </input>
-                </div>
+                </div> */}
                 <div className='update-spot-horizontal-line'></div>
                 <h2> Describe your place to guests</h2>
                 <p>{"Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood."}</p>

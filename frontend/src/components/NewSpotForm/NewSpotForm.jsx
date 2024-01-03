@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import './NewSpotForm.css';
 import { thunkCreateSpot } from '../../store/spots';
 import { validateForm } from './field-validation';
 import { useNavigate } from "react-router-dom";
+import './NewSpotForm.css';
 
 
 function NewSpotForm() {
@@ -29,6 +29,11 @@ function NewSpotForm() {
     const handleSubmit = async (e) => {
         //Prevent refresh
         e.preventDefault();
+
+        // Don't allow submission without user logged in
+        if (!sessionUser) {
+            navigate('/');
+        }
 
         setErrors({});
 
@@ -73,6 +78,11 @@ function NewSpotForm() {
         }
     }
 
+    if (!sessionUser) {
+        // navigate('/');
+        return null;
+    }
+
     return (
         <div id='create-spot-div'>
             <form id='create-spot-form' onSubmit={handleSubmit}>
@@ -88,7 +98,7 @@ function NewSpotForm() {
                         id="country"
                         placeholder='Country'
                         value={country}
-                        onChange={e => setCountry(e.target.value)}>
+                        onChange={e => { if (country.length < 30 && e.target.value.length < 30) { setCountry(e.target.value) } else setCountry(e.target.value.substring(0, 31)) }}>
                     </input>
                 </div>
                 <div>
@@ -105,23 +115,23 @@ function NewSpotForm() {
                 </div>
                 <div id="city-state-container">
                     <div>
-                            <span>City {errors.city && <span className='error-message'>*{errors.city}</span>}</span>
+                        <span>City {errors.city && <span className='error-message'>*{errors.city}</span>}</span>
                         <input
                             id="city"
                             placeholder='City'
                             value={city}
-                            onChange={e => setCity(e.target.value)}>
+                            onChange={e => { if (city.length < 30 && e.target.value.length < 30) { setCity(e.target.value) } else setCity(e.target.value.substring(0, 31)) }}>
                         </input>
                     </div>
                     <div>
 
-                            <span>State {errors.state && <span className='error-message'>*{errors.state}</span>}</span>
+                        <span>State {errors.state && <span className='error-message'>*{errors.state}</span>}</span>
 
                         <input
                             id="state"
                             placeholder='State'
                             value={state}
-                            onChange={e => setState(e.target.value)}>
+                            onChange={e => { if (state.length < 30 && e.target.value.length < 30) { setState(e.target.value) } else setState(e.target.value.substring(0, 31)) }}>
                         </input>
                     </div>
                 </div>
@@ -135,7 +145,7 @@ function NewSpotForm() {
                     id='spot-description-textarea'
                     placeholder='Please write at least 30 characters'
                     value={description}
-                    onChange={e => setDescription(e.target.value)}
+                    onChange={e => { if (description.length < 5000 && e.target.value.length < 5000) { setDescription(e.target.value) } setDescription(e.target.value.substring(0, 5001)) }}
                 >
                 </textarea>
                 <div>
@@ -150,7 +160,7 @@ function NewSpotForm() {
                     id='spot-name'
                     placeholder='Name of your spot'
                     value={spotName}
-                    onChange={e => setSpotName(e.target.value)}>
+                    onChange={e => { if (spotName.length < 30 && e.target.value.length < 30) { setSpotName(e.target.value) } else setSpotName(e.target.value.substring(0, 31)) }}>
                 </input>
                 <div>
                     {errors.spotName && <span className='error-message'>*{errors.spotName}</span>}
@@ -167,7 +177,7 @@ function NewSpotForm() {
                             id='price'
                             placeholder='Price per night (USD)'
                             value={price}
-                            onChange={e => setPrice(e.target.value)}>
+                            onChange={e => { if (price.length < 9 && e.target.value.length < 9) { setPrice(e.target.value) } else setPrice(e.target.value.substring(0, 9)) }}>
                         </input>
                     </div>
                 </label>
@@ -185,14 +195,18 @@ function NewSpotForm() {
                     value={previewImage}
                     onChange={e => setPreviewImage(e.target.value)}>
                 </input>
-                {errors.previewImage && <p className='error-message'>*{errors.previewImage}</p>}
+                <div>
+                    {errors.previewImage && <span className='error-message'>*{errors.previewImage}</span>}
+                </div>
                 <input
                     id='other-image-1'
                     placeholder='Image URL'
                     value={otherImage1}
                     onChange={e => setOtherImage1(e.target.value)}>
                 </input>
-                {errors.otherImage1 && <p className='error-message'>*{errors.otherImage1}</p>}
+                <div>
+                    {errors.otherImage1 && <span className='error-message'>*{errors.otherImage1}</span>}
+                </div>
 
                 <input
                     id='other-image-2'
@@ -200,7 +214,9 @@ function NewSpotForm() {
                     value={otherImage2}
                     onChange={e => setOtherImage2(e.target.value)}>
                 </input>
-                {errors.otherImage2 && <p className='error-message'>*{errors.otherImage2}</p>}
+                <div>
+                    {errors.otherImage2 && <span className='error-message'>*{errors.otherImage2}</span>}
+                </div>
 
                 <input
                     id='other-image-3'
@@ -208,7 +224,9 @@ function NewSpotForm() {
                     value={otherImage3}
                     onChange={e => setOtherImage3(e.target.value)}>
                 </input>
-                {errors.otherImage3 && <p className='error-message'>*{errors.otherImage3}</p>}
+                <div>
+                    {errors.otherImage3 && <span className='error-message'>*{errors.otherImage3}</span>}
+                </div>
 
                 <input
                     id='other-image-4'
@@ -216,7 +234,9 @@ function NewSpotForm() {
                     value={otherImage4}
                     onChange={e => setOtherImage4(e.target.value)}>
                 </input>
-                {errors.otherImage4 && <p className='error-message'>*{errors.otherImage4}</p>}
+                <div>
+                    {errors.otherImage4 && <span className='error-message'>*{errors.otherImage4}</span>}
+                </div>
 
                 <div id='image-previews'>
                     {previewImage && <img src={`${previewImage}`}></img>}

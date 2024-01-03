@@ -7,6 +7,7 @@
     display: flex;
     flex-wrap: wrap;
     margin-left: 55px;
+    max-width: 1900px;
 }
 
 .spot-image, .spot-info {
@@ -58,4 +59,38 @@ button {
     margin: 10px;
     padding-bottom: 10px;
     overflow: hidden;
+}
+
+
+/*               */
+/* media queries */
+/*               */
+
+@media only screen and (min-width: 980px){
+    .manage-spot-tile {
+        width: 31%;
+    }
+}
+
+
+@media only screen and (min-width: 1280px){
+    .manage-spot-tile {
+        width: 23%;
+    }
+}
+
+@media only screen and (min-width: 1580px){
+    .manage-spot-tile {
+        width: 18%;
+    }
+}
+
+@media only screen and (min-width: 1900px){
+    .manage-spot-tile {
+        width: 15%;
+    }
+
+    #spot-display-container {
+        margin: 0 auto;
+    }
 }

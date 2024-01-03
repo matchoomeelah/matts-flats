@@ -66,7 +66,7 @@ module.exports = {
         spotId: 4,
         userId: 4,
         review: "I recently stayed at Ahch-To and, let me tell you, it was quite an experience. The island itself is breathtakingly beautiful, with stunning vistas that could rival even the most picturesque spots in the galaxy. However, that's where the positives end. Accessibility to this remote location was a challenge, to say the least. The lack of modern amenities or even basic comforts left much to be desired. The host, Luke Skywalker, was, let's say, more preoccupied with mysterious teachings than catering to guests' needs. His secluded lifestyle and minimalist approach may suit some, but it wasn't what I had in mind for a relaxing retreat. Additionally, the persistent presence of those bizarre Porgs became more of a nuisance than a charming addition to the environment. Overall, a stunning location, but definitely not the ideal vacation spot for those accustomed to a more refined experience.",
-        stars: 5
+        stars: 3
       },
       {
         spotId: 5,

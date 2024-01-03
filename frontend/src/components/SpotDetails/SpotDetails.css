@@ -5,6 +5,7 @@
 .spot-details-container {
     max-width: 1176px;
     margin: 0 auto;
+    /* margin-left: 25px; */
 }
 
 .separator {
@@ -107,6 +108,10 @@
     margin-top: 0;
 }
 
+#spot-description {
+    overflow-wrap: break-word;
+}
+
 #callout-info {
     display: flex;
     flex-direction: column;
@@ -171,4 +176,11 @@
     font-weight: lighter;
     font-size: 15px;
     color: darkgray;
+}
+
+
+@media only screen and (min-width: 1000px) {
+    .spot-details-container {
+        margin: 0 auto;
+    }
 }
