@@ -2,8 +2,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { thunkRestoreUser } from './store/session';
-import { thunkGetUserSpots, thunkLoadSpots } from './store/spots';
-import { thunkGetUserSpots, thunkLoadSpots } from './store/spots';
+import { thunkLoadSpots } from './store/spots';
 
 import Navigation from './components/Navigation/Navigation';
 import SpotDisplay from './components/SpotDisplay/SpotDisplay';
@@ -12,6 +11,7 @@ import NewSpotForm from './components/NewSpotForm/NewSpotForm';
 import ManageSpotsDisplay from './components/ManageSpots/ManageSpotsDisplay';
 import UpdateSpotForm from './components/UpdateSpotForm.jsx/UpdateSpotForm';
 import ManageReviewsDisplay from './components/ManageReviews/ManageReviewsDisplay';
+import CreateBookingForm from './components/CreateBookingForm/CreateBookingForm';
 
 const router = createBrowserRouter([
   {
