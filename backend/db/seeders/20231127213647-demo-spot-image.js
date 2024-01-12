@@ -59,12 +59,14 @@ module.exports = {
       },
       {
         spotId: 2,
-        url: "https://drive.google.com/uc?id=1cEB2FSHb3Mq7VbCy69elHT9OKka35Vdn",
+        // url: "https://drive.google.com/uc?id=1cEB2FSHb3Mq7VbCy69elHT9OKka35Vdn",
+        url: "https://www.dropbox.com/scl/fi/50bduieuycitegj5rvqm4/yoda-hut-1.jpeg?rlkey=8t37pj8ju3cqlos1jbha8i7sd&raw=1",
         preview: false
       },
       {
         spotId: 2,
-        url: "https://drive.google.com/uc?id=15i8l4HRW34sRC4jUlY7YSAyemQ8Su2pc",
+        // url: "https://drive.google.com/uc?id=15i8l4HRW34sRC4jUlY7YSAyemQ8Su2pc",
+        url: "https://www.dropbox.com/scl/fi/osbgjz96tnhmw41vdhuzq/yoda-hut-2.png?rlkey=2cwpxnslvkbbdzzm1ot7o80w7&raw=1",
         preview: false
       },
       {
@@ -74,7 +76,8 @@ module.exports = {
       },
       {
         spotId: 3,
-        url: "https://drive.google.com/uc?id=1S5CHKo1Qa-Y0AyA16s1h2MVdD07l7Y0D",
+        // url: "https://drive.google.com/uc?id=1S5CHKo1Qa-Y0AyA16s1h2MVdD07l7Y0D",
+        url: "https://www.dropbox.com/scl/fi/y77077ksr71dt4xuumgxw/jabba-palace-2.jpeg?rlkey=qeo0mhkm9eykemgfh90or1xap&raw=1",
         preview: false
       },
       {
@@ -89,7 +92,8 @@ module.exports = {
       },
       {
         spotId: 3,
-        url: "https://drive.google.com/uc?id=1-7T_s3mF2-HZ-LIDyfDqeElrp9gOIr_l",
+        // url: "https://drive.google.com/uc?id=1-7T_s3mF2-HZ-LIDyfDqeElrp9gOIr_l",
+        url: "https://www.dropbox.com/scl/fi/pn2l2frqto02jnjs5fppb/jabba-palace-3.jpeg?rlkey=55kif17eq6do27yfgy1jcdcyq&raw=1",
         preview: false
       },
       {
@@ -244,32 +248,31 @@ module.exports = {
       },
       {
         spotId: 4,
-        // url: "https://img.atlasobscura.com/mZYyAHRgj8Vonz63RPi6ZQwkTfgCsvFJ0EJHIGY__O0/rs:fill:12000:12000/q:81/sm:1/scp:1/ar:1/aHR0cHM6Ly9hdGxh/cy1kZXYuczMuYW1h/em9uYXdzLmNvbS91/cGxvYWRzL2Fzc2V0/cy85NTJjNzM2YjFj/ZWIwZmE1N2NfODAw/cHgtU2tlbGxpZ19N/aWNoYWVsXy1fY2Vt/ZXRlcnlfYW5kX2xh/cmdlX29yYXRvcnku/anBn.jpg",
-        url: "https://drive.google.com/uc?id=1NM_8tidpboxvHgWF-mSjY5iYoo8RbmNB",
+        url: "https://www.dropbox.com/scl/fi/8etzhefpzk6pg0vqoybov/ahch-1.jpeg?rlkey=5qismjkfcu0u0rvplbeqg28ar&raw=1",
         preview: true
       },
       {
         spotId: 4,
-        // url: "https://media-manager.starsinsider.com/gallery/400/na_60d5ec9314560.jpg",
-        url: "https://drive.google.com/uc?id=1zJVKjNMimEeRsTAFN4hvb0NuqZ9HyrMq",
+        // url: "https://drive.google.com/uc?id=1zJVKjNMimEeRsTAFN4hvb0NuqZ9HyrMq",
+        url: "https://www.dropbox.com/scl/fi/w7ywpft7imu6rhej7qghg/ahch-2.jpeg?rlkey=wgg3mkcn243zu493oe87jmkbb&raw=1",
         preview: false
       },
       {
         spotId: 4,
-        // url: "https://www.home-designing.com/wp-content/uploads/2022/06/black-stone-feature-wall.jpg",
-        url: "https://drive.google.com/uc?id=1wEooAkJfVGBy3y1Ttle5MF2a_WrItjCn",
+        // url: "https://drive.google.com/uc?id=1wEooAkJfVGBy3y1Ttle5MF2a_WrItjCn",
+        url: "https://www.dropbox.com/scl/fi/minmbrx1c31q0cqd68rke/ahch-3.jpeg?rlkey=gh503kv89kyck8ibx4lswcwog&raw=1",
         preview: false
       },
       {
         spotId: 4,
-        // url: "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/71rv4fM6l9L._AC_UF894,1000_QL80_.jpg",
-        url: "https://drive.google.com/uc?id=1yDJbKd2VFD1vwBZtlAEUCzoTEvxHxsQN",
+        // url: "https://drive.google.com/uc?id=1yDJbKd2VFD1vwBZtlAEUCzoTEvxHxsQN",
+        url: "https://www.dropbox.com/scl/fi/z1jtimb2lwxadf8kfat6y/ahch-4.jpg?rlkey=cz996k9zpzo70chegbv5qyebk&raw=1",
         preview: false
       },
       {
         spotId: 4,
-        // url: "https://pm1.aminoapps.com/6263/d2986c208da81364687ae2688b2e19a2a8f8ed3c_hq.jpg",
-        url: 'https://drive.google.com/uc?id=1cftk3YlgBdyYc3_iiybikxIL3sqWF8HR',
+        // url: 'https://drive.google.com/uc?id=1cftk3YlgBdyYc3_iiybikxIL3sqWF8HR',
+        url: "https://www.dropbox.com/scl/fi/b577pcooin2hfa6fws2uu/ahch-5.jpeg?rlkey=ujbogmoncw2a274w7cfjsto11&raw=1",
         preview: false
       },
       {
