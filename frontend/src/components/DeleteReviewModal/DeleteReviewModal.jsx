@@ -1,7 +1,9 @@
-import './DeleteReview.css'
-import { useModal } from '../../../context/Modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { thunkDeleteReview } from '../../../store/reviews';
+
+import { thunkDeleteReview } from '../../store/reviews';
+import { useModal } from '../../context/Modal';
+import './DeleteReview.css'
+
 
 function DeleteReviewModal({reviewId, spotId}) {
     const {closeModal} = useModal();
@@ -10,16 +12,13 @@ function DeleteReviewModal({reviewId, spotId}) {
     const currReview = userReviews[reviewId];
 
     const submitDelete = () => {
-
         try {
             dispatch(thunkDeleteReview(reviewId, spotId, currReview)).then(closeModal);
         }
         catch (e) {
             console.log(e);
         }
-
     }
-
 
     return (
         <div id='delete-modal-container'>

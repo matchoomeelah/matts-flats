@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
+
 import UpdateDeleteButtons from './UpdateDeleteButtons';
 import './ManageSpotsDisplay.css';
+
 
 function ManageSpotTile({ spot }) {
     const navigate = useNavigate();

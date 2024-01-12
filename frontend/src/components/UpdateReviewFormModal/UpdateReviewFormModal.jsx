@@ -4,13 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { thunkEditReview } from '../../store/reviews';
 import { useModal } from '../../context/Modal';
 
-import './ReviewEditFormModal.css'
+import './UpdateReviewFormModal.css'
 
 
-function ReviewEditFormModal({ reviewId }) {
+function UpdateReviewFormModal({ reviewId }) {
     const dispatch = useDispatch();
-    // const stateCurrentSpot = useSelector(state => state.spots.currentSpot);
-    // const reviewSpot
 
     const userReviews = useSelector(state => state.reviews.userReviews);
     console.log("USER REVIEWS: ", userReviews);
@@ -67,4 +65,4 @@ function ReviewEditFormModal({ reviewId }) {
     )
 }
 
-export default ReviewEditFormModal;
+export default UpdateReviewFormModal;

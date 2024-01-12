@@ -3,16 +3,15 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { thunkAddReview } from '../../store/reviews';
 import { useModal } from '../../context/Modal';
-import { validURL } from '../NewSpotForm/field-validation';
+import { validURL } from '../CreateSpotForm/field-validation';
 
-import './ReviewForm.css'
+import './CreateReviewForm.css'
 
 
-function ReviewFormModal() {
+function CreateReviewFormModal() {
     const dispatch = useDispatch();
     const currSpot = useSelector(state => state.spots.currentSpot);
     const { closeModal } = useModal();
-
 
     const [reviewText, setReviewText] = useState('');
     const [stars, setStars] = useState('');
@@ -131,4 +130,4 @@ function ReviewFormModal() {
     )
 }
 
-export default ReviewFormModal;
+export default CreateReviewFormModal;

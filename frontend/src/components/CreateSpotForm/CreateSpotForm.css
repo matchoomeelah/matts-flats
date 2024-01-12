@@ -1,12 +1,10 @@
-/* General */
+/* GENERAL */
 
 .create-spot-horizontal-line {
     border-top: 2px solid gray;
     width: 102%;
     margin-top: 20px;
 }
-
-/* FORM */
 
 input, textarea {
     background-color: rgb(230, 235, 250);
@@ -18,18 +16,18 @@ input, textarea {
     width: 100%;
 }
 
-#spot-description-textarea {
-    width: 100%;
-    height: 10em;
-    background-color: rgb(230, 235, 250);
-}
-
 #create-spot-form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 40%;
     margin: 0 auto;
+}
+
+#spot-description-textarea {
+    width: 100%;
+    height: 10em;
+    background-color: rgb(230, 235, 250);
 }
 
 #where-heading {
@@ -45,13 +43,11 @@ input, textarea {
     width: 45%;
 }
 
-
 #image-previews img {
     height: 75px;
     width: 75px;
     margin-right: 2px;
 }
-
 
 #create-spot-submit-button {
     background-color: red;

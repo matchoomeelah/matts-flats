@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf";
 
 
 //           //
-// constants //
+// Constants //
 //           //
 
 const LOAD_SPOTS = 'spots/loadSpots';
@@ -16,7 +16,7 @@ const DELETE_SPOT = 'spots/deleteSpot';
 
 
 //                   //
-//  action creators  //
+//  Action Creators  //
 //                   //
 
 export const actionLoadSpots = (spots) => {
@@ -74,7 +74,7 @@ export const actionDeleteSpot = (spotId) => {
 }
 
 //        //
-// thunks //
+// Thunks //
 //        //
 
 export const thunkLoadSpots = () => async (dispatch) => {
@@ -195,17 +195,12 @@ export const thunkEditSpot = (spotDetails, images, spotId) => async (dispatch) =
         });
     }
 
-
     // Send to the reducer
     if (response.ok) {
         dispatch(actionEditSpot(spot))
 
         // Post spot images to the server
         for (let i = 0; i < images.length; i++) {
-
-
-            // await csrfFetch(`api/spot-images/`)
-
             let preview = "false";
 
             // First image in the array should be set as preview
@@ -250,14 +245,16 @@ export const thunkDeleteSpot = (spotId) => async (dispatch) => {
 
 
 
-// initial state
+//         //
+// Reducer //
+//         //
+
 const initialState = {
     allSpots: {},
     currentSpot: null,
     userSpots: {}
 };
 
-//reducer
 export default function spotsReducer(state = initialState, action) {
     switch (action.type) {
         // Initial load

@@ -7,7 +7,7 @@ import { thunkLoadSpots } from './store/spots';
 import Navigation from './components/Navigation/Navigation';
 import SpotDisplay from './components/SpotDisplay/SpotDisplay';
 import SpotDetails from './components/SpotDetails/SpotDetails';
-import NewSpotForm from './components/NewSpotForm/NewSpotForm';
+import CreateSpotForm from './components/CreateSpotForm/CreateSpotForm';
 import ManageSpotsDisplay from './components/ManageSpots/ManageSpotsDisplay';
 import UpdateSpotForm from './components/UpdateSpotForm.jsx/UpdateSpotForm';
 import ManageReviewsDisplay from './components/ManageReviews/ManageReviewsDisplay';
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/spots/new',
-        element: <NewSpotForm />
+        element: <CreateSpotForm />
       },
       {
         path: '/spots/current',

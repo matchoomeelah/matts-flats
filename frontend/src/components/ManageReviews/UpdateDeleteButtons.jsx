@@ -1,20 +1,15 @@
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
-import DeleteReviewModal from '../ReviewDisplay/DeleteReviewModal/DeleteReviewModal';
-import ReviewEditFormModal from '../ReviewEditFormModal/ReviewEditFormModal';
+import DeleteReviewModal from '../DeleteReviewModal/DeleteReviewModal';
+import UpdateReviewFormModal from '../UpdateReviewFormModal/UpdateReviewFormModal';
 
 function UpdateDeleteButtons({ reviewId, spotId }) {
 
-    // function clickUpdate() {
-    //     alert("Feature Coming Soon!")
-    // }
-
     return (
         <div className="update-delete-buttons">
-            {/* <button id="manage-reviews-update-button"onClick={clickUpdate}>Update</button> */}
             <OpenModalButton
                 buttonText='Update'
                 buttonId='manage-reviews-update-button'
-                modalComponent={<ReviewEditFormModal reviewId={reviewId} />}
+                modalComponent={<UpdateReviewFormModal reviewId={reviewId} />}
             />
             <OpenModalButton
                 buttonText='Delete'

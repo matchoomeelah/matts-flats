@@ -1,12 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import LoginFormModal from '../LoginFormModal/LoginFormModal';
-import SignupFormModal from '../SignupFormModal/SignupFormModal';
-import OpenModalMenuItem from './OpenModalMenuItem';
+
 import * as sessionActions from '../../store/session';
 import { actionClearUserSpots } from '../../store/spots';
 import { actionClearUserReviews } from '../../store/reviews';
+import LoginFormModal from '../LoginFormModal/LoginFormModal';
+import SignupFormModal from '../SignupFormModal/SignupFormModal';
+import OpenModalMenuItem from './OpenModalMenuItem';
+
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();

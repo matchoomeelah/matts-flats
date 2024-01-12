@@ -1,6 +1,6 @@
 import ReviewTile from "./ReviewTile/ReviewTile";
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
-import ReviewFormModal from '../ReviewFormModal/ReviewFormModal';
+import CreateReviewFormModal from '../CreateReviewFormModal/CreateReviewFormModal';
 import './ReviewDisplay.css'
 import { useSelector } from 'react-redux';
 
@@ -32,7 +32,7 @@ function ReviewDisplay({ reviews, currSpot }) {
                 && (<span><OpenModalButton
                     buttonId='post-review-button'
                     buttonText='Post Your Review'
-                    modalComponent={<ReviewFormModal  />}
+                    modalComponent={<CreateReviewFormModal  />}
                 /></span>)
             }
 

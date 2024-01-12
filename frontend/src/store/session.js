@@ -2,13 +2,16 @@ import { csrfFetch } from "./csrf";
 import { thunkGetUserReviews } from "./reviews";
 import { thunkGetUserSpots } from "./spots";
 
-
-// constants
+//
+// Constants
+//
 const LOGIN_USER = 'session/loginUser';
 const LOGOUT_USER = 'session/logoutUser';
 
 
-// action creators
+//
+// Action Creators
+//
 export const loginUser = (user) => {
     return {
         type: LOGIN_USER,
@@ -22,10 +25,9 @@ export const logoutUser = () => {
     }
 }
 
-// thunks
 
 //
-// Login a user
+// Thunks
 //
 export const thunkLoginUser = (userCredentials) => async (dispatch) => {
     const response = await csrfFetch('/api/session',
@@ -38,7 +40,6 @@ export const thunkLoginUser = (userCredentials) => async (dispatch) => {
         });
 
     const data = await response.json()
-
 
     if (response.ok) {
         // Set session user in state
@@ -107,10 +108,11 @@ export const thunkSignup = (user) => async (dispatch) => {
 };
 
 
-// Initial session state
+//
+// Reducer
+//
 const initialState = { user: null };
 
-// reducer
 export default function sessionReducer(state = initialState, action) {
     switch (action.type) {
         case LOGIN_USER: {

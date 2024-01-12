@@ -58,11 +58,9 @@ export function validateForm({country, streetAddress, city, state, description, 
         errors.spotName = 'Name is required'
     }
 
-    if (price.trim().length === 0) {
+    if (price.toString().trim().length === 0) {
         errors.price = 'Price is required';
     }
 
-
     return errors;
-
 }

@@ -1,8 +1,9 @@
 import { csrfFetch } from "./csrf";
 import { actionEditSpot } from "./spots";
-// import {useSelector} from'react-redux';
 
-// constants
+//
+// Constants
+//
 const GET_REVIEWS_BY_SPOT_ID = 'reviews/getReviewsBySpotId';
 const GET_USER_REVIEWS = 'reviews/getUserReviews';
 const ADD_REVIEW = 'reviews/addReview';
@@ -10,7 +11,9 @@ const EDIT_REVIEW = 'reviews/updateReview';
 const DELETE_REVIEW = 'reviews/deleteReview';
 const CLEAR_USER_REVIEWS = 'reviews/clearUserReviews';
 
-// action creators
+//
+// Action Creators
+//
 export const actionGetReviewsBySpotId = (reviews) => {
     return {
         type: GET_REVIEWS_BY_SPOT_ID,
@@ -52,8 +55,9 @@ export const actionClearUserReviews = () => {
     }
 }
 
-
-// thunks
+//
+// Thunks
+//
 export const thunkGetReviewsBySpotId = (spotId) => async (dispatch) => {
     // Get response
     const response = await fetch(`/api/spots/${spotId}/reviews`);
@@ -141,7 +145,6 @@ export const thunkAddReview = (reviewDetails, images, spotId) => async (dispatch
     return review;
 }
 
-
 export const thunkEditReview = (reviewId, reviewDetails) => async (dispatch) => {
     // Fetch (edit) the data
     const response = await csrfFetch(`/api/reviews/${reviewId}`, {
@@ -210,13 +213,14 @@ export const thunkDeleteReview = (reviewId, spotId, review) => async (dispatch) 
 }
 
 
-// initial state
+//
+// Reducer
+//
 const initialState = {
     spotReviews: {},
     userReviews: {}
 }
 
-// reducer
 export default function reviewsReducer(state = initialState, action) {
     switch (action.type) {
         case GET_REVIEWS_BY_SPOT_ID: {

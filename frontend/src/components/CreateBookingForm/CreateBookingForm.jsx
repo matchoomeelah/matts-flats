@@ -1,5 +1,6 @@
 import './CreateBookingForm.css'
 
+
 function CreateBookingForm() {
     return (
         <div id='outer-container'>

@@ -1,5 +1,6 @@
-import { useNavigate } from 'react-router-dom'
 import {useDispatch} from 'react-redux';
+import { useNavigate } from 'react-router-dom'
+
 import { thunkGetSpotById } from '../../store/spots';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import DeleteSpotModal from '../DeleteSpotModal.jsx/DeleteSpotModal';
@@ -13,7 +14,6 @@ function UpdateDeleteButtons({spotId}) {
         dispatch(thunkGetSpotById(spotId));
         navigate(`/spots/${spotId}/edit`);
     }
-
 
     return (
         <div className="update-delete-buttons">

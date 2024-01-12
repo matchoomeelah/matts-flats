@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from "react-router-dom";
+
 import { thunkEditSpot, thunkGetSpotById } from '../../store/spots';
-import { validateForm } from '../NewSpotForm/field-validation'
+import { validateForm } from '../CreateSpotForm/field-validation'
 import './UpdateSpotForm.css';
 
 
@@ -38,7 +39,6 @@ function UpdateSpotForm() {
     // Populate the data from the spot into the fields
     useEffect(() => {
         if (currentSpot) {
-            console.log("CURRENT SPOT: ", currentSpot);
             setCountry(currentSpot.country);
             setStreetAddress(currentSpot.address);
             setCity(currentSpot.city);
@@ -53,7 +53,6 @@ function UpdateSpotForm() {
 
             // Add other images
             const otherImages = currentSpot.SpotImages.filter(img => img.preview === false);
-            // console.log("OTHER IMAGES EDIT FORM: ", otherImages);
 
             // Inefficient as can be
             if (otherImages.length) {
@@ -98,7 +97,6 @@ function UpdateSpotForm() {
         setErrors({});
 
         const formErrors = validateForm({ country, streetAddress, city, state, description, spotName, price, previewImage, otherImage1, otherImage2, otherImage3, otherImage4 });
-        console.log("FORM ERRORS", formErrors);
         setErrors(formErrors);
 
         if (Object.values(formErrors).length) {
@@ -129,8 +127,6 @@ function UpdateSpotForm() {
                 if (data?.errors) {
                     setErrors(data.errors);
                 }
-                console.log("DATA ERRORS", data.errors)
-                // console.log(res);
             })
 
         if (spot) {
@@ -190,30 +186,7 @@ function UpdateSpotForm() {
                         </input>
                     </div>
                 </div>
-                {/* <div>
-                    <div>
-                        <span>City</span>
-                        {errors.city && <span className='error-message'>*{errors.city}</span>}
-                    </div>
-                    <input
-                        id="city"
-                        placeholder='City'
-                        value={city}
-                        onChange={e => setCity(e.target.value)}>
-                    </input>
-                </div>
-                <div>
-                    <div>
-                        <span>State</span>
-                        {errors.state && <span className='error-message'>*{errors.state}</span>}
-                    </div>
-                    <input
-                        id="state"
-                        placeholder='State'
-                        value={state}
-                        onChange={e => setState(e.target.value)}>
-                    </input>
-                </div> */}
+
                 <div className='update-spot-horizontal-line'></div>
                 <h2> Describe your place to guests</h2>
                 <p>{"Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood."}</p>
@@ -248,14 +221,7 @@ function UpdateSpotForm() {
 
                 <h2>Set a base price for your spot</h2>
                 <p>{"Competitive pricing can help your listing stand out and rank higher in search results."}</p>
-                {/* <label htmlFor='price'>{"$ "}
-                    <input
-                        id='price'
-                        placeholder='Price per night (USD)'
-                        value={price}
-                        onChange={e => setPrice(e.target.value)}>
-                    </input>
-                </label> */}
+
                 <label htmlFor='price'>
                     <div id='price-container'>
                         <span>{"$ "}</span>
