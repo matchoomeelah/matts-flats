@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { thunkGetSpotById } from '../../store/spots';
 import { thunkGetReviewsBySpotId } from '../../store/reviews';
 
@@ -19,17 +19,11 @@ function SpotDetails() {
 
     // Import dispatch for thunks
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
 
     // Load the spots for reload
     useEffect(() => {
-        // Handle timeout from render
-        // if (!currSpot || Object.keys(currSpot).length == 0) {
-        //     dispatch(thunkLoadSpots());
-        //     dispatch(thunkGetUserReviews());
-        //     dispatch(thunkGetUserSpots());
-        // }
-
         dispatch(thunkGetSpotById(spotId));
         dispatch(thunkGetReviewsBySpotId(spotId));
     }, [dispatch, spotId])
@@ -41,8 +35,8 @@ function SpotDetails() {
     }
 
     // Function for reserve button
-    const reserveAlert = () => {
-        alert('Feature Coming Soon');
+    const reserve = () => {
+        navigate(`/spots/${spotId}/bookings/new`);
     }
 
     return (
@@ -75,7 +69,7 @@ function SpotDetails() {
                             {Object.values(spotReviews).length > 0 && Object.values(spotReviews).length !== 1 && <span> {Object.values(spotReviews).length} Reviews</span>}
                         </div>
                     </div>
-                    <button onClick={reserveAlert} id='reserve-button'>
+                    <button onClick={reserve} id='reserve-button'>
                         Reserve
                     </button>
                 </div>

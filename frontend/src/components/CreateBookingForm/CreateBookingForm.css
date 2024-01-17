@@ -1,10 +1,34 @@
+/* GENERAL */
+
+
+h1, h2 {
+    font-weight: 500;
+}
+
 #outer-container {
+    display: flex;
     margin-left: 7.5%;
+    margin-right: 7.5%;
+    justify-content: space-between;
+}
+
+.booking-form-horizontal-line {
+    border-top: 2px solid gray;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.booking-details-horizontal-line {
+    border-top: 2px solid gray;
+    width: 100%;
+    margin: 10px auto;
 }
 
 #booking-details-form {
-    width: 50%;
+    width: 40%;
 }
+
+/* DATES */
 
 #date-selection-container {
     display: flex;
@@ -16,3 +40,134 @@
 #date-selection-container input {
     width: fit-content;
 }
+
+#date-dash {
+    font-size: 30px;
+    position: relative;
+    bottom: 5px;
+    margin: 0px 5px;
+}
+
+
+/* GUESTS */
+#guest-input {
+    width: 30px;
+}
+
+#guest-selection-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+    width: 105px;
+}
+
+
+/* TRAVEL INSURANCE */
+
+
+
+/* PAYMENT */
+
+#payment-info-container {
+    width: 100%;
+}
+
+#ccn {
+    padding-right: 0;
+    box-sizing: border-box;
+}
+
+#exp {
+    width: 47%;
+}
+
+#cvv {
+    width: 47%;
+}
+
+#exp-cvv-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#zip-code {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#confirm-pay-button {
+    width: 100%;
+    margin: 0;
+    margin-top: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #FF5A5F;
+    color: white;
+    box-shadow: 2px 2px 1px rgb(107, 105, 105);
+}
+
+#confirm-pay-button:disabled {
+    background-color: white;
+    color: gray;
+    cursor: default;
+}
+
+
+/* RESERVATION DETAILS */
+
+#reservation-details-container {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 150px;
+    right: 7.5%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px;
+    width: 35%;
+    z-index: -1;
+}
+
+#spot-info-container {
+    display: flex;
+}
+
+#preview-image-container {
+    width: 30%;
+    max-width: 150px;
+    min-width: 100px;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+#preview-image-container img {
+    width: 100%;
+    min-height: 95%;
+    border-radius: 5px;
+}
+
+#price-details-header {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.price-detail {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.price-detail p {
+    margin: 6px 0px;
+}
+
+#total-div p {
+    font-weight: bold;
+}
+
+
+/* Media Queries */

@@ -167,12 +167,12 @@
 .reviewer-name {
     margin-top: 45px;
     margin-bottom: 0;
-    font-weight: bolder;
+    font-weight: 500;
 }
 
 .review-date {
     margin-top: 10px;
-    font-weight: lighter;
+    font-weight: 400;
     font-size: 15px;
     color: darkgray;
 }

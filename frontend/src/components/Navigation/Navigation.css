@@ -74,12 +74,12 @@
 
  #manage-spots-div:hover {
     cursor: pointer;
-    font-weight: bolder;
+    font-weight: 500;
  }
 
  #manage-reviews-div:hover {
     cursor: pointer;
-    font-weight: bolder;
+    font-weight: 500;
  }
 
  .separator {
@@ -96,7 +96,7 @@
  .login-menu-item:hover,
  .signup-menu-item:hover {
      cursor: pointer;
-     font-weight: bold;
+     font-weight: 500;
  }
 
  .hidden {

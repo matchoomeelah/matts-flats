@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
 import SpotTile from "./SpotTile";
 import { actionClearCurrSpot } from '../../store/spots';
 import './SpotDisplay.css';
@@ -6,6 +8,10 @@ import './SpotDisplay.css';
 function SpotDisplay() {
     // Select all spots from state
     const allSpots = useSelector(state => state.spots.allSpots);
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     // Clear the currSpot state
     const dispatch = useDispatch();

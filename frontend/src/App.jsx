@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         element: <UpdateSpotForm />
       },
       {
-        path:'/spots/:spotId/bookings',
+        path:'/spots/:spotId/bookings/new',
         element: <CreateBookingForm />
       },
       {

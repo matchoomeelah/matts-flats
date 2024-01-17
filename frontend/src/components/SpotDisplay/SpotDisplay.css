@@ -56,7 +56,7 @@
 }
 
 .spot-city-state {
-    font-weight: bolder;
+    font-weight: 400;
 }
 
 .fa-star {
@@ -65,12 +65,11 @@
 }
 
 .price-span {
-    font-weight: bold;
     margin-left: 5px;
 }
 
 .night-span {
-    font-weight: 100;
+    font-weight: 300;
 }
 
 
