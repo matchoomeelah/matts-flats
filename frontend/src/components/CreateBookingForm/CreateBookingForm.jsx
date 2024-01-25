@@ -6,7 +6,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { thunkGetSpotById } from '../../store/spots';
 import { thunkGetReviewsBySpotId } from '../../store/reviews';
 import './CreateBookingForm.css'
-import { thunkAddBooking, thunkGetUserBookings } from '../../store/bookings';
+import { thunkAddBooking } from '../../store/bookings';
 
 
 function CreateBookingForm() {
@@ -53,7 +53,13 @@ function CreateBookingForm() {
         e.preventDefault();
 
         try {
-            const booking = await dispatch(thunkAddBooking({
+            // const booking = await dispatch(thunkAddBooking({
+            //     spotId,
+            //     userId: sessionUser.id,
+            //     startDate,
+            //     endDate
+            // }))
+            dispatch(thunkAddBooking({
                 spotId,
                 userId: sessionUser.id,
                 startDate,

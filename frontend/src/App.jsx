@@ -12,7 +12,7 @@ import ManageSpotsDisplay from './components/ManageSpots/ManageSpotsDisplay';
 import UpdateSpotForm from './components/UpdateSpotForm.jsx/UpdateSpotForm';
 import ManageReviewsDisplay from './components/ManageReviews/ManageReviewsDisplay';
 import CreateBookingForm from './components/CreateBookingForm/CreateBookingForm';
-import { thunkGetUserBookings } from './store/bookings';
+// import { thunkGetUserBookings } from './store/bookings';
 
 const router = createBrowserRouter([
   {
@@ -64,7 +64,7 @@ function Layout() {
     });
 
     dispatch(thunkLoadSpots());
-    dispatch(thunkGetUserBookings())
+    // dispatch(thunkGetUserBookings())
   }, [dispatch]);
 
   return (
