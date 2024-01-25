@@ -104,7 +104,7 @@ export const thunkSignup = (user) => async (dispatch) => {
     });
     const data = await response.json();
     dispatch(loginUser(data));
-    return response;
+    return data;
 };
 
 

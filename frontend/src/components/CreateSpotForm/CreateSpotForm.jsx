@@ -42,7 +42,6 @@ function CreateSpotForm() {
 
         setErrors({});
 
-
         // Check if anything empty or too short
         const formErrors = validateForm({ country, streetAddress, city, state, description, spotName, price, previewImage, otherImage1, otherImage2, otherImage3, otherImage4 });
         console.log("FORM ERRORS", formErrors);

@@ -20,7 +20,6 @@ function CreateReviewFormModal() {
     const [imageErrors, setImageErrors] = useState({});
 
 
-    // Submit form
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -28,11 +27,11 @@ function CreateReviewFormModal() {
         const imageErrorObject = verifyImages(imageInputs);
         setImageErrors(imageErrorObject);
 
+        // Handle Errors
         if (Object.keys(imageErrorObject).length) {
             return;
         }
 
-        // Handle Errors
         try {
             dispatch(thunkAddReview({
                 review: reviewText,

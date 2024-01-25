@@ -169,5 +169,18 @@ h1, h2 {
     font-weight: bold;
 }
 
+#travel-insurance-heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+#travel-insurance-input {
+    height: 20px;
+    width: 20px;
+    position: relative;
+    top: 18px;
+    vertical-align: middle;
+}
+
 
 /* Media Queries */

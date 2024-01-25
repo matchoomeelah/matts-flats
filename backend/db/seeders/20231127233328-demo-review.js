@@ -14,30 +14,6 @@ options.tableName = "Reviews"
 module.exports = {
   async up (queryInterface, Sequelize) {
     Review.bulkCreate([
-      // {
-      //   spotId: 1,
-      //   userId: 3,
-      //   review: "Pretty good" ,
-      //   stars: 3
-      // },
-      // {
-      //   spotId: 1,
-      //   userId: 2,
-      //   review: "Great!" ,
-      //   stars: 4
-      // },
-      // {
-      //   spotId: 4,
-      //   userId: 3,
-      //   review: "AWESOME" ,
-      //   stars: 5
-      // },
-      // {
-      //   spotId: 2,
-      //   userId: 3,
-      //   review: "nah",
-      //   stars: 1
-      // },
       {
         spotId: 1,
         userId: 2,
