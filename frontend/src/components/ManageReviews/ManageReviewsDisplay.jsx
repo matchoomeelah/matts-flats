@@ -12,25 +12,15 @@ function ManageReviewsDisplay() {
     const userReviews = useSelector(state => state.reviews.userReviews);
     const sessionUser = useSelector(state => state.session.user);
 
-    // Ensure userReviews in available in state
+    // Ensure userReviews is available in state
     useEffect(() => {
-        try {
-            dispatch(thunkGetUserReviews());
-        } catch (err) {
-            console.log(err);
-        }
+        dispatch(thunkGetUserReviews());
     }, [dispatch]);
 
-    // Handle case where no user logged in
+    // Handle case where no user logged in, and we don't want them to see the page
     if (!sessionUser) {
         return null;
     }
-
-    // Handle case where no user logged in
-    if (!sessionUser) {
-        return null;
-    }
-
 
     return (
         <div>

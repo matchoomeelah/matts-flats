@@ -1,8 +1,8 @@
-/* .signup-form-container {
+.signup-form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: space-around; */
+    justify-content: space-around;
     min-width: 300px;
     width: 30em;
     min-height: fit-content;
@@ -17,9 +17,6 @@
     height: 70%;
 }
 
-#sign-up-form-header {
-    /* margin-bottom: 0; */
-}
 
 .error-message {
     color: #FF5A5F;

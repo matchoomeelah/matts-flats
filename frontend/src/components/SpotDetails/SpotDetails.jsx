@@ -45,7 +45,7 @@ function SpotDetails() {
             <div id='spot-location'>
                 <h3>{currSpot.city}, {currSpot.state}, {currSpot.country} </h3>
             </div>
-            <SpotImagesDisplay images={currSpot.SpotImages} />
+            <SpotImagesDisplay images={currSpot.SpotImages.sort((a, b) => a.id - b.id )} />
             <div id='spot-owner-description-callout-container'>
                 <div id='spot-owner-description-container'>
                     <div id='spot-owner'>
