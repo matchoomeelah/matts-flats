@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { thunkGetSpotById } from '../../store/spots';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
-import DeleteSpotModal from '../DeleteSpotModal.jsx/DeleteSpotModal';
+import DeleteSpotModal from '../DeleteSpotModal/DeleteSpotModal';
 
 
 function UpdateDeleteButtons({spotId}) {

@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 
-
 import { thunkGetSpotById } from '../../store/spots';
 import { thunkGetReviewsBySpotId } from '../../store/reviews';
 import './CreateBookingForm.css'
 import { thunkAddBooking } from '../../store/bookings';
+import ReservationDetails from './ReservationDetails';
 
 
 function CreateBookingForm() {
@@ -17,7 +17,6 @@ function CreateBookingForm() {
     const sessionUser = useSelector(state => state.session.user)
     const spotId = useParams().spotId;
     const currSpot = useSelector(state => state.spots.currentSpot);
-    const spotReviews = useSelector(state => state.reviews.spotReviews);
 
     // Variables to hold form values
     const [startDate, setStartDate] = useState("");
@@ -30,7 +29,6 @@ function CreateBookingForm() {
     const [zipCode, setZipCode] = useState("")
 
 
-
     useEffect(() => {
         window.scrollTo(0, 0);
         dispatch(thunkGetSpotById(spotId));
@@ -38,39 +36,18 @@ function CreateBookingForm() {
     }, [dispatch, spotId])
 
     if (!sessionUser) {
-        return <h1>Please log in or sign up!</h1>
+        return <h1>Please log in or sign up to book!</h1>
     }
-
-    // Wait for the spot to load
-    if (!currSpot || !spotReviews) {
-        return null;
-    }
-
-    const currAvgRating = Object.values(spotReviews).reduce((acc, curr) => curr.stars + acc, 0) / Object.values(spotReviews).length;
-    const previewImage = currSpot.SpotImages.find(image => image.preview);
 
     const handleSubmit = async e => {
         e.preventDefault();
 
-        try {
-            // const booking = await dispatch(thunkAddBooking({
-            //     spotId,
-            //     userId: sessionUser.id,
-            //     startDate,
-            //     endDate
-            // }))
-            dispatch(thunkAddBooking({
+        dispatch(thunkAddBooking({
                 spotId,
                 userId: sessionUser.id,
                 startDate,
                 endDate
-            }))
-
-        }
-        catch (err) {
-            console.log(err)
-            return
-        }
+        }))
 
         navigate(`/spots/${currSpot.id}`);
     }
@@ -79,7 +56,6 @@ function CreateBookingForm() {
         <div id='outer-container'>
             <form id='booking-details-form' onSubmit={handleSubmit}>
                 <h1>Request To Book</h1>
-
                 <h2>Your Trip</h2>
                 <h3>Dates</h3>
                 <div id='date-selection-container'>
@@ -155,57 +131,9 @@ function CreateBookingForm() {
                         onChange={e => setZipCode(e.target.value)}></input>
                     <button id="confirm-pay-button" type="submit">Confirm and Pay</button>
                 </div>
-
-
             </form>
 
-            <div id='reservation-details-container'>
-                <div id="spot-info-container">
-                    <div id="preview-image-container">
-                        <img src={previewImage.url}></img>
-                    </div>
-                    <div id="title-reviews-container">
-                        <h3>{currSpot.name}</h3>
-                        <div id='small-star-rating'>
-                            <i className="fas fa-star"></i>
-                            <span style={{ 'marginRight': '4px', 'marginLeft': '1px' }}>{Object.values(spotReviews).length === 0 ? 'New' : parseFloat(currAvgRating).toFixed(1)}</span>
-                            <span style={{ 'marginRight': '3px', 'marginLeft': '2px' }}>{Object.values(spotReviews).length > 0 && <span>&#x2022;</span>}</span>
-                            {Object.values(spotReviews).length > 0 && Object.values(spotReviews).length === 1 && <span> {Object.values(spotReviews).length} Review</span>}
-                            {Object.values(spotReviews).length > 0 && Object.values(spotReviews).length !== 1 && <span> {Object.values(spotReviews).length} Reviews</span>}
-                        </div>
-                        <h5>Hosted by {`${currSpot.Owner.firstName} ${currSpot.Owner.lastName}`}</h5>
-                    </div>
-                </div>
-
-                <div className='booking-details-horizontal-line'></div>
-
-                <div id="price-details-container">
-                    <h2 id="price-details-header">Price Details</h2>
-                    <div className='price-detail'>
-                        <p>${currSpot.price}/night x # nights</p>
-                        <p>$###.##</p>
-                    </div>
-                    <div className='price-detail'>
-                        <p>Cleaning fee</p>
-                        <p>$##.##</p>
-                    </div>
-                    <div className='price-detail'>
-                        <p>Matt&apos;s Flats fee</p>
-                        <p>$##.##</p>
-                    </div>
-                    <div className='price-detail'>
-                        <p>Taxes</p>
-                        <p>$##.##</p>
-                    </div>
-                </div>
-
-                <div className='booking-details-horizontal-line'></div>
-
-                <div id="total-div" className='price-detail'>
-                    <p>Total (USD)</p>
-                    <p>$###.##</p>
-                </div>
-            </div>
+            <ReservationDetails guests={guests} travelInsurance={travelInsurance} />
         </div>
     )
 }
