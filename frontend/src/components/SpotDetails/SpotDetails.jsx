@@ -36,7 +36,8 @@ function SpotDetails() {
 
     // Function for reserve button
     const reserve = () => {
-        navigate(`/spots/${spotId}/bookings/new`);
+        alert("Reservations under construction, come back soon!")
+        // navigate(`/spots/${spotId}/bookings/new`);
     }
 
     return (
