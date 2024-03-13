@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { thunkGetSpotById } from '../../store/spots';
 import { thunkGetReviewsBySpotId } from '../../store/reviews';
 
@@ -19,7 +19,7 @@ function SpotDetails() {
 
     // Import dispatch for thunks
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
 
     // Load the spots for reload
@@ -36,7 +36,7 @@ function SpotDetails() {
 
     // Function for reserve button
     const reserve = () => {
-        alert("Reservations under construction, come back soon!")
+        alert("Reservations under construction, come back soon!");
         // navigate(`/spots/${spotId}/bookings/new`);
     }
 
